@@ -160,15 +160,23 @@ LightRAG:
   - エンティティ抽出: 1000回 × チャンク
   - マージ/要約: 条件次第（少数）
   → 推定コスト: $2〜5（GPT-4o-mini基準）
+  → クエリ時トークン消費: ~100トークン/クエリ
 
-Microsoft GraphRAG:
+Microsoft GraphRAG（標準）:
   - エンティティ抽出: 1000回
   - コミュニティ要約: 階層ごとに数百〜数千回
   - グローバルサーチ時: map-reduceで追加呼び出し
   → 推定コスト: $20〜100（同基準）
+  → クエリ時トークン消費: ~610,000トークン/クエリ（グローバル検索時）
+
+Microsoft LazyGraphRAG（コスト最適化版、2024年リリース）:
+  - インデックスコスト: 標準GraphRAGの0.1%（コミュニティ要約を事前生成しない）
+  - クエリコスト: 標準の1/700
+  - 品質: グローバルクエリでGraphRAGと同等
+  → Angels規模ならLazyGraphRAGも選択肢に入るが、pgvector非対応は変わらない
 
 ※ローカルLLM使用時は両者ともAPIコスト≒$0
-  ただしGPU/時間コストはLightRAGが大幅に少ない
+  ただしGPU/時間コストはLightRAGが大幅に少ない（コミュニティ要約不要のため）
 ```
 
 ### 2.3 クエリ品質（ベンチマーク）
@@ -188,10 +196,11 @@ LightRAGの原論文（arXiv:2410.05779）での評価:
 
 | 観点 | LightRAG | Microsoft GraphRAG | 判定 |
 |-----|---------|-------------------|------|
-| **更新容易性** | ✅ ドキュメント追加のみ | ❌ 全再インデックス | LightRAG |
+| **更新容易性** | ✅ append-only差分マージ | △ v1.0で改善、ただしコミュニティ再要約あり | LightRAG |
 | **ローカル動作** | ✅ Ollama完全対応 | △ 要設定 | LightRAG |
 | **pgvector接続** | ✅ 公式サポート | ❌ 非対応 | LightRAG |
-| **Community Summary** | ❌ なし | ✅ 強力 | GraphRAG |
+| **クエリトークン消費** | ✅ ~100トークン/クエリ | ❌ ~610,000トークン/クエリ（標準） | LightRAG |
+| **Community Summary** | ❌ なし | ✅ 強力（LazyGraphRAGでは遅延生成） | GraphRAG |
 | **大規模文書への適性** | ○ 中〜大規模 | ◎ 超大規模 | GraphRAG |
 | **小〜中規模知識ベース** | ◎ 最適 | △ オーバースペック | LightRAG |
 | **実装コスト** | ✅ 低 | ❌ 高 | LightRAG |
@@ -326,14 +335,18 @@ Angels適合性:
 
 ```
 特徴:
-- 会話・ユーザー記憶に特化したシンプルAPI
+- 会話・ユーザー記憶に特化したシンプルAPI（GitHub 41K+ stars）
 - managed serviceあり（mem0.ai）
 - ベクトル+グラフ+キーバリューの三層構造
+- AWS Agent SDKの公式メモリプロバイダー（2025年）
+- Q3 2025: 1.86億APIコール（Q1比5.3倍成長）
 
 Angels適合性:
 ✅ AIキャラクターの「記憶」機能として将来活用の余地
 ❌ 知識ベース構築（RAG）用途には設計が合わない
 ❌ 大量ドキュメントのインデックスには不向き
+❌ 時系列追跡なし（Graphitiと異なり事実を上書き）
+❌ 競合する事実の解決はLLM依存で精度が不安定
 
 結論: Phase 8以降のキャラクター記憶機能で別途検討。今回は対象外。
 ```
@@ -435,6 +448,7 @@ Angels適合性:
 - [LightRAG 原論文 (arXiv:2410.05779)](https://arxiv.org/abs/2410.05779)
 - [LightRAG 公式ドキュメント](https://lightrag.github.io/)
 - [Microsoft GraphRAG GitHub](https://github.com/microsoft/graphrag)
+- [LazyGraphRAG — Microsoft Research Blog](https://www.microsoft.com/en-us/research/blog/lazygraphrag-setting-a-new-standard-for-quality-and-cost/)
 - [Graphiti (Zep AI) GitHub](https://github.com/getzep/graphiti)
 - [Mem0 GitHub](https://github.com/mem0ai/mem0)
 - [pgvector GitHub](https://github.com/pgvector/pgvector)
