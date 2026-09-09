@@ -1,0 +1,93 @@
+{
+  "default_frame_rate": 24.0,
+  "cameras": {
+    "sigma_fp": {
+      "name": "SIGMA fp",
+      "cst_input": {
+        "color_space": "SIGMA SGamut",
+        "gamma": "SIGMA SLog3"
+      },
+      "detection": {
+        "filename_patterns": ["SDIM", "_SFP", "SIGMA"],
+        "codecs": ["CinemaDNG", "H.264"],
+        "exif_make": "SIGMA",
+        "exif_model": "fp"
+      }
+    },
+    "nikon_z6iii": {
+      "name": "Nikon Z6III",
+      "cst_input": {
+        "color_space": "N-Log",
+        "gamma": "N-Log"
+      },
+      "detection": {
+        "filename_patterns": ["DSC", "_Z6", "NIKON"],
+        "codecs": ["N-RAW", "H.265"],
+        "file_extensions": [".nraw", ".mov"],
+        "exif_make": "Nikon",
+        "exif_model": "Z 6III"
+      }
+    },
+    "fuji_xe5": {
+      "name": "Fujifilm X-E5",
+      "cst_input": {
+        "color_space": "F-Log2 C",
+        "gamma": "F-Log2"
+      },
+      "detection": {
+        "filename_patterns": ["DSCF", "_XE5", "FUJI"],
+        "codecs": ["H.265", "ProRes"],
+        "file_extensions": [".mov", ".mp4"],
+        "exif_make": "Fujifilm",
+        "exif_model": "X-E5"
+      }
+    },
+    "nikon_zr": {
+      "name": "Nikon ZR",
+      "cst_input": {
+        "color_space": "REDWideGamutRGB",
+        "gamma": "RED Log3G10"
+      },
+      "detection": {
+        "filename_patterns": ["DSC", "_ZR", "NIKON"],
+        "codecs": ["R3D", "N-RAW", "H.265"],
+        "file_extensions": [".r3d"],
+        "exif_make": "Nikon",
+        "exif_model": "ZR"
+      },
+      "notes": "RED color science. R3D NE codec (12bit RAW) + IPP2 LUT support"
+    },
+    "ursa_mini_46k": {
+      "name": "URSA Mini 4.6K",
+      "cst_input": {
+        "color_space": "Blackmagic Design 4.6K Film",
+        "gamma": "Blackmagic Design 4.6K Film"
+      },
+      "detection": {
+        "filename_patterns": ["_B", "BM_"],
+        "codecs": ["CinemaDNG", "BRAW"],
+        "file_extensions": [".braw", ".dng"],
+        "exif_make": "Blackmagic",
+        "exif_model": "URSA Mini",
+        "resolution_hint": "4608x2592"
+      },
+      "notes": "BMD Film Gen 4. CinemaDNG RAW"
+    },
+    "bm_production_4k": {
+      "name": "Blackmagic Production Camera 4K",
+      "cst_input": {
+        "color_space": "Blackmagic Design 4K Film Gen 1",
+        "gamma": "Blackmagic Design 4K Film Gen 1"
+      },
+      "detection": {
+        "filename_patterns": ["BMPC", "BPC"],
+        "codecs": ["CinemaDNG", "ProRes"],
+        "file_extensions": [".dng", ".mov"],
+        "exif_make": "Blackmagic",
+        "exif_model": "Production Camera",
+        "resolution_hint": "3840x2160"
+      },
+      "notes": "BMD Film Gen 1. CinemaDNG RAW"
+    }
+  }
+}

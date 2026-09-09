@@ -1,0 +1,25 @@
+{
+  "project_name": "FLAMENCO_11CAM_{date}",
+  "num_cameras": 11,
+  "camera_assignments": "auto_detect",
+  "known_cameras": [
+    {"key": "ursa_mini_46k", "name": "URSA Mini 4.6K"},
+    {"key": "bm_production_4k", "name": "Blackmagic Production Camera 4K"},
+    {"key": "nikon_zr", "name": "Nikon ZR"},
+    {"key": "nikon_z6iii", "name": "Nikon Z6III"},
+    {"key": "fuji_xe5", "name": "Fujifilm X-E5"}
+  ],
+  "powergrade_source": "~/Desktop/",
+  "powergrade_files": {
+    "tablao": "Twilight_Inferno_Tablao.drx",
+    "sevilla_nocturna": "Twilight_Inferno_Sevilla_Nocturna.drx"
+  },
+  "default_look": "tablao",
+  "timeline": {
+    "frame_rate": 24.0,
+    "resolution": "3840x2160",
+    "color_science": "DaVinci Wide Gamut",
+    "gamma": "DaVinci Intermediate"
+  },
+  "deflicker_auto_detect": true
+}
