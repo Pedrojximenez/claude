@@ -1,8 +1,8 @@
 # GraphRAG実装評価メモ
 ## Angels Phase 6後半〜7初期 技術選定
 
-**作成日**: 2026-04-03  
-**対象フェーズ**: Phase 6後半〜Phase 7初期  
+**作成日**: 2026-04-03
+**対象フェーズ**: Phase 6後半〜Phase 7初期
 **評価者**: レザード（[gods]メール報告）
 
 ---
@@ -13,7 +13,7 @@
 
 **HKUDS/LightRAG** (GitHub 14K+ stars, 論文: arXiv:2410.05779)
 
-LightRAGは香港大学が開発したGraph+VectorハイブリッドRAGフレームワーク。  
+LightRAGは香港大学が開発したGraph+VectorハイブリッドRAGフレームワーク。
 Microsoft GraphRAGの「高コスト・高精度」に対し、**「低コスト・高速・十分な精度」**を実現するアーキテクチャ。
 
 ---
@@ -455,5 +455,5 @@ Angels適合性:
 
 ---
 
-*本ドキュメントはAngels Phase 6後半〜7初期のGraphRAG実装判断のための技術評価メモです。*  
+*本ドキュメントはAngels Phase 6後半〜7初期のGraphRAG実装判断のための技術評価メモです。*
 *最終実装決定前に、実環境でのPoC（概念実証）を推奨します。*
