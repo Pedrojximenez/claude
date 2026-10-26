@@ -1,0 +1,420 @@
+{
+  "schema_version": 1,
+  "source": "https://github.com/lemomo-ai/lemo-opuscar",
+  "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df",
+  "frames": [
+    {
+      "style_id": "opuscar-archive-lighttable",
+      "path": "styles/opuscar-archive-lighttable/preview.jpg",
+      "sha256": "594f6d15fce4848e086d2adc1218b0e32d5b118cae4a49ef23857fe378d5800b",
+      "upstream_path": "styleboard/img/archive-lighttable_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-art-deco",
+      "path": "styles/opuscar-art-deco/preview.jpg",
+      "sha256": "306dda677b859ace3cc1a12f372dd84fd5b8b91395852affa7d4b632080b9672",
+      "upstream_path": "styleboard/img/art-deco_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-ascii-crt",
+      "path": "styles/opuscar-ascii-crt/preview.jpg",
+      "sha256": "543a4acf51a6e7f8c4896f60f847db86f605c6858b9e16c301f71bc3222a10d1",
+      "upstream_path": "styleboard/img/ascii-crt_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-backrooms",
+      "path": "styles/opuscar-backrooms/preview.jpg",
+      "sha256": "4133b3587ce009c44cd8d1c10e094c771fe3c47da6e4fd74dda9a21d061332d6",
+      "upstream_path": "styleboard/img/backrooms_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-blueprint",
+      "path": "styles/opuscar-blueprint/preview.jpg",
+      "sha256": "28a1e4f35e042d9d5cdbbd8740a57bd5267430320e34fa3eaa72753a7ce93ddf",
+      "upstream_path": "styleboard/img/blueprint_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-brick-toy",
+      "path": "styles/opuscar-brick-toy/preview.jpg",
+      "sha256": "79d70fe522b57789211616288f64acff3e3aaa140c13dfd13d7ddc8454e9b250",
+      "upstream_path": "styleboard/img/brick-toy_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-briefing-board",
+      "path": "styles/opuscar-briefing-board/preview.jpg",
+      "sha256": "2cf0a4f42dae3b8361a8758c7ee334aab41cacdb6dfb231dd41937dda97931ee",
+      "upstream_path": "styleboard/img/briefing-board_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-caption-news",
+      "path": "styles/opuscar-caption-news/preview.jpg",
+      "sha256": "b2882dcab4c5a338736cf2334df4dc1b74fb355caf387e3f055424ab8c541df1",
+      "upstream_path": "styleboard/img/caption-news_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-cel-anime-80s",
+      "path": "styles/opuscar-cel-anime-80s/preview.jpg",
+      "sha256": "a0f76f40ce55c6d33b5b3c290bf88c2b5ea7df9adfe221b1a527d47c5d3a707e",
+      "upstream_path": "styleboard/img/cel-anime-80s_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-city-symphony",
+      "path": "styles/opuscar-city-symphony/preview.jpg",
+      "sha256": "ed5ad70aa40f1cb6584c4e4ea4db3d85e4b69f3a35d63c6999f9ad66a9135fbe",
+      "upstream_path": "styleboard/img/city-symphony_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-countdown",
+      "path": "styles/opuscar-countdown/preview.jpg",
+      "sha256": "c301b2a73c4e222a83bf044d74310adf42d2b37f8ba1505a74091bf7bb7aa318",
+      "upstream_path": "styleboard/img/countdown_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-crayon-book",
+      "path": "styles/opuscar-crayon-book/preview.jpg",
+      "sha256": "e47c200812b180a0fb21bc9e5b457de80ead855de2f056a4c62766b13bd9ca8f",
+      "upstream_path": "styleboard/img/crayon-book_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-dark-keynote",
+      "path": "styles/opuscar-dark-keynote/preview.jpg",
+      "sha256": "e69159dcd56d50865f4275b03576b8f53dd6d451cd646456238a2d045e9316e7",
+      "upstream_path": "styleboard/img/dark-keynote_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-data-physical",
+      "path": "styles/opuscar-data-physical/preview.jpg",
+      "sha256": "778ce5e060fe2a2cdf689913155012a527e929e569eb46237691ae4b8a234714",
+      "upstream_path": "styleboard/img/data-physical_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-dataviz",
+      "path": "styles/opuscar-dataviz/preview.jpg",
+      "sha256": "1b504e873efe6c5d8db468298997cbdb5eff4341f463fa51c2b405cb53d6d2cd",
+      "upstream_path": "styleboard/img/dataviz_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-engraving",
+      "path": "styles/opuscar-engraving/preview.jpg",
+      "sha256": "58625715a33d2d7e42758f65981678563745653cf78bebe7f61788e5960474a6",
+      "upstream_path": "styleboard/img/engraving_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-game-show",
+      "path": "styles/opuscar-game-show/preview.jpg",
+      "sha256": "204bd842120beabc6e491f7881c4ecf4807c9a317c5cba3527b3b71c8cf70a53",
+      "upstream_path": "styleboard/img/game-show_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-glass-product",
+      "path": "styles/opuscar-glass-product/preview.jpg",
+      "sha256": "d403e6074cc0e974186482c4d058c4297e5ec889f6c02b97190ea9e535206f75",
+      "upstream_path": "styleboard/img/glass-product_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-halftone-dossier",
+      "path": "styles/opuscar-halftone-dossier/preview.jpg",
+      "sha256": "8a145a2edb7d1b4cfbe289bdf0a606430219f53c2f25c55ba619725158f9a815",
+      "upstream_path": "styleboard/img/halftone-dossier_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-hd-2d",
+      "path": "styles/opuscar-hd-2d/preview.jpg",
+      "sha256": "e655f50b3c6f26ec8f7354c88bd41b058da878612941244ec168d8840ac77cee",
+      "upstream_path": "styleboard/img/hd-2d_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-hologram-hud",
+      "path": "styles/opuscar-hologram-hud/preview.jpg",
+      "sha256": "77b9801a82ff1bf619dac25ae5cc1bd826ef976ee5953bae0fde33510d821619",
+      "upstream_path": "styleboard/img/hologram-hud_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-impasto",
+      "path": "styles/opuscar-impasto/preview.jpg",
+      "sha256": "b32a4ec7026b88b0c71b639bd87bc4b304d6286dfa46f7b73696625ad84d8a22",
+      "upstream_path": "styleboard/img/impasto_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-ink-wash",
+      "path": "styles/opuscar-ink-wash/preview.jpg",
+      "sha256": "f12f7f564254ddc2507ab145ee2e2be47df021bfe9c9d440f0d9062a7d90bb20",
+      "upstream_path": "styleboard/img/ink-wash_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-iso-infographic",
+      "path": "styles/opuscar-iso-infographic/preview.jpg",
+      "sha256": "37b28287f9f9dee08bb7fcbca378f0631e53a3dc4744a440960548a6941c59d6",
+      "upstream_path": "styleboard/img/iso-infographic_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-kino-montage",
+      "path": "styles/opuscar-kino-montage/preview.jpg",
+      "sha256": "fdb890c5c68dfa4b8dee334712ba2906a06d6eda2809952060f8543f5ee7f591",
+      "upstream_path": "styleboard/img/kino-montage_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-lidar-survey",
+      "path": "styles/opuscar-lidar-survey/preview.jpg",
+      "sha256": "9b5ef160d7f2109403b04fa13817bccdb836ecaa464467e4b8e8357509db367b",
+      "upstream_path": "styleboard/img/lidar-survey_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-living-screencast",
+      "path": "styles/opuscar-living-screencast/preview.jpg",
+      "sha256": "45700b6e0abf87d3325c8a5cdcc4db5782e4c15c544b747cc570d9ce3710e89a",
+      "upstream_path": "styleboard/img/living-screencast_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-lowpoly-island",
+      "path": "styles/opuscar-lowpoly-island/preview.jpg",
+      "sha256": "7feaf6cf1ba68b90b78106eeb4386a9881eacd0d6b31b33ed48a32dd13ec7854",
+      "upstream_path": "styleboard/img/lowpoly-island_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-microgame",
+      "path": "styles/opuscar-microgame/preview.jpg",
+      "sha256": "987d734ac7608270e2b039e283bfb47414cdfadfe049f80bc2e9a7273b45cf56",
+      "upstream_path": "styleboard/img/microgame_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-microscope",
+      "path": "styles/opuscar-microscope/preview.jpg",
+      "sha256": "bdefb1ae91eac33abc56d8c4f91fa86a7786d2e842068388afac5fe269703428",
+      "upstream_path": "styleboard/img/microscope_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-midcentury-toon",
+      "path": "styles/opuscar-midcentury-toon/preview.jpg",
+      "sha256": "60c5bde99994234d51b125765d2e1583da867fe47500ae42d05a7df88610e8f7",
+      "upstream_path": "styleboard/img/midcentury-toon_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-news-package",
+      "path": "styles/opuscar-news-package/preview.jpg",
+      "sha256": "998a6255361c81565d211453fed7a1be70286e29d02c163d77a32517867da26a",
+      "upstream_path": "styleboard/img/news-package_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-newsreel",
+      "path": "styles/opuscar-newsreel/preview.jpg",
+      "sha256": "d09be02d5efc4a316984833e5dd71bea7fcf95ac94af9540b0483fcf34d89616",
+      "upstream_path": "styleboard/img/newsreel_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-one-line",
+      "path": "styles/opuscar-one-line/preview.jpg",
+      "sha256": "da2bd273d62fe7ecf5df216b6e96f21b6a0778ad77c41272252c0c6d81b01de1",
+      "upstream_path": "styleboard/img/one-line_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-paper-lantern",
+      "path": "styles/opuscar-paper-lantern/preview.jpg",
+      "sha256": "a2ac99facda434f956076e9508ebdba44406bbeb80064ca9def756d72675918a",
+      "upstream_path": "styleboard/img/paper-lantern_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-paper-popup",
+      "path": "styles/opuscar-paper-popup/preview.jpg",
+      "sha256": "373ff711470a10d9101cb19c30fd2639197fa7fe8a599a30ba0dd6958ee7bc38",
+      "upstream_path": "styleboard/img/paper-popup_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-papercut-red",
+      "path": "styles/opuscar-papercut-red/preview.jpg",
+      "sha256": "bdc3dc9185d32b8e0ee94dc5d90bd3a384149c780c661304e020330913745e18",
+      "upstream_path": "styleboard/img/papercut-red_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-pictogram-motion",
+      "path": "styles/opuscar-pictogram-motion/preview.jpg",
+      "sha256": "f753b7f26994d63f7d128198ef099d183206edf6bd7492cf23bce7df12b857cb",
+      "upstream_path": "styleboard/img/pictogram-motion_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-pixel-rpg",
+      "path": "styles/opuscar-pixel-rpg/preview.jpg",
+      "sha256": "656b16a674c5c142d9a540c5a92cda8469c6e9e758f737494db2152c989e604a",
+      "upstream_path": "styleboard/img/pixel-rpg_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-risograph",
+      "path": "styles/opuscar-risograph/preview.jpg",
+      "sha256": "b052cd84ed69898732debd293009cab02786b4fc7728dccb9d02a9a1192b47e5",
+      "upstream_path": "styleboard/img/risograph_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-rubber-hose",
+      "path": "styles/opuscar-rubber-hose/preview.jpg",
+      "sha256": "9b332777f058c5914d5fea84b1be445c14faf632c807c9f883cb8fdc899bb098",
+      "upstream_path": "styleboard/img/rubber-hose_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-satellite-briefing",
+      "path": "styles/opuscar-satellite-briefing/preview.jpg",
+      "sha256": "2b445629b72125b3f6a359411def9fde4478294abb8a9c4821e2e219aef9fcbc",
+      "upstream_path": "styleboard/img/satellite-briefing_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-scifi-toon",
+      "path": "styles/opuscar-scifi-toon/preview.jpg",
+      "sha256": "5ce16fc270baed1e582c801f5db5b1d377f91065872c420c449c26eea9eda328",
+      "upstream_path": "styleboard/img/scifi-toon_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-shadow-puppet",
+      "path": "styles/opuscar-shadow-puppet/preview.jpg",
+      "sha256": "72f7edc86977015ded7ecb11a305c85cf4fcafec1dff5d5a0fd78d2a5264fe7c",
+      "upstream_path": "styleboard/img/shadow-puppet_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-silent-film",
+      "path": "styles/opuscar-silent-film/preview.jpg",
+      "sha256": "4911e71060640f3721ca7cafd1079a5fbe3d774071fba9ddae67d27df136dda2",
+      "upstream_path": "styleboard/img/silent-film_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-silkscreen-poster",
+      "path": "styles/opuscar-silkscreen-poster/preview.jpg",
+      "sha256": "11a2a9dc043daf3b0b8225bd058268687534a3df520a57772962fa74abeafc18",
+      "upstream_path": "styleboard/img/silkscreen-poster_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-spy-titles",
+      "path": "styles/opuscar-spy-titles/preview.jpg",
+      "sha256": "f9f4d366156a9b62a4f35911996d846fc663169044508a871e50242785d7f392",
+      "upstream_path": "styleboard/img/spy-titles_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-stained-glass",
+      "path": "styles/opuscar-stained-glass/preview.jpg",
+      "sha256": "425b9c6deed7e39815412b2d9c5f3059f906156669ca8297f8a481076704b2a2",
+      "upstream_path": "styleboard/img/stained-glass_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-swiss-motion",
+      "path": "styles/opuscar-swiss-motion/preview.jpg",
+      "sha256": "45d52af40432e240aa4aa2120060b8311e9c1d56f1bfcd7f5aedafa36bfc2ce6",
+      "upstream_path": "styleboard/img/swiss-motion_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-teardown",
+      "path": "styles/opuscar-teardown/preview.jpg",
+      "sha256": "c0e7f9dc5a5b415cbe2ff1706dfe6e647c70e212fcee619e25426ef8de6dd803",
+      "upstream_path": "styleboard/img/teardown_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-telestrator",
+      "path": "styles/opuscar-telestrator/preview.jpg",
+      "sha256": "43b6da443f0ac77b2a7717a25bb05083063790a8ad824c4106c3b15f5982e60e",
+      "upstream_path": "styleboard/img/telestrator_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-tilt-shift",
+      "path": "styles/opuscar-tilt-shift/preview.jpg",
+      "sha256": "3941384751b0c93f72708afd33b272a097de72db09ac4e23b4fbe640e07a5714",
+      "upstream_path": "styleboard/img/tilt-shift_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-ukiyoe",
+      "path": "styles/opuscar-ukiyoe/preview.jpg",
+      "sha256": "8304c6b69800e80e2be929c3b86759b73abd8d7e1798789fc19e11d41eeffc39",
+      "upstream_path": "styleboard/img/ukiyoe_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-urban-sketch",
+      "path": "styles/opuscar-urban-sketch/preview.jpg",
+      "sha256": "75e5675cc05e5825e50aaf8ce55c11a554bdec5d8b51cb02882f596434bba5fe",
+      "upstream_path": "styleboard/img/urban-sketch_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-visual-investigation",
+      "path": "styles/opuscar-visual-investigation/preview.jpg",
+      "sha256": "4e0078b2eaac53e8598f09ac8b6a1921d3bd877d5547386f49d59b64293b3253",
+      "upstream_path": "styleboard/img/visual-investigation_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-watercolor",
+      "path": "styles/opuscar-watercolor/preview.jpg",
+      "sha256": "be138ab3476cd8c7bcafc462ecec99a466a91f5c18b5f9b9fa325170e261fd5f",
+      "upstream_path": "styleboard/img/watercolor_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-white-model",
+      "path": "styles/opuscar-white-model/preview.jpg",
+      "sha256": "aa6ddde5a18be001340cf20d1e2550fdce5b7e4c9f4392dcad5f03b276be1059",
+      "upstream_path": "styleboard/img/white-model_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-whiteboard",
+      "path": "styles/opuscar-whiteboard/preview.jpg",
+      "sha256": "aaf08759959faa4c1059e8e97b707228b209457eb2eb345811513e5a54e109b3",
+      "upstream_path": "styleboard/img/whiteboard_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    },
+    {
+      "style_id": "opuscar-woodcut",
+      "path": "styles/opuscar-woodcut/preview.jpg",
+      "sha256": "896f28e20bdd6c466544a6b137495adf9de04eb4c08bc25b5405cf9905656bc8",
+      "upstream_path": "styleboard/img/woodcut_0.jpg",
+      "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df"
+    }
+  ]
+}

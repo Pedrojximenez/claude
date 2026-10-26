@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "published_date": "2026-10-20",
+  "repository": "https://github.com/mileson/chaojifeng-video-design",
+  "media_license": "Videos for showcase only; excluded from repository MIT license. See README.md.",
+  "tool": "FFmpeg (existing local installation)",
+  "items": [
+    {
+      "id": "rounded-corner",
+      "title": "小圆角",
+      "creation_environment": "Cursor",
+      "cursor_conversation_id": "3d62c03f-7ded-4f0d-8806-169697b0ffbb",
+      "source": {
+        "filename": "rounded-corner-fan-1080x1920.mp4",
+        "sha256": "58680d1f44fba616abcbfc808a5bb5b623468ec677526315f9eaf3213cd949f7"
+      },
+      "segments": [
+        {
+          "source_in_seconds": 22.033333,
+          "source_out_seconds": 44.033333,
+          "output_start_seconds": 0
+        }
+      ],
+      "output": {
+        "file": "rounded-corner-highlight.mp4",
+        "sha256": "ba974bccc4ab68216af80ccfc2bf99e9e10fed2e3c1136d986a3c91771da1582",
+        "bytes": 5496277,
+        "duration_seconds": 22.0,
+        "width": 720,
+        "height": 1280,
+        "frame_rate": "30/1",
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "faststart": true
+      },
+      "edits": [
+        "temporal excerpt",
+        "downscale preserving aspect ratio",
+        "H.264/AAC encoding",
+        "short audio fades at edit boundaries"
+      ],
+      "checks": {
+        "full_decode": "passed",
+        "audio_stream": "present",
+        "visual_review": "sampled_frames",
+        "subjective_listening": "not_run",
+        "continuous_playback_review": "not_run",
+        "boundary_visual_review": "sampled_first_last_and_join_frames"
+      },
+      "github_video_attachment": {
+        "url": "https://github.com/user-attachments/assets/d87f8264-0a95-40d6-adbb-4e7e0afa32d3",
+        "presentation": "native GitHub video player",
+        "audio": true
+      }
+    },
+    {
+      "id": "ai-evolution-rap",
+      "title": "AI 闯关记",
+      "creation_environment": "Cursor",
+      "cursor_conversation_id": "ea170c35-525b-4fbe-8d27-e1d5e81c2f0e",
+      "source": {
+        "filename": "AI闯关记_v2_片尾调整.mp4",
+        "sha256": "b773cf9e4bbbff6b29d75e95b96a9ef6d490d0dee3de39f48e38e827194f2969"
+      },
+      "segments": [
+        {
+          "source_in_seconds": 0.5,
+          "source_out_seconds": 9.5,
+          "output_start_seconds": 0
+        },
+        {
+          "source_in_seconds": 29.533333,
+          "source_out_seconds": 39.166667,
+          "output_start_seconds": 9.0
+        }
+      ],
+      "output": {
+        "file": "ai-evolution-rap-highlight.mp4",
+        "sha256": "c4f49db6003e4390ad06b84bb2bc69f4c238619ba0a75748184e1d8b5d58c1ea",
+        "bytes": 4683564,
+        "duration_seconds": 18.634,
+        "width": 1280,
+        "height": 720,
+        "frame_rate": "30/1",
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "faststart": true
+      },
+      "edits": [
+        "temporal excerpt",
+        "downscale preserving aspect ratio",
+        "H.264/AAC encoding",
+        "short audio fades at edit boundaries"
+      ],
+      "checks": {
+        "full_decode": "passed",
+        "audio_stream": "present",
+        "visual_review": "sampled_frames",
+        "subjective_listening": "not_run",
+        "continuous_playback_review": "not_run",
+        "boundary_visual_review": "sampled_first_last_and_join_frames"
+      },
+      "github_video_attachment": {
+        "url": "https://github.com/user-attachments/assets/bced29b5-a55a-4f92-85a5-865c6730752a",
+        "presentation": "native GitHub video player",
+        "audio": true
+      }
+    }
+  ]
+}

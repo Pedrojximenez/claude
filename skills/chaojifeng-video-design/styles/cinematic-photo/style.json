@@ -1,0 +1,87 @@
+{
+  "id": "cinematic-photo",
+  "name": "影像叙事",
+  "intent": "让已有照片和影像主体承担叙事。",
+  "applicable_inputs": [
+    "内容目标和受众",
+    "已知品牌约束或允许原创的范围",
+    "实际素材与画幅"
+  ],
+  "constraints": [
+    "文字有对比底或安全区域。",
+    "推近不裁掉关键证据。"
+  ],
+  "fallback": "原图静态，以字幕与顺序叙事。",
+  "verification": {
+    "design": {
+      "status": "authored",
+      "evidence": []
+    },
+    "preview": {
+      "status": "not_run",
+      "evidence": []
+    },
+    "exported": {
+      "status": "not_run",
+      "evidence": []
+    }
+  },
+  "tokens": {
+    "background": "#151918",
+    "foreground": "#F3F0E7",
+    "accent": "#D5A86A",
+    "muted": "#B3B7AE",
+    "font_stack": [
+      "Georgia",
+      "PingFang SC",
+      "Noto Sans SC",
+      "serif"
+    ],
+    "radius": {
+      "value": 0,
+      "unit": "px"
+    },
+    "spacing": {
+      "base": 12,
+      "unit": "px",
+      "scale": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        8
+      ]
+    },
+    "line_weight": {
+      "value": 1.5,
+      "unit": "px"
+    }
+  },
+  "motion_character": {
+    "tempo": "推进与静止呼吸并存",
+    "easing": "平缓进出",
+    "emphasis": "每次突出一个语义焦点"
+  },
+  "avoid": [
+    "全片持续漂移",
+    "假景深破坏细节",
+    "强制黑场收尾"
+  ],
+  "source_refs": [],
+  "pack_version": 1,
+  "guide": "STYLE.md",
+  "aliases": [],
+  "borrows": [],
+  "category": "超级峰原有风格",
+  "scenario_ids": [
+    "image-story",
+    "story-video",
+    "brand-film",
+    "music-visual"
+  ],
+  "implementation": {
+    "status": "guidance",
+    "entrypoints": []
+  }
+}

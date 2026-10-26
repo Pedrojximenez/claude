@@ -1,0 +1,268 @@
+{
+  "schema_version": 1,
+  "project_id": "example-fictional-draft-organizer",
+  "revision": 1,
+  "goal": "看懂虚构草稿工具如何把一条未分类记录归入项目，并看到结果。",
+  "audience": "首次接触该虚构工具的普通用户",
+  "scenario_id": "product-demo",
+  "mode": "recipe",
+  "example": {
+    "classification": "fictional-structure-only",
+    "notice": "原创虚构结构示例；未生成实际视频、预览或配音；不代表真实产品、新闻或模型对比。 所有界面和功能仅为假设，真实任务须换成可追溯产品素材。",
+    "actual_video": false,
+    "model_ranking": false
+  },
+  "output": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "duration_seconds": 14,
+    "language": "zh-CN",
+    "audio": "optional"
+  },
+  "design": {
+    "style_id": "product-minimal",
+    "rationale": "按信息关系选择表现方法；可重写风格，但保留语义与来源边界。",
+    "preserve": [
+      "稳定对象ID",
+      "清楚的关系含义",
+      "足够阅读预算"
+    ]
+  },
+  "runtime": {
+    "adapter": "unselected",
+    "status": "unresolved",
+    "capabilities": [],
+    "required_capabilities": [
+      "color",
+      "opacity",
+      "position",
+      "time-control"
+    ]
+  },
+  "assets": [],
+  "scenes": [
+    {
+      "id": "pd-scene-task",
+      "purpose": "建立任务和初态",
+      "start": 0,
+      "end": 3,
+      "layout": "task-workspace",
+      "elements": [
+        {
+          "id": "pd-task",
+          "role": "heading",
+          "content": "把这条草稿归入项目"
+        },
+        {
+          "id": "pd-draft-before",
+          "role": "subject",
+          "content": "未分类 · 会议想法",
+          "continuity_key": "draft-record"
+        }
+      ],
+      "beats": [
+        {
+          "id": "pd-beat-task",
+          "time": 0.4,
+          "meaning": "看见要处理的记录",
+          "narration_id": "pd-narr-task"
+        }
+      ],
+      "motions": [
+        {
+          "id": "pd-motion-task",
+          "pattern_id": "reveal",
+          "target_id": "pd-draft-before",
+          "start": 0.2,
+          "end": 0.7,
+          "parameters": {
+            "distance": 16,
+            "opacity_from": 0
+          },
+          "beat_id": "pd-beat-task"
+        }
+      ],
+      "narration": [
+        {
+          "id": "pd-narr-task",
+          "display": "这里有一条未分类草稿。",
+          "spoken": "这里有一条未分类草稿。",
+          "start": 0.4,
+          "duration_seconds": 2.1,
+          "timing": "estimated"
+        }
+      ],
+      "audio_cues": [],
+      "hold_seconds": 1.3
+    },
+    {
+      "id": "pd-scene-action",
+      "purpose": "展示选择与状态变化",
+      "start": 3,
+      "end": 10,
+      "layout": "detail-focus",
+      "elements": [
+        {
+          "id": "pd-project-option",
+          "role": "control",
+          "content": "项目 · 春季记录"
+        },
+        {
+          "id": "pd-draft-action",
+          "role": "subject",
+          "content": "假设操作：选择项目；记录从未分类变为春季记录。",
+          "continuity_key": "draft-record",
+          "states": {
+            "before": "未分类",
+            "after": "春季记录"
+          }
+        }
+      ],
+      "beats": [
+        {
+          "id": "pd-beat-select",
+          "time": 4,
+          "meaning": "选择目标项目",
+          "narration_id": "pd-narr-action"
+        },
+        {
+          "id": "pd-beat-change",
+          "time": 6,
+          "meaning": "记录归属改变"
+        }
+      ],
+      "motions": [
+        {
+          "id": "pd-motion-select",
+          "pattern_id": "highlight",
+          "target_id": "pd-project-option",
+          "start": 4,
+          "end": 5.5,
+          "parameters": {
+            "strength": 0.85,
+            "dim_others_to": 0.5
+          },
+          "beat_id": "pd-beat-select"
+        },
+        {
+          "id": "pd-motion-change",
+          "pattern_id": "state-swap",
+          "target_id": "pd-draft-action",
+          "start": 6,
+          "end": 6.5,
+          "parameters": {
+            "crossfade_ratio": 0
+          },
+          "beat_id": "pd-beat-change"
+        }
+      ],
+      "narration": [
+        {
+          "id": "pd-narr-action",
+          "display": "选中项目，再确认归类。",
+          "spoken": "选中项目，再确认归类。",
+          "start": 4,
+          "duration_seconds": 3.2,
+          "timing": "estimated"
+        }
+      ],
+      "audio_cues": [],
+      "hold_seconds": 2.5
+    },
+    {
+      "id": "pd-scene-result",
+      "purpose": "稳定展示结果而非虚构产品性能",
+      "start": 10,
+      "end": 14,
+      "layout": "task-workspace",
+      "elements": [
+        {
+          "id": "pd-draft-after",
+          "role": "subject",
+          "content": "春季记录 · 会议想法",
+          "continuity_key": "draft-record"
+        },
+        {
+          "id": "pd-result-note",
+          "role": "caption",
+          "content": "结构示例：正式片需展示真实归类结果。"
+        }
+      ],
+      "beats": [
+        {
+          "id": "pd-beat-result",
+          "time": 10.4,
+          "meaning": "结果可检查",
+          "narration_id": "pd-narr-result"
+        }
+      ],
+      "motions": [
+        {
+          "id": "pd-motion-result-hold",
+          "pattern_id": "hold",
+          "target_id": "pd-draft-after",
+          "start": 11,
+          "end": 14,
+          "parameters": {
+            "minimum_reading": 2.5
+          },
+          "beat_id": "pd-beat-result"
+        }
+      ],
+      "narration": [
+        {
+          "id": "pd-narr-result",
+          "display": "这条草稿现在归在项目里。",
+          "spoken": "这条草稿现在归在项目里。",
+          "start": 10.4,
+          "duration_seconds": 2.4,
+          "timing": "estimated"
+        }
+      ],
+      "audio_cues": [],
+      "hold_seconds": 2.8
+    }
+  ],
+  "delivery": {
+    "status": "not_run",
+    "outputs": [],
+    "checks": {
+      "structure": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "semantic": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "visual": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "playback": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "audio": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "comprehension": {
+        "status": "not_run",
+        "evidence": []
+      }
+    }
+  },
+  "scope": {
+    "product": "虚构草稿整理器",
+    "platforms": [
+      "假设网页界面"
+    ],
+    "versions": "结构示例，无真实版本",
+    "excluded": [
+      "真实业务数据",
+      "原组件复用声明"
+    ]
+  }
+}

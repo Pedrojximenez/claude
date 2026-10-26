@@ -1,0 +1,189 @@
+{
+  "pack_version": 1,
+  "id": "opuscar-ink-wash",
+  "name": "中国水墨",
+  "english_name": "Chinese Ink Wash",
+  "category": "手绘与绘画",
+  "aliases": [
+    "ink-wash",
+    "Chinese Ink Wash"
+  ],
+  "guide": "STYLE.md",
+  "borrows": [],
+  "scenario_ids": [
+    "story-video",
+    "knowledge-explainer",
+    "brand-film",
+    "music-visual"
+  ],
+  "intent": "采用中国水墨的材质、构图、运动与声画语法组织当前题材。",
+  "applicable_inputs": [
+    "本片受众、事实和真实素材",
+    "品牌、语言与画幅",
+    "已选声音和可用制作环境"
+  ],
+  "constraints": [
+    "先读本包 STYLE.md 与完整 STYLE.upstream.md，再按镜头任务选择原生动作。",
+    "故事、产品、台词、音乐和时间线属于当前作品；上游案例仅用于学习技术。",
+    "上游的模型、BPM、语言、画幅和次数要求按本片需求适配，必要事实和素材授权继续核对。"
+  ],
+  "fallback": "按同一镜头目的降低材质或运动复杂度，保留主体、证据与阅读窗；能力缺口记 unresolved。",
+  "tokens": {
+    "source": "STYLE.upstream.md",
+    "navigation_only": true,
+    "preview_swatch": {
+      "background": "#F6F1E7",
+      "foreground": "#252925",
+      "accent": "#B64D2C",
+      "muted": "#6E746D",
+      "font_stack": [
+        "Georgia",
+        "PingFang SC",
+        "Noto Sans SC",
+        "serif"
+      ],
+      "radius": {
+        "value": 4,
+        "unit": "px"
+      },
+      "spacing": {
+        "base": 8,
+        "unit": "px",
+        "scale": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          8
+        ]
+      },
+      "line_weight": {
+        "value": 1.5,
+        "unit": "px"
+      }
+    }
+  },
+  "motion_character": {
+    "tempo": "依本片内容、实际声音与阅读窗编排",
+    "material": "见完整风格规则",
+    "emphasis": "保留选中风格的原生动作和材质关系"
+  },
+  "avoid": [
+    "仅替换示例字幕或照搬示例故事",
+    "把导航色板当作完整材质效果",
+    "沿用来源作品的通过状态"
+  ],
+  "required_capabilities": [
+    "time-control",
+    "graphics-2d"
+  ],
+  "verification": {
+    "design": {
+      "status": "authored",
+      "evidence": []
+    },
+    "preview": {
+      "status": "not_run",
+      "evidence": []
+    },
+    "exported": {
+      "status": "not_run",
+      "evidence": []
+    }
+  },
+  "source_refs": [
+    "https://github.com/lemomo-ai/lemo-opuscar/blob/413a6bd6d78ebd3bdd5abaec9538a26867f890df/styles/ink-wash/STYLE.md"
+  ],
+  "native_moves": [
+    "One stroke is everything.",
+    "Emptiness is matter.",
+    "Brush = gesture = action.",
+    "Flying white (飞白).",
+    "Ink bloom transition.",
+    "The handscroll.",
+    "Splitting a mass."
+  ],
+  "section_index": [
+    {
+      "title": "1. Essence, and what it is not",
+      "line": 6
+    },
+    {
+      "title": "2. Materials & rendering",
+      "line": 14
+    },
+    {
+      "title": "3. Colour logic",
+      "line": 36
+    },
+    {
+      "title": "4. Type & subtitles",
+      "line": 42
+    },
+    {
+      "title": "5. Motion quality",
+      "line": 48
+    },
+    {
+      "title": "6. Camera grammar",
+      "line": 56
+    },
+    {
+      "title": "7. Sound palette",
+      "line": 75
+    },
+    {
+      "title": "8. Native moves",
+      "line": 83
+    },
+    {
+      "title": "9. Pitfalls of the medium",
+      "line": 95
+    },
+    {
+      "title": "10. Engine",
+      "line": 104
+    },
+    {
+      "title": "11. Variation space",
+      "line": 108
+    }
+  ],
+  "origin": {
+    "repository": "lemomo-ai/lemo-opuscar",
+    "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df",
+    "slug": "ink-wash",
+    "license": "MIT",
+    "style_sha256": "5d71598f0b9cf4034c6461956b0d8bd63bd33750b4045376044f0d956b01d645",
+    "demo_sha256": "4d295adcac64a6052353a5cfcd81519f41403689e06ddb2550210ca1cc1133c3",
+    "metadata_sha256": "19fca58eb8e84cecaae62837f88b33e286f4ed8e45942b3395e9a320af172bde"
+  },
+  "reference_files": [
+    "STYLE.upstream.md",
+    "DEMO.md",
+    "style.upstream.json",
+    "LICENSE"
+  ],
+  "implementation": {
+    "status": "reference-source",
+    "entrypoints": [
+      "demo/build.sh",
+      "demo/index.html",
+      "demo/main.js"
+    ],
+    "shared_runtime": "vendor/lemo-opuscar",
+    "assets": "第三方素材按 demo/CREDITS 查找，具体项目另行准备与核验。"
+  },
+  "gallery": {
+    "poster": "preview.jpg",
+    "poster_sha256": "f12f7f564254ddc2507ab145ee2e2be47df021bfe9c9d440f0d9062a7d90bb20",
+    "poster_source": "https://github.com/lemomo-ai/lemo-opuscar/blob/413a6bd6d78ebd3bdd5abaec9538a26867f890df/styleboard/img/ink-wash_0.jpg",
+    "video": "sample.mp4",
+    "video_sha256": "38c2d3681aa7d49a5d2199a319e4934a1b89d182ace9446c3575eccfa606533c",
+    "attribution": {
+      "name": "LemoLab · Lemo-Opuscar",
+      "url": "https://github.com/lemomo-ai/lemo-opuscar"
+    }
+  }
+}

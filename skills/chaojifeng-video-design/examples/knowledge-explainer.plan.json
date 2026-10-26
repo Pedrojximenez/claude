@@ -1,0 +1,336 @@
+{
+  "schema_version": 1,
+  "project_id": "example-correlation-common-cause",
+  "revision": 1,
+  "goal": "理解两个变化同时发生不足以确认其中一个造成另一个，并识别共同原因这一种解释。",
+  "audience": "了解日常现象但不熟悉因果推理的观众",
+  "scenario_id": "knowledge-explainer",
+  "mode": "recipe",
+  "example": {
+    "classification": "fictional-structure-only",
+    "notice": "原创虚构结构示例；未生成实际视频、预览或配音；不代表真实产品、新闻或模型对比。 雨伞与积水是解释用假设场景，不使用真实销量数据或统计图。",
+    "actual_video": false,
+    "model_ranking": false
+  },
+  "output": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "duration_seconds": 24,
+    "language": "zh-CN",
+    "audio": "optional"
+  },
+  "design": {
+    "style_id": "mono-diagram",
+    "rationale": "按信息关系选择表现方法；可重写风格，但保留语义与来源边界。",
+    "preserve": [
+      "稳定对象ID",
+      "清楚的关系含义",
+      "足够阅读预算"
+    ]
+  },
+  "runtime": {
+    "adapter": "unselected",
+    "status": "unresolved",
+    "capabilities": [],
+    "required_capabilities": [
+      "opacity",
+      "position",
+      "stroke",
+      "time-control"
+    ]
+  },
+  "assets": [],
+  "scenes": [
+    {
+      "id": "ke-scene-observe",
+      "purpose": "先区分观察与推断",
+      "start": 0,
+      "end": 6,
+      "layout": "paired-comparison",
+      "elements": [
+        {
+          "id": "ke-umbrella-observed",
+          "role": "subject",
+          "content": "雨伞卖得更多",
+          "continuity_key": "umbrella"
+        },
+        {
+          "id": "ke-water-observed",
+          "role": "subject",
+          "content": "街面积水更多",
+          "continuity_key": "water"
+        },
+        {
+          "id": "ke-observation-label",
+          "role": "caption",
+          "content": "假设观察：两个变化同时发生"
+        }
+      ],
+      "beats": [
+        {
+          "id": "ke-beat-observe",
+          "time": 1,
+          "meaning": "两个变化并列出现",
+          "narration_id": "ke-narr-observe"
+        }
+      ],
+      "motions": [
+        {
+          "id": "ke-motion-umbrella",
+          "pattern_id": "reveal",
+          "target_id": "ke-umbrella-observed",
+          "start": 0.4,
+          "end": 1,
+          "parameters": {
+            "distance": 12,
+            "opacity_from": 0
+          },
+          "beat_id": "ke-beat-observe"
+        },
+        {
+          "id": "ke-motion-water",
+          "pattern_id": "reveal",
+          "target_id": "ke-water-observed",
+          "start": 1,
+          "end": 1.6,
+          "parameters": {
+            "distance": 12,
+            "opacity_from": 0
+          },
+          "beat_id": "ke-beat-observe"
+        }
+      ],
+      "narration": [
+        {
+          "id": "ke-narr-observe",
+          "display": "假设我们观察到，雨伞卖得更多，街面积水也更多。",
+          "spoken": "假设我们观察到，雨伞卖得更多，街面积水也更多。",
+          "start": 0.8,
+          "duration_seconds": 4.8,
+          "timing": "estimated"
+        }
+      ],
+      "audio_cues": [],
+      "hold_seconds": 2
+    },
+    {
+      "id": "ke-scene-explain",
+      "purpose": "展示共同原因作为一种解释",
+      "start": 6,
+      "end": 16,
+      "layout": "relation-diagram",
+      "elements": [
+        {
+          "id": "ke-rain",
+          "role": "cause-candidate",
+          "content": "下雨"
+        },
+        {
+          "id": "ke-umbrella-related",
+          "role": "subject",
+          "content": "买雨伞",
+          "continuity_key": "umbrella"
+        },
+        {
+          "id": "ke-water-related",
+          "role": "subject",
+          "content": "路面积水",
+          "continuity_key": "water"
+        },
+        {
+          "id": "ke-link-rain-umbrella",
+          "role": "relation",
+          "content": "下雨可以促使人买雨伞",
+          "from_id": "ke-rain",
+          "to_id": "ke-umbrella-related",
+          "relation_type": "possible-causal-explanation"
+        },
+        {
+          "id": "ke-link-rain-water",
+          "role": "relation",
+          "content": "下雨可以形成积水",
+          "from_id": "ke-rain",
+          "to_id": "ke-water-related",
+          "relation_type": "possible-causal-explanation"
+        },
+        {
+          "id": "ke-explain-note",
+          "role": "caption",
+          "content": "共同原因是一种解释，图示不构成统计证明。"
+        }
+      ],
+      "beats": [
+        {
+          "id": "ke-beat-common",
+          "time": 7,
+          "meaning": "加入共同原因",
+          "narration_id": "ke-narr-common"
+        },
+        {
+          "id": "ke-beat-link-one",
+          "time": 9,
+          "meaning": "说明第一条关系"
+        },
+        {
+          "id": "ke-beat-link-two",
+          "time": 11,
+          "meaning": "说明第二条关系"
+        }
+      ],
+      "motions": [
+        {
+          "id": "ke-motion-rain",
+          "pattern_id": "reveal",
+          "target_id": "ke-rain",
+          "start": 6.6,
+          "end": 7.2,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "ke-beat-common"
+        },
+        {
+          "id": "ke-motion-link-one",
+          "pattern_id": "connect",
+          "target_id": "ke-link-rain-umbrella",
+          "start": 9,
+          "end": 9.8,
+          "parameters": {
+            "line_width": 2.5,
+            "progress_from": 0
+          },
+          "beat_id": "ke-beat-link-one"
+        },
+        {
+          "id": "ke-motion-link-two",
+          "pattern_id": "connect",
+          "target_id": "ke-link-rain-water",
+          "start": 11,
+          "end": 11.8,
+          "parameters": {
+            "line_width": 2.5,
+            "progress_from": 0
+          },
+          "beat_id": "ke-beat-link-two"
+        }
+      ],
+      "narration": [
+        {
+          "id": "ke-narr-common",
+          "display": "下雨可能同时影响这两件事。一起变化，并不能说明雨伞造成积水。",
+          "spoken": "下雨可能同时影响这两件事。一起变化，并不能说明雨伞造成积水。",
+          "start": 7,
+          "duration_seconds": 6.8,
+          "timing": "estimated"
+        }
+      ],
+      "audio_cues": [],
+      "hold_seconds": 3
+    },
+    {
+      "id": "ke-scene-question",
+      "purpose": "留下能检查理解的判断题",
+      "start": 16,
+      "end": 24,
+      "layout": "single-concept",
+      "elements": [
+        {
+          "id": "ke-question",
+          "role": "question",
+          "content": "同时变化，足以确认因果吗？"
+        },
+        {
+          "id": "ke-takeaway",
+          "role": "answer",
+          "content": "不足以；还需要排查共同原因等其他解释。"
+        },
+        {
+          "id": "ke-experiment-status",
+          "role": "caption",
+          "content": "未做真实观众理解测试。"
+        }
+      ],
+      "beats": [
+        {
+          "id": "ke-beat-question",
+          "time": 16.8,
+          "meaning": "提出判断问题",
+          "narration_id": "ke-narr-question"
+        },
+        {
+          "id": "ke-beat-answer",
+          "time": 20,
+          "meaning": "给出边界"
+        }
+      ],
+      "motions": [
+        {
+          "id": "ke-motion-answer",
+          "pattern_id": "reveal",
+          "target_id": "ke-takeaway",
+          "start": 20,
+          "end": 20.5,
+          "parameters": {
+            "distance": 0,
+            "opacity_from": 0
+          },
+          "beat_id": "ke-beat-answer"
+        },
+        {
+          "id": "ke-motion-question-hold",
+          "pattern_id": "hold",
+          "target_id": "ke-question",
+          "start": 20.5,
+          "end": 24,
+          "parameters": {
+            "minimum_reading": 3
+          }
+        }
+      ],
+      "narration": [
+        {
+          "id": "ke-narr-question",
+          "display": "两个现象同时变化，足以确认因果吗？",
+          "spoken": "两个现象同时变化，足以确认因果吗？",
+          "start": 16.8,
+          "duration_seconds": 3.7,
+          "timing": "estimated"
+        }
+      ],
+      "audio_cues": [],
+      "hold_seconds": 4
+    }
+  ],
+  "delivery": {
+    "status": "not_run",
+    "outputs": [],
+    "checks": {
+      "structure": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "semantic": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "visual": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "playback": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "audio": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "comprehension": {
+        "status": "not_run",
+        "evidence": []
+      }
+    }
+  }
+}

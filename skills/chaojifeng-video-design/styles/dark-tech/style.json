@@ -1,0 +1,87 @@
+{
+  "id": "dark-tech",
+  "name": "暗色技术",
+  "intent": "区分操作、信息流与状态。",
+  "applicable_inputs": [
+    "内容目标和受众",
+    "已知品牌约束或允许原创的范围",
+    "实际素材与画幅"
+  ],
+  "constraints": [
+    "光晕只作辅助，正文不依赖发光。",
+    "真实UI不擅自转暗。"
+  ],
+  "fallback": "去辉光粒子，保留暗底高对比信息。",
+  "verification": {
+    "design": {
+      "status": "authored",
+      "evidence": []
+    },
+    "preview": {
+      "status": "not_run",
+      "evidence": []
+    },
+    "exported": {
+      "status": "not_run",
+      "evidence": []
+    }
+  },
+  "tokens": {
+    "background": "#101722",
+    "foreground": "#EDF3FC",
+    "accent": "#5CD6C5",
+    "muted": "#A4B3C6",
+    "font_stack": [
+      "ui-monospace",
+      "SFMono-Regular",
+      "PingFang SC",
+      "Noto Sans SC",
+      "monospace"
+    ],
+    "radius": {
+      "value": 12,
+      "unit": "px"
+    },
+    "spacing": {
+      "base": 8,
+      "unit": "px",
+      "scale": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        8
+      ]
+    },
+    "line_weight": {
+      "value": 2,
+      "unit": "px"
+    }
+  },
+  "motion_character": {
+    "tempo": "短促动作与结果停留交替",
+    "easing": "快速且稳定",
+    "emphasis": "每次突出一个语义焦点"
+  },
+  "avoid": [
+    "满屏霓虹",
+    "乱码代替真实信息"
+  ],
+  "source_refs": [],
+  "pack_version": 1,
+  "guide": "STYLE.md",
+  "aliases": [],
+  "borrows": [],
+  "category": "超级峰原有风格",
+  "scenario_ids": [
+    "product-demo",
+    "news-brief",
+    "feature-motion",
+    "music-visual"
+  ],
+  "implementation": {
+    "status": "guidance",
+    "entrypoints": []
+  }
+}

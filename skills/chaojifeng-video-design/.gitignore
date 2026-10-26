@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.env
+.env.*
+!.env.example
+*.local.json
+*.log
+.venv/
+Output/
+output/
+media/
+assets/voice/

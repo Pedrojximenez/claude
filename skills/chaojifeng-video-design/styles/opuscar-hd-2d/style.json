@@ -1,0 +1,185 @@
+{
+  "pack_version": 1,
+  "id": "opuscar-hd-2d",
+  "name": "HD-2D",
+  "english_name": "HD-2D",
+  "category": "游戏",
+  "aliases": [
+    "hd-2d"
+  ],
+  "guide": "STYLE.md",
+  "borrows": [],
+  "scenario_ids": [
+    "story-video",
+    "knowledge-explainer",
+    "music-visual"
+  ],
+  "intent": "采用HD-2D的材质、构图、运动与声画语法组织当前题材。",
+  "applicable_inputs": [
+    "本片受众、事实和真实素材",
+    "品牌、语言与画幅",
+    "已选声音和可用制作环境"
+  ],
+  "constraints": [
+    "先读本包 STYLE.md 与完整 STYLE.upstream.md，再按镜头任务选择原生动作。",
+    "故事、产品、台词、音乐和时间线属于当前作品；上游案例仅用于学习技术。",
+    "上游的模型、BPM、语言、画幅和次数要求按本片需求适配，必要事实和素材授权继续核对。"
+  ],
+  "fallback": "按同一镜头目的降低材质或运动复杂度，保留主体、证据与阅读窗；能力缺口记 unresolved。",
+  "tokens": {
+    "source": "STYLE.upstream.md",
+    "navigation_only": true,
+    "preview_swatch": {
+      "background": "#FFF8E9",
+      "foreground": "#272128",
+      "accent": "#DD4D38",
+      "muted": "#786E75",
+      "font_stack": [
+        "Arial Black",
+        "PingFang SC",
+        "Noto Sans SC",
+        "sans-serif"
+      ],
+      "radius": {
+        "value": 0,
+        "unit": "px"
+      },
+      "spacing": {
+        "base": 12,
+        "unit": "px",
+        "scale": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          8
+        ]
+      },
+      "line_weight": {
+        "value": 3,
+        "unit": "px"
+      }
+    }
+  },
+  "motion_character": {
+    "tempo": "依本片内容、实际声音与阅读窗编排",
+    "material": "见完整风格规则",
+    "emphasis": "保留选中风格的原生动作和材质关系"
+  },
+  "avoid": [
+    "仅替换示例字幕或照搬示例故事",
+    "把导航色板当作完整材质效果",
+    "沿用来源作品的通过状态"
+  ],
+  "required_capabilities": [
+    "time-control",
+    "graphics-3d"
+  ],
+  "verification": {
+    "design": {
+      "status": "authored",
+      "evidence": []
+    },
+    "preview": {
+      "status": "not_run",
+      "evidence": []
+    },
+    "exported": {
+      "status": "not_run",
+      "evidence": []
+    }
+  },
+  "source_refs": [
+    "https://github.com/lemomo-ai/lemo-opuscar/blob/413a6bd6d78ebd3bdd5abaec9538a26867f890df/styles/hd-2d/STYLE.md"
+  ],
+  "native_moves": [
+    "Shadows jump when a light is lit.",
+    "The carried light as a meter.",
+    "Tilt-shift preciousness.",
+    "Lights popping on one by one.",
+    "RPG grammar.",
+    "Weather passes over the diorama."
+  ],
+  "section_index": [
+    {
+      "title": "1. Essence, and what it is not",
+      "line": 7
+    },
+    {
+      "title": "2. Materials & rendering",
+      "line": 15
+    },
+    {
+      "title": "3. Colour logic",
+      "line": 23
+    },
+    {
+      "title": "4. Type & subtitles",
+      "line": 32
+    },
+    {
+      "title": "5. Motion quality",
+      "line": 39
+    },
+    {
+      "title": "6. Camera grammar",
+      "line": 47
+    },
+    {
+      "title": "7. Sound palette",
+      "line": 65
+    },
+    {
+      "title": "8. Native moves",
+      "line": 73
+    },
+    {
+      "title": "9. Pitfalls of the medium",
+      "line": 84
+    },
+    {
+      "title": "10. Engine",
+      "line": 95
+    },
+    {
+      "title": "11. Variation space",
+      "line": 99
+    }
+  ],
+  "origin": {
+    "repository": "lemomo-ai/lemo-opuscar",
+    "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df",
+    "slug": "hd-2d",
+    "license": "MIT",
+    "style_sha256": "bdc5ef4f60d8ba9ff6e5151391a6a62d8da4685d393c242699fd5c6188f0551a",
+    "demo_sha256": "892b87c301ce219a408d8951f4a95b41b74e7d5f783d82f5bdb21d8bdb27630f",
+    "metadata_sha256": "e3dd21ebeb8b4efc07e9caa85fb7264105ef4a43e85d875ff8a0ede8a3998e29"
+  },
+  "reference_files": [
+    "STYLE.upstream.md",
+    "DEMO.md",
+    "style.upstream.json",
+    "LICENSE"
+  ],
+  "implementation": {
+    "status": "reference-source",
+    "entrypoints": [
+      "demo/index.html",
+      "demo/main.js"
+    ],
+    "shared_runtime": "vendor/lemo-opuscar",
+    "assets": "第三方素材按 demo/CREDITS 查找，具体项目另行准备与核验。"
+  },
+  "gallery": {
+    "poster": "preview.jpg",
+    "poster_sha256": "e655f50b3c6f26ec8f7354c88bd41b058da878612941244ec168d8840ac77cee",
+    "poster_source": "https://github.com/lemomo-ai/lemo-opuscar/blob/413a6bd6d78ebd3bdd5abaec9538a26867f890df/styleboard/img/hd-2d_0.jpg",
+    "video": "sample.mp4",
+    "video_sha256": "82a764c8b6172e7ce5d9fc99a421c2a19f6f59e15c56b83c02f3ee4ee6400027",
+    "attribution": {
+      "name": "LemoLab · Lemo-Opuscar",
+      "url": "https://github.com/lemomo-ai/lemo-opuscar"
+    }
+  }
+}

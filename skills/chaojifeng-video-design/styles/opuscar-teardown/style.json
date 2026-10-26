@@ -1,0 +1,186 @@
+{
+  "pack_version": 1,
+  "id": "opuscar-teardown",
+  "name": "产品拆解",
+  "english_name": "Exploded Teardown",
+  "category": "实证影像",
+  "aliases": [
+    "teardown",
+    "Exploded Teardown"
+  ],
+  "guide": "STYLE.md",
+  "borrows": [],
+  "scenario_ids": [
+    "knowledge-explainer",
+    "news-brief",
+    "product-demo"
+  ],
+  "intent": "采用产品拆解的材质、构图、运动与声画语法组织当前题材。",
+  "applicable_inputs": [
+    "本片受众、事实和真实素材",
+    "品牌、语言与画幅",
+    "已选声音和可用制作环境"
+  ],
+  "constraints": [
+    "先读本包 STYLE.md 与完整 STYLE.upstream.md，再按镜头任务选择原生动作。",
+    "故事、产品、台词、音乐和时间线属于当前作品；上游案例仅用于学习技术。",
+    "上游的模型、BPM、语言、画幅和次数要求按本片需求适配，必要事实和素材授权继续核对。"
+  ],
+  "fallback": "按同一镜头目的降低材质或运动复杂度，保留主体、证据与阅读窗；能力缺口记 unresolved。",
+  "tokens": {
+    "source": "STYLE.upstream.md",
+    "navigation_only": true,
+    "preview_swatch": {
+      "background": "#FAFAF7",
+      "foreground": "#202421",
+      "accent": "#386A50",
+      "muted": "#70796F",
+      "font_stack": [
+        "system-ui",
+        "PingFang SC",
+        "Noto Sans SC",
+        "sans-serif"
+      ],
+      "radius": {
+        "value": 6,
+        "unit": "px"
+      },
+      "spacing": {
+        "base": 8,
+        "unit": "px",
+        "scale": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          8
+        ]
+      },
+      "line_weight": {
+        "value": 2.5,
+        "unit": "px"
+      }
+    }
+  },
+  "motion_character": {
+    "tempo": "依本片内容、实际声音与阅读窗编排",
+    "material": "见完整风格规则",
+    "emphasis": "保留选中风格的原生动作和材质关系"
+  },
+  "avoid": [
+    "仅替换示例字幕或照搬示例故事",
+    "把导航色板当作完整材质效果",
+    "沿用来源作品的通过状态"
+  ],
+  "required_capabilities": [
+    "time-control",
+    "graphics-3d"
+  ],
+  "verification": {
+    "design": {
+      "status": "authored",
+      "evidence": []
+    },
+    "preview": {
+      "status": "not_run",
+      "evidence": []
+    },
+    "exported": {
+      "status": "not_run",
+      "evidence": []
+    }
+  },
+  "source_refs": [
+    "https://github.com/lemomo-ai/lemo-opuscar/blob/413a6bd6d78ebd3bdd5abaec9538a26867f890df/styles/teardown/STYLE.md"
+  ],
+  "native_moves": [
+    "The wave lift.",
+    "Inside the gap.",
+    "The leader that lands on the part.",
+    "Dimensions drawn on the thing.",
+    "One real motion.",
+    "Lights on inside."
+  ],
+  "section_index": [
+    {
+      "title": "1. Essence, and what it is not",
+      "line": 6
+    },
+    {
+      "title": "2. Materials & rendering",
+      "line": 18
+    },
+    {
+      "title": "3. Colour logic",
+      "line": 31
+    },
+    {
+      "title": "4. Type & subtitles",
+      "line": 38
+    },
+    {
+      "title": "5. Motion quality",
+      "line": 45
+    },
+    {
+      "title": "6. Camera grammar",
+      "line": 54
+    },
+    {
+      "title": "7. Sound palette",
+      "line": 70
+    },
+    {
+      "title": "8. Native moves",
+      "line": 79
+    },
+    {
+      "title": "9. Pitfalls of the medium",
+      "line": 88
+    },
+    {
+      "title": "10. Engine",
+      "line": 100
+    },
+    {
+      "title": "11. Variation space",
+      "line": 115
+    }
+  ],
+  "origin": {
+    "repository": "lemomo-ai/lemo-opuscar",
+    "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df",
+    "slug": "teardown",
+    "license": "MIT",
+    "style_sha256": "90df05a02a3d33add58e0dd99bef19ca20ea16b10390b3c2350d8483106922ee",
+    "demo_sha256": "7e593471d96eaf97d63a6dc9c1d543a986ff4e2fd1121a029f1d40be9e926c4b",
+    "metadata_sha256": "8c55836a46c932b455b87b513a66eb919be9bd2d390bc8669a06947dd349f6c3"
+  },
+  "reference_files": [
+    "STYLE.upstream.md",
+    "DEMO.md",
+    "style.upstream.json",
+    "LICENSE"
+  ],
+  "implementation": {
+    "status": "reference-source",
+    "entrypoints": [
+      "demo/build.sh",
+      "demo/index.html"
+    ],
+    "shared_runtime": "vendor/lemo-opuscar",
+    "assets": "第三方素材按 demo/CREDITS 查找，具体项目另行准备与核验。"
+  },
+  "gallery": {
+    "poster": "preview.jpg",
+    "poster_sha256": "c0e7f9dc5a5b415cbe2ff1706dfe6e647c70e212fcee619e25426ef8de6dd803",
+    "poster_source": "https://github.com/lemomo-ai/lemo-opuscar/blob/413a6bd6d78ebd3bdd5abaec9538a26867f890df/styleboard/img/teardown_0.jpg",
+    "video": "sample.mp4",
+    "video_sha256": "a5e2a47c1ccf9233ed2c314edb999f5cb743352b9558bd7b8ea6830700c2b30c",
+    "attribution": {
+      "name": "LemoLab · Lemo-Opuscar",
+      "url": "https://github.com/lemomo-ai/lemo-opuscar"
+    }
+  }
+}

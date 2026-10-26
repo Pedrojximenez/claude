@@ -1,0 +1,309 @@
+{
+  "schema_version": 1,
+  "project_id": "example-fictional-bookshop",
+  "revision": 1,
+  "goal": "记住虚构木籽书店与安静阅读的意象关系，不承诺任何实际服务。",
+  "audience": "对阅读感兴趣的普通观众",
+  "scenario_id": "brand-film",
+  "mode": "compose",
+  "example": {
+    "classification": "fictional-structure-only",
+    "notice": "原创虚构结构示例；无实际影片、预览或音频，时长是可修改的编排预算，不能据此声称声画同步或理解通过。",
+    "actual_video": false
+  },
+  "output": {
+    "width": 1080,
+    "height": 1080,
+    "fps": 30,
+    "duration_seconds": 18,
+    "language": "zh-CN",
+    "audio": "optional"
+  },
+  "design": {
+    "style_id": "paper-editorial",
+    "rationale": "用纸面、细线与空白表达安静，不以材质效果证明质量。",
+    "preserve": [
+      "虚构品牌标示",
+      "书签线身份"
+    ],
+    "expression_ids": [
+      "narrative.shared-subject",
+      "text.read-then-move"
+    ],
+    "recipe_id": "brand-motif-film"
+  },
+  "runtime": {
+    "adapter": "unselected",
+    "status": "unresolved",
+    "capabilities": [],
+    "required_capabilities": [
+      "time-control",
+      "opacity",
+      "position",
+      "stroke"
+    ]
+  },
+  "director": {
+    "intent": "让观众感到阅读可以拥有不被催促的一段时间",
+    "viewer_start": "只看到零散的字，尚不知道主题",
+    "viewer_end": "记住虚构木籽书店与安静阅读的联系",
+    "throughline": "一条书签线贯穿画面，只作为品牌意象，不演示产品功能",
+    "structure": {
+      "kind": "motif-variation",
+      "rationale": "用意象的收拢和留白建立品牌感受，不需要虚构人物冲突或固定三幕。"
+    },
+    "entities": [
+      {
+        "id": "bookmark-line",
+        "kind": "graphic-object",
+        "role": "品牌意象载体",
+        "identity_constraints": [
+          "同一墨绿色细线",
+          "保持方向与宽度连续，不冒充真实商品"
+        ]
+      }
+    ],
+    "beats": [
+      {
+        "id": "scattered",
+        "function": "建立视觉噪声与安静目标",
+        "before": "零散字形",
+        "change": "书签线成为唯一视觉锚点",
+        "after": "观众有可追踪主体"
+      },
+      {
+        "id": "space",
+        "function": "让主体周围空间变得清楚",
+        "before": "书签线周围仍有文字",
+        "change": "文字减少，线旁形成安静区域",
+        "after": "留白成为可感的体验"
+      },
+      {
+        "id": "name",
+        "function": "把感受连接到虚构品牌",
+        "before": "主体稳定",
+        "change": "出现木籽书店与一句邀请",
+        "after": "记住品牌意象，不暗示实测收益"
+      }
+    ],
+    "sound_arc": [
+      {
+        "id": "brand-sound",
+        "beat_id": "space",
+        "role": "可选环境音减弱",
+        "onset_anchor": "画面文字减少时",
+        "energy": "从轻微密集到安静",
+        "visual_relation": "突出留白；没有实际音轨，节奏未验证"
+      }
+    ],
+    "iteration": {
+      "max_passes": 2,
+      "stop_rule": "意象身份与文字清楚、品牌边界明确后停止；关键问题未解则记录降级。"
+    },
+    "tech_language": {
+      "choices": [
+        "平面图形",
+        "稳定阅读窗"
+      ],
+      "avoid": [
+        "编造真实店铺素材",
+        "用快速镜头替代品牌意图"
+      ]
+    }
+  },
+  "assets": [],
+  "scenes": [
+    {
+      "id": "brand-open",
+      "purpose": "找到可追踪的书签线",
+      "start": 0,
+      "end": 6,
+      "layout": "single-subject",
+      "intent": {
+        "beat_ids": [
+          "scattered"
+        ],
+        "viewer_change": "找到可追踪的书签线",
+        "focus_entity_ids": [
+          "bookmark-line"
+        ],
+        "reveal_order": [
+          "brand-open-subject"
+        ],
+        "camera": {
+          "framing": "主体保持在画面中部，文字留安全边距",
+          "movement": "固定机位",
+          "purpose": "让观众跟住同一意象"
+        },
+        "handoff": "保留同一主体身份与方向",
+        "acceptance": "主体可辨，变化与本镜目的对应；实际观众检查尚未执行"
+      },
+      "elements": [
+        {
+          "id": "brand-open-subject",
+          "role": "motif",
+          "content": "零散字形旁的一条墨绿细线",
+          "continuity_key": "bookmark-line"
+        }
+      ],
+      "beats": [
+        {
+          "id": "brand-open-event",
+          "time": 0.5,
+          "meaning": "找到可追踪的书签线"
+        }
+      ],
+      "motions": [
+        {
+          "id": "brand-open-motion",
+          "pattern_id": "reveal",
+          "target_id": "brand-open-subject",
+          "start": 0.1,
+          "end": 1.5,
+          "parameters": {}
+        }
+      ],
+      "narration": [],
+      "audio_cues": [],
+      "hold_seconds": 2
+    },
+    {
+      "id": "brand-space",
+      "purpose": "感到线周围的留白增大",
+      "start": 6,
+      "end": 12,
+      "layout": "single-subject",
+      "intent": {
+        "beat_ids": [
+          "space"
+        ],
+        "viewer_change": "感到线周围的留白增大",
+        "focus_entity_ids": [
+          "bookmark-line"
+        ],
+        "reveal_order": [
+          "brand-space-subject"
+        ],
+        "camera": {
+          "framing": "主体保持在画面中部，文字留安全边距",
+          "movement": "固定机位",
+          "purpose": "让观众跟住同一意象"
+        },
+        "handoff": "保留同一主体身份与方向",
+        "acceptance": "主体可辨，变化与本镜目的对应；实际观众检查尚未执行"
+      },
+      "elements": [
+        {
+          "id": "brand-space-subject",
+          "role": "motif",
+          "content": "书签线与逐渐清楚的纸面空间",
+          "continuity_key": "bookmark-line"
+        }
+      ],
+      "beats": [
+        {
+          "id": "brand-space-event",
+          "time": 6.5,
+          "meaning": "感到线周围的留白增大"
+        }
+      ],
+      "motions": [
+        {
+          "id": "brand-space-motion",
+          "pattern_id": "trace",
+          "target_id": "brand-space-subject",
+          "start": 6.1,
+          "end": 7.5,
+          "parameters": {}
+        }
+      ],
+      "narration": [],
+      "audio_cues": [],
+      "hold_seconds": 2
+    },
+    {
+      "id": "brand-close",
+      "purpose": "把安静阅读的感受连接到虚构品牌",
+      "start": 12,
+      "end": 18,
+      "layout": "single-subject",
+      "intent": {
+        "beat_ids": [
+          "name"
+        ],
+        "viewer_change": "把安静阅读的感受连接到虚构品牌",
+        "focus_entity_ids": [
+          "bookmark-line"
+        ],
+        "reveal_order": [
+          "brand-close-subject"
+        ],
+        "camera": {
+          "framing": "主体保持在画面中部，文字留安全边距",
+          "movement": "固定机位",
+          "purpose": "让观众跟住同一意象"
+        },
+        "handoff": "保留同一主体身份与方向",
+        "acceptance": "主体可辨，变化与本镜目的对应；实际观众检查尚未执行"
+      },
+      "elements": [
+        {
+          "id": "brand-close-subject",
+          "role": "motif",
+          "content": "木籽书店 · 为一本书留出时间（虚构品牌示例）",
+          "continuity_key": "bookmark-line"
+        }
+      ],
+      "beats": [
+        {
+          "id": "brand-close-event",
+          "time": 12.5,
+          "meaning": "把安静阅读的感受连接到虚构品牌"
+        }
+      ],
+      "motions": [
+        {
+          "id": "brand-close-motion",
+          "pattern_id": "hold",
+          "target_id": "brand-close-subject",
+          "start": 12.1,
+          "end": 13.5,
+          "parameters": {}
+        }
+      ],
+      "narration": [],
+      "audio_cues": [],
+      "hold_seconds": 2
+    }
+  ],
+  "delivery": {
+    "status": "not_run",
+    "outputs": [],
+    "checks": {
+      "structure": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "semantic": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "visual": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "playback": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "audio": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "comprehension": {
+        "status": "not_run",
+        "evidence": []
+      }
+    }
+  }
+}

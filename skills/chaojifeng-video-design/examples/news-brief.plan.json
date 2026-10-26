@@ -1,0 +1,263 @@
+{
+  "schema_version": 1,
+  "project_id": "example-fictional-workshop-update",
+  "revision": 1,
+  "goal": "看懂虚构活动时间变化，并区分示例中确认的信息与尚未知的信息。",
+  "audience": "需要快速了解一条通知的观众",
+  "scenario_id": "news-brief",
+  "mode": "recipe",
+  "example": {
+    "classification": "fictional-structure-only",
+    "notice": "原创虚构结构示例；未生成实际视频、预览或配音；不代表真实产品、新闻或模型对比。 这是虚构通知，时间与活动均非真实新闻，不得直接发布。",
+    "actual_video": false,
+    "model_ranking": false
+  },
+  "output": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "duration_seconds": 18,
+    "language": "zh-CN",
+    "audio": "optional"
+  },
+  "design": {
+    "style_id": "paper-editorial",
+    "rationale": "按信息关系选择表现方法；可重写风格，但保留语义与来源边界。",
+    "preserve": [
+      "稳定对象ID",
+      "清楚的关系含义",
+      "足够阅读预算"
+    ]
+  },
+  "runtime": {
+    "adapter": "unselected",
+    "status": "unresolved",
+    "capabilities": [],
+    "required_capabilities": [
+      "color",
+      "opacity",
+      "position",
+      "time-control"
+    ]
+  },
+  "assets": [],
+  "scenes": [
+    {
+      "id": "nb-scene-headline",
+      "purpose": "先说发生什么与示例边界",
+      "start": 0,
+      "end": 4,
+      "layout": "headline-source",
+      "elements": [
+        {
+          "id": "nb-headline",
+          "role": "heading",
+          "content": "示例：工作坊开始时间调整"
+        },
+        {
+          "id": "nb-source-label",
+          "role": "source-label",
+          "content": "虚构结构示例 · 无真实来源"
+        }
+      ],
+      "beats": [
+        {
+          "id": "nb-beat-headline",
+          "time": 0.7,
+          "meaning": "出现事件标题",
+          "narration_id": "nb-narr-headline"
+        }
+      ],
+      "motions": [
+        {
+          "id": "nb-motion-headline",
+          "pattern_id": "reveal",
+          "target_id": "nb-headline",
+          "start": 0.2,
+          "end": 0.7,
+          "parameters": {
+            "distance": 12,
+            "opacity_from": 0
+          },
+          "beat_id": "nb-beat-headline"
+        }
+      ],
+      "narration": [
+        {
+          "id": "nb-narr-headline",
+          "display": "用一条虚构通知，演示怎样讲清变化。",
+          "spoken": "用一条虚构通知，演示怎样讲清变化。",
+          "start": 0.7,
+          "duration_seconds": 3,
+          "timing": "estimated"
+        }
+      ],
+      "audio_cues": [],
+      "hold_seconds": 1.5
+    },
+    {
+      "id": "nb-scene-change",
+      "purpose": "对照具体变化和同一时间口径",
+      "start": 4,
+      "end": 12,
+      "layout": "data-comparison",
+      "elements": [
+        {
+          "id": "nb-time-old",
+          "role": "before",
+          "content": "原计划：下午两点"
+        },
+        {
+          "id": "nb-time-new",
+          "role": "after",
+          "content": "示例调整后：下午三点"
+        },
+        {
+          "id": "nb-time-note",
+          "role": "caption",
+          "content": "同一天、同一时区；仅作虚构时间对照。"
+        }
+      ],
+      "beats": [
+        {
+          "id": "nb-beat-change",
+          "time": 5,
+          "meaning": "明确前后时间",
+          "narration_id": "nb-narr-change"
+        }
+      ],
+      "motions": [
+        {
+          "id": "nb-motion-time-new",
+          "pattern_id": "highlight",
+          "target_id": "nb-time-new",
+          "start": 6.5,
+          "end": 8,
+          "parameters": {
+            "strength": 0.85,
+            "dim_others_to": 0.5
+          },
+          "beat_id": "nb-beat-change"
+        },
+        {
+          "id": "nb-motion-change-hold",
+          "pattern_id": "hold",
+          "target_id": "nb-time-note",
+          "start": 9,
+          "end": 12,
+          "parameters": {
+            "minimum_reading": 2.5
+          }
+        }
+      ],
+      "narration": [
+        {
+          "id": "nb-narr-change",
+          "display": "假设通知把同一天下午两点，改为下午三点。",
+          "spoken": "假设通知把同一天下午两点，改为下午三点。",
+          "start": 5,
+          "duration_seconds": 4.6,
+          "timing": "estimated"
+        }
+      ],
+      "audio_cues": [],
+      "hold_seconds": 3
+    },
+    {
+      "id": "nb-scene-unknown",
+      "purpose": "不把缺失信息补成事实",
+      "start": 12,
+      "end": 18,
+      "layout": "brief-list",
+      "elements": [
+        {
+          "id": "nb-known",
+          "role": "fact-boundary",
+          "content": "本例只说明开始时间调整。"
+        },
+        {
+          "id": "nb-unknown",
+          "role": "unknown",
+          "content": "地点是否变化：未知，真实制作须核对原通知。"
+        },
+        {
+          "id": "nb-no-publish",
+          "role": "caption",
+          "content": "示例不能直接作为新闻发布。"
+        }
+      ],
+      "beats": [
+        {
+          "id": "nb-beat-unknown",
+          "time": 12.8,
+          "meaning": "呈现未知边界",
+          "narration_id": "nb-narr-unknown"
+        }
+      ],
+      "motions": [
+        {
+          "id": "nb-motion-unknown",
+          "pattern_id": "reveal",
+          "target_id": "nb-unknown",
+          "start": 12.2,
+          "end": 12.8,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "nb-beat-unknown"
+        }
+      ],
+      "narration": [
+        {
+          "id": "nb-narr-unknown",
+          "display": "地点是否改变还不知道。需要回到原通知核对。",
+          "spoken": "地点是否改变还不知道。需要回到原通知核对。",
+          "start": 12.8,
+          "duration_seconds": 4.1,
+          "timing": "estimated"
+        }
+      ],
+      "audio_cues": [],
+      "hold_seconds": 2.8
+    }
+  ],
+  "delivery": {
+    "status": "not_run",
+    "outputs": [],
+    "checks": {
+      "structure": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "semantic": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "visual": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "playback": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "audio": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "comprehension": {
+        "status": "not_run",
+        "evidence": []
+      }
+    }
+  },
+  "scope": {
+    "content": "虚构社区工作坊通知",
+    "source_policy": "真实制作须替换为带时间的原始通知；本例无真实来源。",
+    "event_time": "fictional",
+    "unknown": [
+      "活动地点是否变化"
+    ]
+  }
+}

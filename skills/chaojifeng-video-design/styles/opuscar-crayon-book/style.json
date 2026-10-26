@@ -1,0 +1,188 @@
+{
+  "pack_version": 1,
+  "id": "opuscar-crayon-book",
+  "name": "蜡笔儿童绘本",
+  "english_name": "Crayon Picture Book",
+  "category": "手绘与绘画",
+  "aliases": [
+    "crayon-book",
+    "Crayon Picture Book"
+  ],
+  "guide": "STYLE.md",
+  "borrows": [],
+  "scenario_ids": [
+    "story-video",
+    "knowledge-explainer",
+    "brand-film",
+    "music-visual"
+  ],
+  "intent": "采用蜡笔儿童绘本的材质、构图、运动与声画语法组织当前题材。",
+  "applicable_inputs": [
+    "本片受众、事实和真实素材",
+    "品牌、语言与画幅",
+    "已选声音和可用制作环境"
+  ],
+  "constraints": [
+    "先读本包 STYLE.md 与完整 STYLE.upstream.md，再按镜头任务选择原生动作。",
+    "故事、产品、台词、音乐和时间线属于当前作品；上游案例仅用于学习技术。",
+    "上游的模型、BPM、语言、画幅和次数要求按本片需求适配，必要事实和素材授权继续核对。"
+  ],
+  "fallback": "按同一镜头目的降低材质或运动复杂度，保留主体、证据与阅读窗；能力缺口记 unresolved。",
+  "tokens": {
+    "source": "STYLE.upstream.md",
+    "navigation_only": true,
+    "preview_swatch": {
+      "background": "#F6F1E7",
+      "foreground": "#252925",
+      "accent": "#B64D2C",
+      "muted": "#6E746D",
+      "font_stack": [
+        "Georgia",
+        "PingFang SC",
+        "Noto Sans SC",
+        "serif"
+      ],
+      "radius": {
+        "value": 4,
+        "unit": "px"
+      },
+      "spacing": {
+        "base": 8,
+        "unit": "px",
+        "scale": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          8
+        ]
+      },
+      "line_weight": {
+        "value": 1.5,
+        "unit": "px"
+      }
+    }
+  },
+  "motion_character": {
+    "tempo": "依本片内容、实际声音与阅读窗编排",
+    "material": "见完整风格规则",
+    "emphasis": "保留选中风格的原生动作和材质关系"
+  },
+  "avoid": [
+    "仅替换示例字幕或照搬示例故事",
+    "把导航色板当作完整材质效果",
+    "沿用来源作品的通过状态"
+  ],
+  "required_capabilities": [
+    "time-control",
+    "graphics-2d"
+  ],
+  "verification": {
+    "design": {
+      "status": "authored",
+      "evidence": []
+    },
+    "preview": {
+      "status": "not_run",
+      "evidence": []
+    },
+    "exported": {
+      "status": "not_run",
+      "evidence": []
+    }
+  },
+  "source_refs": [
+    "https://github.com/lemomo-ai/lemo-opuscar/blob/413a6bd6d78ebd3bdd5abaec9538a26867f890df/styles/crayon-book/STYLE.md"
+  ],
+  "native_moves": [
+    "Wax resist.",
+    "Drawn live.",
+    "Colouring is an action.",
+    "Boil.",
+    "Child logic.",
+    "It is a book."
+  ],
+  "section_index": [
+    {
+      "title": "1. Essence, and what it is not",
+      "line": 6
+    },
+    {
+      "title": "2. Materials & rendering",
+      "line": 12
+    },
+    {
+      "title": "3. Colour logic",
+      "line": 22
+    },
+    {
+      "title": "4. Type & subtitles",
+      "line": 29
+    },
+    {
+      "title": "5. Motion quality",
+      "line": 34
+    },
+    {
+      "title": "6. Camera grammar",
+      "line": 42
+    },
+    {
+      "title": "7. Sound palette",
+      "line": 60
+    },
+    {
+      "title": "8. Native moves",
+      "line": 68
+    },
+    {
+      "title": "9. Pitfalls of the medium",
+      "line": 79
+    },
+    {
+      "title": "10. Engine",
+      "line": 93
+    },
+    {
+      "title": "11. Variation space",
+      "line": 97
+    }
+  ],
+  "origin": {
+    "repository": "lemomo-ai/lemo-opuscar",
+    "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df",
+    "slug": "crayon-book",
+    "license": "MIT",
+    "style_sha256": "ba558478fe519fa6777fe28fa7d1980117297c7beb6fe2e366ef6f00688aa175",
+    "demo_sha256": "4c5bb8aa6139e91f5317abb7bfbeee679b54b8e54fd8f38eace83ea5ac7a05d0",
+    "metadata_sha256": "6a03a6548019ba3393a8e2c73c96aa38aefc3257cdf8f6b87f32c808da27f098"
+  },
+  "reference_files": [
+    "STYLE.upstream.md",
+    "DEMO.md",
+    "style.upstream.json",
+    "LICENSE"
+  ],
+  "implementation": {
+    "status": "reference-source",
+    "entrypoints": [
+      "demo/build.sh",
+      "demo/index.html",
+      "demo/main.js"
+    ],
+    "shared_runtime": "vendor/lemo-opuscar",
+    "assets": "第三方素材按 demo/CREDITS 查找，具体项目另行准备与核验。"
+  },
+  "gallery": {
+    "poster": "preview.jpg",
+    "poster_sha256": "e47c200812b180a0fb21bc9e5b457de80ead855de2f056a4c62766b13bd9ca8f",
+    "poster_source": "https://github.com/lemomo-ai/lemo-opuscar/blob/413a6bd6d78ebd3bdd5abaec9538a26867f890df/styleboard/img/crayon-book_0.jpg",
+    "video": "sample.mp4",
+    "video_sha256": "f3cb476defb89550447d4e781b141766050f7c88fc00a9fd0ce39ab2c05d71cc",
+    "attribution": {
+      "name": "LemoLab · Lemo-Opuscar",
+      "url": "https://github.com/lemomo-ai/lemo-opuscar"
+    }
+  }
+}

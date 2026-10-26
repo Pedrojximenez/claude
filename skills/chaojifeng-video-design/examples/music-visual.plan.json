@@ -1,0 +1,327 @@
+{
+  "schema_version": 1,
+  "project_id": "example-original-ring-study",
+  "revision": 1,
+  "goal": "体验原创圆环视觉练习的疏密与释放；尚无实际音轨或成片。",
+  "audience": "观看短小抽象视听表演的观众",
+  "scenario_id": "music-visual",
+  "mode": "compose",
+  "example": {
+    "classification": "fictional-structure-only",
+    "notice": "原创虚构结构示例；无实际影片、预览或音频，时长是可修改的编排预算，不能据此声称声画同步或理解通过。",
+    "actual_video": false
+  },
+  "output": {
+    "width": 1080,
+    "height": 1080,
+    "fps": 30,
+    "duration_seconds": 12,
+    "language": "zh-CN",
+    "audio": "required"
+  },
+  "design": {
+    "style_id": "mono-diagram",
+    "rationale": "用克制线条让密度变化可辨，颜色不承担虚构数据。",
+    "preserve": [
+      "主环身份",
+      "无实际音频声明"
+    ],
+    "expression_ids": [
+      "narrative.energy-arc",
+      "sound.beat-map"
+    ],
+    "recipe_id": "music-event-performance"
+  },
+  "runtime": {
+    "adapter": "unselected",
+    "status": "unresolved",
+    "capabilities": [],
+    "required_capabilities": [
+      "time-control",
+      "opacity",
+      "position",
+      "stroke",
+      "audio"
+    ]
+  },
+  "director": {
+    "intent": "用同一圆环的疏密变化形成短小视听表演，不解释事实或暗示人物情节",
+    "viewer_start": "尚未形成节奏预期",
+    "viewer_end": "感受到建立、聚集与释放的差别",
+    "throughline": "同一圆环从单线到多线，再回到单线；不要求首尾音乐无缝循环",
+    "structure": {
+      "kind": "energy-variation",
+      "rationale": "以能量变化组织视觉表演，音乐尚未制作，先保留可修改的时间预算。"
+    },
+    "entities": [
+      {
+        "id": "ring-motif",
+        "kind": "graphic-object",
+        "role": "视觉节奏载体",
+        "identity_constraints": [
+          "同一圆心",
+          "始终保留可辨主环，不靠闪白制造高潮"
+        ]
+      }
+    ],
+    "beats": [
+      {
+        "id": "pulse",
+        "function": "建立少量重复",
+        "before": "单个静止环",
+        "change": "计划用间隔舒缓的显现建立预期",
+        "after": "主环被辨认"
+      },
+      {
+        "id": "gather",
+        "function": "增加密度",
+        "before": "一条环线",
+        "change": "在主环周围加入少量同心线",
+        "after": "形成较密的视觉层次"
+      },
+      {
+        "id": "release",
+        "function": "释放密度并收束",
+        "before": "多条同心线",
+        "change": "次环退出，主环停稳",
+        "after": "表演结束，允许安静"
+      }
+    ],
+    "sound_arc": [
+      {
+        "id": "sound-pulse",
+        "beat_id": "pulse",
+        "role": "原创短音型规划",
+        "onset_anchor": "主环第一次完整出现",
+        "energy": "低密度，间隔可辨",
+        "visual_relation": "音轨待制作，之后依据真实起音重定时，不宣称已卡拍"
+      },
+      {
+        "id": "sound-gather",
+        "beat_id": "gather",
+        "role": "密度增加规划",
+        "onset_anchor": "次环开始进入",
+        "energy": "中等密度，不增加到刺耳响度",
+        "visual_relation": "视觉层数对应音型密度，不冒充频谱分析"
+      },
+      {
+        "id": "sound-release",
+        "beat_id": "release",
+        "role": "收尾与静默规划",
+        "onset_anchor": "次环消退后",
+        "energy": "逐渐降低并留静默",
+        "visual_relation": "试听后决定尾音长度，当前没有实际声音"
+      }
+    ],
+    "iteration": {
+      "max_passes": 2,
+      "stop_rule": "取得合法实际音轨后验证声画锚点与连续播放；缺音轨保持not_run，不输出同步已通过。"
+    },
+    "tech_language": {
+      "choices": [
+        "有限线条",
+        "明确能量变化"
+      ],
+      "avoid": [
+        "把随机跳动当真实频谱",
+        "高频闪白",
+        "以静帧检查代替试听"
+      ]
+    }
+  },
+  "assets": [],
+  "scenes": [
+    {
+      "id": "music-open",
+      "purpose": "辨认主环并形成低密度预期",
+      "start": 0,
+      "end": 4,
+      "layout": "single-subject",
+      "intent": {
+        "beat_ids": [
+          "pulse"
+        ],
+        "viewer_change": "辨认主环并形成低密度预期",
+        "focus_entity_ids": [
+          "ring-motif"
+        ],
+        "reveal_order": [
+          "music-open-subject"
+        ],
+        "camera": {
+          "framing": "主体保持在画面中部，文字留安全边距",
+          "movement": "固定机位",
+          "purpose": "让观众跟住同一意象"
+        },
+        "handoff": "保留同一主体身份与方向",
+        "acceptance": "主体可辨，变化与本镜目的对应；实际观众检查尚未执行"
+      },
+      "elements": [
+        {
+          "id": "music-open-subject",
+          "role": "motif",
+          "content": "一条圆环",
+          "continuity_key": "ring-motif"
+        }
+      ],
+      "beats": [
+        {
+          "id": "music-open-event",
+          "time": 0.5,
+          "meaning": "辨认主环并形成低密度预期"
+        }
+      ],
+      "motions": [
+        {
+          "id": "music-open-motion",
+          "pattern_id": "reveal",
+          "target_id": "music-open-subject",
+          "start": 0.1,
+          "end": 1.5,
+          "parameters": {}
+        }
+      ],
+      "narration": [],
+      "audio_cues": [],
+      "hold_seconds": 2
+    },
+    {
+      "id": "music-gather",
+      "purpose": "感受同心线密度增加",
+      "start": 4,
+      "end": 8,
+      "layout": "single-subject",
+      "intent": {
+        "beat_ids": [
+          "gather"
+        ],
+        "viewer_change": "感受同心线密度增加",
+        "focus_entity_ids": [
+          "ring-motif"
+        ],
+        "reveal_order": [
+          "music-gather-subject"
+        ],
+        "camera": {
+          "framing": "主体保持在画面中部，文字留安全边距",
+          "movement": "固定机位",
+          "purpose": "让观众跟住同一意象"
+        },
+        "handoff": "保留同一主体身份与方向",
+        "acceptance": "主体可辨，变化与本镜目的对应；实际观众检查尚未执行"
+      },
+      "elements": [
+        {
+          "id": "music-gather-subject",
+          "role": "motif",
+          "content": "主环周围加入两条次环",
+          "continuity_key": "ring-motif"
+        }
+      ],
+      "beats": [
+        {
+          "id": "music-gather-event",
+          "time": 4.5,
+          "meaning": "感受同心线密度增加"
+        }
+      ],
+      "motions": [
+        {
+          "id": "music-gather-motion",
+          "pattern_id": "trace",
+          "target_id": "music-gather-subject",
+          "start": 4.1,
+          "end": 5.5,
+          "parameters": {}
+        }
+      ],
+      "narration": [],
+      "audio_cues": [],
+      "hold_seconds": 2
+    },
+    {
+      "id": "music-release",
+      "purpose": "次环退出后看见主环停稳",
+      "start": 8,
+      "end": 12,
+      "layout": "single-subject",
+      "intent": {
+        "beat_ids": [
+          "release"
+        ],
+        "viewer_change": "次环退出后看见主环停稳",
+        "focus_entity_ids": [
+          "ring-motif"
+        ],
+        "reveal_order": [
+          "music-release-subject"
+        ],
+        "camera": {
+          "framing": "主体保持在画面中部，文字留安全边距",
+          "movement": "固定机位",
+          "purpose": "让观众跟住同一意象"
+        },
+        "handoff": "保留同一主体身份与方向",
+        "acceptance": "主体可辨，变化与本镜目的对应；实际观众检查尚未执行"
+      },
+      "elements": [
+        {
+          "id": "music-release-subject",
+          "role": "motif",
+          "content": "回到主环与空白",
+          "continuity_key": "ring-motif"
+        }
+      ],
+      "beats": [
+        {
+          "id": "music-release-event",
+          "time": 8.5,
+          "meaning": "次环退出后看见主环停稳"
+        }
+      ],
+      "motions": [
+        {
+          "id": "music-release-motion",
+          "pattern_id": "hold",
+          "target_id": "music-release-subject",
+          "start": 8.1,
+          "end": 9.5,
+          "parameters": {}
+        }
+      ],
+      "narration": [],
+      "audio_cues": [],
+      "hold_seconds": 2
+    }
+  ],
+  "delivery": {
+    "status": "not_run",
+    "outputs": [],
+    "checks": {
+      "structure": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "semantic": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "visual": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "playback": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "audio": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "comprehension": {
+        "status": "not_run",
+        "evidence": []
+      }
+    }
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "topic": "同时变化不等于因果（假设场景：雨伞与积水）",
+  "claim": "两个变化同时出现，不足以确认其中一个造成另一个；共同原因是一种可能的解释。",
+  "relation_type": "causal",
+  "audience": {
+    "level": "novice",
+    "known": [
+      "知道下雨会让人买雨伞",
+      "知道下雨会让路面积水"
+    ],
+    "unknown": [
+      "相关与因果的区别",
+      "共同原因"
+    ]
+  },
+  "domain": {
+    "field": "统计推断入门",
+    "standards": [
+      {
+        "id": "std-none",
+        "title": "无单一适用标准",
+        "kind": "none",
+        "status": "none",
+        "reason": "入门概念，没有单一适用的行业标准；进阶表述请按所在学科另选标准，并登记核对日期与状态"
+      }
+    ],
+    "terms": [
+      {
+        "id": "term-common-cause",
+        "preferred": "共同原因",
+        "definition": "同时影响两个变化的第三个因素",
+        "source": "本片自定术语卡；是统计学中“混杂因素”的通俗说法，严格定义因学科而异，未逐条对照具体教材",
+        "aliases_forbidden": [
+          "幕后黑手"
+        ]
+      },
+      {
+        "id": "term-causation",
+        "preferred": "因果",
+        "definition": "一个变化造成另一个变化",
+        "source": "本片自定术语卡；日常词汇，观众已知其字面意思，本片只统一写法，不再逐一定义",
+        "known_to_audience": true
+      }
+    ]
+  },
+  "expression": {
+    "profile": "ste-zh-v1"
+  },
+  "carrier": {
+    "kind": "diagram",
+    "object": "关系图：下雨在上，买雨伞与路面积水在下",
+    "mechanism": "上方节点向下方两个节点各发出一条线；线表示“可以促使”，不表示一定，也不表示强度",
+    "fallback": "改用两行文字：第一行写观察到的两个变化，第二行写一个可能的共同原因",
+    "limits": [
+      "图示是假设场景，不构成统计证明",
+      "线只表示“可以促使”，不表示因果已经成立"
+    ],
+    "mappings": [
+      {
+        "id": "map-common-cause",
+        "concept": "共同原因",
+        "part": "上方节点：下雨",
+        "fidelity": "illustrative",
+        "element_id": "ke-rain",
+        "layer_id": "layer-relation",
+        "questions": {
+          "what": "图上方的一个节点，向下发出两条线",
+          "why": "说明一个因素可以同时影响两件事"
+        },
+        "breaks_at": "上方节点只是众多可能原因中的一个；图中没有数据证明它真的存在或有多大影响"
+      },
+      {
+        "id": "map-influence-line",
+        "concept": "可以促使",
+        "part": "从上方节点连到下方节点的线",
+        "fidelity": "illustrative",
+        "element_id": "ke-link-rain-umbrella",
+        "layer_id": "layer-relation",
+        "questions": {
+          "what": "一条从上到下的细线",
+          "why": "表示上方因素可以影响下方现象"
+        },
+        "breaks_at": "线没有粗细和方向以外的含义；它不表示影响一定发生，也不表示影响有多大"
+      }
+    ]
+  },
+  "truth": {
+    "claims": [
+      {
+        "id": "claim-observed",
+        "text": "假设观察：雨伞卖得更多，街面积水也更多",
+        "kind": "illustrative",
+        "disclosure": "画面标注“假设观察”，不使用真实销量或降水数据"
+      },
+      {
+        "id": "claim-common-cause",
+        "text": "下雨可能同时影响买雨伞和路面积水",
+        "kind": "illustrative",
+        "disclosure": "画面标注：共同原因是一种解释，图示不构成统计证明"
+      }
+    ]
+  },
+  "layers": [
+    {
+      "id": "layer-observe",
+      "level": "L1",
+      "goal": "只看到两个同时发生的变化，先不下结论",
+      "new_load": "一个观察：两件事同时变多",
+      "exit_test": "能说出观察到了什么，并且没有把观察说成原因",
+      "script_ref": "knowledge-explainer.plan.json 的 ke-scene-observe",
+      "scene_ids": [
+        "ke-scene-observe"
+      ],
+      "claim_ids": [
+        "claim-observed"
+      ]
+    },
+    {
+      "id": "layer-relation",
+      "level": "L3",
+      "goal": "看到一个共同原因可以同时推动两件事",
+      "new_load": "一条关系：共同原因同时影响两个变化",
+      "exit_test": "能说出为什么两件事同时变多，不代表一件事造成另一件",
+      "bridge_from_previous": "把刚才观察到的两件事放到图下方，再在它们上方放一个共同的候选原因",
+      "script_ref": "knowledge-explainer.plan.json 的 ke-scene-explain",
+      "scene_ids": [
+        "ke-scene-explain"
+      ],
+      "focus_element_id": "ke-rain",
+      "claim_ids": [
+        "claim-common-cause"
+      ]
+    },
+    {
+      "id": "layer-recap",
+      "level": "L6",
+      "goal": "留下一个能检查理解的判断题，并交代图的边界",
+      "new_load": "无新概念：只提出判断题、划边界和指路",
+      "exit_test": "能回答：同时变化，足以确认因果吗",
+      "bridge_from_previous": "关系图退到一旁，只留下问题",
+      "script_ref": "knowledge-explainer.plan.json 的 ke-scene-question",
+      "scene_ids": [
+        "ke-scene-question"
+      ],
+      "model_boundary": "这张图只展示共同原因这一种解释；它不是统计证明，也没有排除时间顺序、样本范围和其他原因",
+      "extension_pointers": [
+        "回到有来源的数据，检查时间顺序、样本范围和其他共同原因"
+      ]
+    }
+  ],
+  "checks": {
+    "terminology": {
+      "status": "not_run",
+      "evidence": []
+    },
+    "accuracy": {
+      "status": "not_run",
+      "evidence": []
+    },
+    "novice_read": {
+      "status": "not_run",
+      "evidence": []
+    },
+    "peer_read": {
+      "status": "not_run",
+      "evidence": []
+    },
+    "expert_read": {
+      "status": "not_run",
+      "evidence": []
+    }
+  }
+}

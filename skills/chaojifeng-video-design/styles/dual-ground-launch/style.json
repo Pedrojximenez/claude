@@ -1,0 +1,94 @@
+{
+  "id": "dual-ground-launch",
+  "name": "双底色发布片",
+  "intent": "用两块底色分别承担问题与解答，只有一个强调色，三种字体声线各管一类内容。",
+  "applicable_inputs": [
+    "内容目标和受众",
+    "已知品牌约束或允许原创的范围",
+    "实际素材与画幅"
+  ],
+  "constraints": [
+    "产品原tokens优先，包装不改写真实UI。",
+    "底色翻转只发生一次；强调色只有一个。",
+    "成功/错误色只作界面语义，不用来装饰。"
+  ],
+  "fallback": "单一底色，用留白与密度区分问题和解答。",
+  "verification": {
+    "design": {
+      "status": "authored",
+      "evidence": []
+    },
+    "preview": {
+      "status": "not_run",
+      "evidence": []
+    },
+    "exported": {
+      "status": "not_run",
+      "evidence": []
+    }
+  },
+  "tokens": {
+    "background": "#F3F1EC",
+    "foreground": "#1B1E22",
+    "accent": "#E2572B",
+    "muted": "#8A8F98",
+    "ground_problem": "#16181C",
+    "foreground_on_problem": "#F1EEE6",
+    "font_stack": [
+      "system-ui",
+      "PingFang SC",
+      "Noto Sans SC",
+      "sans-serif"
+    ],
+    "voice_fonts": {
+      "human": "衬线，用于判决牌",
+      "system": "无衬线与等宽，用于界面",
+      "promise": "粗黑大写，用于章节承诺"
+    },
+    "radius": {
+      "value": 14,
+      "unit": "px"
+    },
+    "spacing": {
+      "base": 8,
+      "unit": "px",
+      "scale": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        8
+      ]
+    },
+    "line_weight": {
+      "value": 2,
+      "unit": "px"
+    }
+  },
+  "motion_character": {
+    "tempo": "问题段短促，解答段稳定；转折前留短静默。",
+    "easing": "快入慢落；转折与出画处加速。",
+    "emphasis": "每次突出一个语义焦点，强调色只落在关键名词。"
+  },
+  "avoid": [
+    "两块底色来回切换超过两次",
+    "强调色多于一个",
+    "直接沿用来源片的品牌色、字体或吉祥物",
+    "成功/错误色用作装饰"
+  ],
+  "source_refs": [],
+  "pack_version": 1,
+  "guide": "STYLE.md",
+  "aliases": [],
+  "borrows": [],
+  "category": "超级峰原有风格",
+  "scenario_ids": [
+    "product-demo",
+    "feature-motion"
+  ],
+  "implementation": {
+    "status": "guidance",
+    "entrypoints": []
+  }
+}

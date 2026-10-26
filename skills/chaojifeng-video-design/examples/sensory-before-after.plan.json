@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "project_id": "sensory-before-after-example",
+  "revision": 1,
+  "goal": "结构示意：按同一任务或对齐片段组织可核实证据；不是成片",
+  "audience": "需要看懂产品工作方式的首次观众",
+  "scenario_id": "product-demo",
+  "mode": "recipe",
+  "output": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "duration_seconds": 9,
+    "language": "zh-CN",
+    "audio": "required"
+  },
+  "design": {
+    "style_id": "product-minimal",
+    "recipe_id": "sensory-before-after",
+    "rationale": "仅结构示例：三版共用同一程序化画面和源区间；0/3/6秒起，每版局部0.6秒为同一事件。实际执行须保持动作一致并完成听审。 音量数值仅示例，不能直接当实际混音推荐；版本标签如需显示放在固定核心画面外。",
+    "preserve": [
+      "同一任务身份",
+      "输入/中间态/结果角色",
+      "核心内容可读"
+    ],
+    "expression_ids": [
+      "sound.event-collision",
+      "sound.attention-mix",
+      "production.time-function"
+    ]
+  },
+  "runtime": {
+    "adapter": "unresolved",
+    "status": "unresolved",
+    "capabilities": [],
+    "required_capabilities": [
+      "time-control",
+      "audio-scheduling"
+    ]
+  },
+  "assets": [
+    {
+      "id": "sfx-selected",
+      "kind": "audio",
+      "path": "media/selected-feedback.wav",
+      "source": "待选择独立可授权音效，不能直接用原片混音",
+      "rights": "未核实；正式使用前按实际文件核对",
+      "status": "missing"
+    },
+    {
+      "id": "music-selected",
+      "kind": "audio",
+      "path": "media/selected-music.wav",
+      "source": "待选音乐片段，源入出点另记cue-sheet",
+      "rights": "未核实；正式使用前按实际文件核对",
+      "status": "missing"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "compare-baseline",
+      "purpose": "建立相同画面的基线",
+      "start": 0,
+      "end": 3,
+      "layout": "product-stage",
+      "elements": [
+        {
+          "id": "compare-baseline-subject",
+          "role": "comparison",
+          "content": "示意：同一按钮在局部0.6秒从待处理切到已选择",
+          "continuity_key": "demo-task"
+        }
+      ],
+      "beats": [
+        {
+          "id": "compare-baseline-event",
+          "time": 0.6,
+          "meaning": "建立相同画面的基线"
+        }
+      ],
+      "motions": [
+        {
+          "id": "compare-baseline-reveal",
+          "pattern_id": "reveal",
+          "target_id": "compare-baseline-subject",
+          "start": 0.1,
+          "end": 0.4
+        },
+        {
+          "id": "compare-baseline-change",
+          "pattern_id": "state-swap",
+          "target_id": "compare-baseline-subject",
+          "start": 0.6,
+          "end": 0.75
+        }
+      ],
+      "narration": [],
+      "audio_cues": [],
+      "hold_seconds": 1,
+      "intent": {
+        "viewer_change": "建立相同画面的基线",
+        "reveal_order": [
+          "compare-baseline-subject"
+        ],
+        "camera": {
+          "framing": "证据近景",
+          "movement": "稳定",
+          "purpose": "让核心内容可以读取"
+        },
+        "handoff": "保留同一任务身份；媒体源时间另作映射",
+        "acceptance": "三版核心画面、源区间、局部动作和基础音量相同；版本标签放在画面外，不伪称已比较通过。"
+      }
+    },
+    {
+      "id": "compare-sfx",
+      "purpose": "只增加动作反馈声",
+      "start": 3,
+      "end": 6,
+      "layout": "product-stage",
+      "elements": [
+        {
+          "id": "compare-sfx-subject",
+          "role": "comparison",
+          "content": "示意：同一按钮在局部0.6秒从待处理切到已选择",
+          "continuity_key": "demo-task"
+        }
+      ],
+      "beats": [
+        {
+          "id": "compare-sfx-event",
+          "time": 3.6,
+          "meaning": "只增加动作反馈声"
+        }
+      ],
+      "motions": [
+        {
+          "id": "compare-sfx-reveal",
+          "pattern_id": "reveal",
+          "target_id": "compare-sfx-subject",
+          "start": 3.1,
+          "end": 3.4
+        },
+        {
+          "id": "compare-sfx-change",
+          "pattern_id": "state-swap",
+          "target_id": "compare-sfx-subject",
+          "start": 3.6,
+          "end": 3.75
+        }
+      ],
+      "narration": [],
+      "audio_cues": [
+        {
+          "id": "sfx-version-1",
+          "asset_id": "sfx-selected",
+          "time": 3.6,
+          "role": "sfx",
+          "beat_id": "compare-sfx-event",
+          "gain_db": -9
+        }
+      ],
+      "hold_seconds": 1,
+      "intent": {
+        "viewer_change": "只增加动作反馈声",
+        "reveal_order": [
+          "compare-sfx-subject"
+        ],
+        "camera": {
+          "framing": "证据近景",
+          "movement": "稳定",
+          "purpose": "让核心内容可以读取"
+        },
+        "handoff": "保留同一任务身份；媒体源时间另作映射",
+        "acceptance": "三版核心画面、源区间、局部动作和基础音量相同；版本标签放在画面外，不伪称已比较通过。"
+      }
+    },
+    {
+      "id": "compare-music",
+      "purpose": "保留相同反馈，再加入音乐",
+      "start": 6,
+      "end": 9,
+      "layout": "product-stage",
+      "elements": [
+        {
+          "id": "compare-music-subject",
+          "role": "comparison",
+          "content": "示意：同一按钮在局部0.6秒从待处理切到已选择",
+          "continuity_key": "demo-task"
+        }
+      ],
+      "beats": [
+        {
+          "id": "compare-music-event",
+          "time": 6.6,
+          "meaning": "保留相同反馈，再加入音乐"
+        }
+      ],
+      "motions": [
+        {
+          "id": "compare-music-reveal",
+          "pattern_id": "reveal",
+          "target_id": "compare-music-subject",
+          "start": 6.1,
+          "end": 6.4
+        },
+        {
+          "id": "compare-music-change",
+          "pattern_id": "state-swap",
+          "target_id": "compare-music-subject",
+          "start": 6.6,
+          "end": 6.75
+        }
+      ],
+      "narration": [],
+      "audio_cues": [
+        {
+          "id": "sfx-version-2",
+          "asset_id": "sfx-selected",
+          "time": 6.6,
+          "role": "sfx",
+          "beat_id": "compare-music-event",
+          "gain_db": -9
+        },
+        {
+          "id": "music-version-2",
+          "asset_id": "music-selected",
+          "time": 6,
+          "role": "music",
+          "gain_db": -6
+        }
+      ],
+      "hold_seconds": 1,
+      "intent": {
+        "viewer_change": "保留相同反馈，再加入音乐",
+        "reveal_order": [
+          "compare-music-subject"
+        ],
+        "camera": {
+          "framing": "证据近景",
+          "movement": "稳定",
+          "purpose": "让核心内容可以读取"
+        },
+        "handoff": "保留同一任务身份；媒体源时间另作映射",
+        "acceptance": "三版核心画面、源区间、局部动作和基础音量相同；版本标签放在画面外，不伪称已比较通过。"
+      }
+    }
+  ]
+}

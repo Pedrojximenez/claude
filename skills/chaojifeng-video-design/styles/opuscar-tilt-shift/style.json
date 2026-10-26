@@ -1,0 +1,189 @@
+{
+  "pack_version": 1,
+  "id": "opuscar-tilt-shift",
+  "name": "移轴微缩",
+  "english_name": "Tilt-Shift Miniature",
+  "category": "材质与 3D",
+  "aliases": [
+    "tilt-shift",
+    "Tilt-Shift Miniature"
+  ],
+  "guide": "STYLE.md",
+  "borrows": [],
+  "scenario_ids": [
+    "product-demo",
+    "brand-film",
+    "music-visual",
+    "feature-motion"
+  ],
+  "intent": "采用移轴微缩的材质、构图、运动与声画语法组织当前题材。",
+  "applicable_inputs": [
+    "本片受众、事实和真实素材",
+    "品牌、语言与画幅",
+    "已选声音和可用制作环境"
+  ],
+  "constraints": [
+    "先读本包 STYLE.md 与完整 STYLE.upstream.md，再按镜头任务选择原生动作。",
+    "故事、产品、台词、音乐和时间线属于当前作品；上游案例仅用于学习技术。",
+    "上游的模型、BPM、语言、画幅和次数要求按本片需求适配，必要事实和素材授权继续核对。"
+  ],
+  "fallback": "按同一镜头目的降低材质或运动复杂度，保留主体、证据与阅读窗；能力缺口记 unresolved。",
+  "tokens": {
+    "source": "STYLE.upstream.md",
+    "navigation_only": true,
+    "preview_swatch": {
+      "background": "#101722",
+      "foreground": "#EDF3FC",
+      "accent": "#5CD6C5",
+      "muted": "#A4B3C6",
+      "font_stack": [
+        "ui-monospace",
+        "SFMono-Regular",
+        "PingFang SC",
+        "Noto Sans SC",
+        "monospace"
+      ],
+      "radius": {
+        "value": 12,
+        "unit": "px"
+      },
+      "spacing": {
+        "base": 8,
+        "unit": "px",
+        "scale": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          8
+        ]
+      },
+      "line_weight": {
+        "value": 2,
+        "unit": "px"
+      }
+    }
+  },
+  "motion_character": {
+    "tempo": "依本片内容、实际声音与阅读窗编排",
+    "material": "见完整风格规则",
+    "emphasis": "保留选中风格的原生动作和材质关系"
+  },
+  "avoid": [
+    "仅替换示例字幕或照搬示例故事",
+    "把导航色板当作完整材质效果",
+    "沿用来源作品的通过状态"
+  ],
+  "required_capabilities": [
+    "time-control",
+    "graphics-3d"
+  ],
+  "verification": {
+    "design": {
+      "status": "authored",
+      "evidence": []
+    },
+    "preview": {
+      "status": "not_run",
+      "evidence": []
+    },
+    "exported": {
+      "status": "not_run",
+      "evidence": []
+    }
+  },
+  "source_refs": [
+    "https://github.com/lemomo-ai/lemo-opuscar/blob/413a6bd6d78ebd3bdd5abaec9538a26867f890df/styles/tilt-shift/STYLE.md"
+  ],
+  "native_moves": [
+    "The speed drop (×40 → ×1).",
+    "The band as pointer.",
+    "God's-eye system.",
+    "Long-exposure light.",
+    "The scale reveal.",
+    "Cloud shadows sweeping."
+  ],
+  "section_index": [
+    {
+      "title": "1. Essence, and what it is not",
+      "line": 6
+    },
+    {
+      "title": "2. Materials & rendering",
+      "line": 12
+    },
+    {
+      "title": "3. Colour logic",
+      "line": 21
+    },
+    {
+      "title": "4. Type & subtitles",
+      "line": 28
+    },
+    {
+      "title": "5. Motion quality",
+      "line": 34
+    },
+    {
+      "title": "6. Camera grammar",
+      "line": 41
+    },
+    {
+      "title": "7. Sound palette",
+      "line": 60
+    },
+    {
+      "title": "8. Native moves",
+      "line": 68
+    },
+    {
+      "title": "9. Pitfalls of the medium",
+      "line": 79
+    },
+    {
+      "title": "10. Engine",
+      "line": 91
+    },
+    {
+      "title": "11. Variation space",
+      "line": 95
+    }
+  ],
+  "origin": {
+    "repository": "lemomo-ai/lemo-opuscar",
+    "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df",
+    "slug": "tilt-shift",
+    "license": "MIT",
+    "style_sha256": "131ae50c6bddd30922638cbd5f2fae5c047223360a3f6924b074b0db525a5c63",
+    "demo_sha256": "ddc35d97cb9252a2b46b82b5fc008ea5563cf9d1faf6d46d3bc76fe7eb5719f2",
+    "metadata_sha256": "a41aa18fd789273c049562d08f0d6e63ba8fbb8c95527c3fce212428b653ebe9"
+  },
+  "reference_files": [
+    "STYLE.upstream.md",
+    "DEMO.md",
+    "style.upstream.json",
+    "LICENSE"
+  ],
+  "implementation": {
+    "status": "reference-source",
+    "entrypoints": [
+      "demo/build.sh",
+      "demo/index.html",
+      "demo/main.js"
+    ],
+    "shared_runtime": "vendor/lemo-opuscar",
+    "assets": "第三方素材按 demo/CREDITS 查找，具体项目另行准备与核验。"
+  },
+  "gallery": {
+    "poster": "preview.jpg",
+    "poster_sha256": "3941384751b0c93f72708afd33b272a097de72db09ac4e23b4fbe640e07a5714",
+    "poster_source": "https://github.com/lemomo-ai/lemo-opuscar/blob/413a6bd6d78ebd3bdd5abaec9538a26867f890df/styleboard/img/tilt-shift_0.jpg",
+    "video": "sample.mp4",
+    "video_sha256": "2396f4881e386bfcad7a9e3f79dbab0614255c25ba51bd5c24ea29ab8e743e01",
+    "attribution": {
+      "name": "LemoLab · Lemo-Opuscar",
+      "url": "https://github.com/lemomo-ai/lemo-opuscar"
+    }
+  }
+}

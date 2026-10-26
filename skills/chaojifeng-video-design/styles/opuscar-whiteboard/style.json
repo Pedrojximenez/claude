@@ -1,0 +1,189 @@
+{
+  "pack_version": 1,
+  "id": "opuscar-whiteboard",
+  "name": "白板讲解",
+  "english_name": "Whiteboard Explainer",
+  "category": "手绘与绘画",
+  "aliases": [
+    "whiteboard",
+    "Whiteboard Explainer"
+  ],
+  "guide": "STYLE.md",
+  "borrows": [],
+  "scenario_ids": [
+    "story-video",
+    "knowledge-explainer",
+    "brand-film",
+    "music-visual"
+  ],
+  "intent": "采用白板讲解的材质、构图、运动与声画语法组织当前题材。",
+  "applicable_inputs": [
+    "本片受众、事实和真实素材",
+    "品牌、语言与画幅",
+    "已选声音和可用制作环境"
+  ],
+  "constraints": [
+    "先读本包 STYLE.md 与完整 STYLE.upstream.md，再按镜头任务选择原生动作。",
+    "故事、产品、台词、音乐和时间线属于当前作品；上游案例仅用于学习技术。",
+    "上游的模型、BPM、语言、画幅和次数要求按本片需求适配，必要事实和素材授权继续核对。"
+  ],
+  "fallback": "按同一镜头目的降低材质或运动复杂度，保留主体、证据与阅读窗；能力缺口记 unresolved。",
+  "tokens": {
+    "source": "STYLE.upstream.md",
+    "navigation_only": true,
+    "preview_swatch": {
+      "background": "#F6F1E7",
+      "foreground": "#252925",
+      "accent": "#B64D2C",
+      "muted": "#6E746D",
+      "font_stack": [
+        "Georgia",
+        "PingFang SC",
+        "Noto Sans SC",
+        "serif"
+      ],
+      "radius": {
+        "value": 4,
+        "unit": "px"
+      },
+      "spacing": {
+        "base": 8,
+        "unit": "px",
+        "scale": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          8
+        ]
+      },
+      "line_weight": {
+        "value": 1.5,
+        "unit": "px"
+      }
+    }
+  },
+  "motion_character": {
+    "tempo": "依本片内容、实际声音与阅读窗编排",
+    "material": "见完整风格规则",
+    "emphasis": "保留选中风格的原生动作和材质关系"
+  },
+  "avoid": [
+    "仅替换示例字幕或照搬示例故事",
+    "把导航色板当作完整材质效果",
+    "沿用来源作品的通过状态"
+  ],
+  "required_capabilities": [
+    "time-control",
+    "graphics-2d"
+  ],
+  "verification": {
+    "design": {
+      "status": "authored",
+      "evidence": []
+    },
+    "preview": {
+      "status": "not_run",
+      "evidence": []
+    },
+    "exported": {
+      "status": "not_run",
+      "evidence": []
+    }
+  },
+  "source_refs": [
+    "https://github.com/lemomo-ai/lemo-opuscar/blob/413a6bd6d78ebd3bdd5abaec9538a26867f890df/styles/whiteboard/STYLE.md"
+  ],
+  "native_moves": [
+    "Writing in stroke order.",
+    "The pen leads the camera.",
+    "Magnets.",
+    "The eraser rewinds.",
+    "Two pens at once.",
+    "Ghosts of the old lesson.",
+    "The full-board view."
+  ],
+  "section_index": [
+    {
+      "title": "1. Essence, and what it is not",
+      "line": 8
+    },
+    {
+      "title": "2. Materials & rendering",
+      "line": 17
+    },
+    {
+      "title": "3. Colour logic",
+      "line": 26
+    },
+    {
+      "title": "4. Type & subtitles",
+      "line": 33
+    },
+    {
+      "title": "5. Motion quality",
+      "line": 41
+    },
+    {
+      "title": "6. Camera grammar",
+      "line": 50
+    },
+    {
+      "title": "7. Sound palette",
+      "line": 68
+    },
+    {
+      "title": "8. Native moves",
+      "line": 77
+    },
+    {
+      "title": "9. Pitfalls of the medium",
+      "line": 89
+    },
+    {
+      "title": "10. Engine",
+      "line": 100
+    },
+    {
+      "title": "11. Variation space",
+      "line": 104
+    }
+  ],
+  "origin": {
+    "repository": "lemomo-ai/lemo-opuscar",
+    "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df",
+    "slug": "whiteboard",
+    "license": "MIT",
+    "style_sha256": "19f66326257bcafb8aca18af3e209d1fee31d9e23902ce1708bbb606cbf4b718",
+    "demo_sha256": "801b933f71403ab1b51b1e27f235fa5ec3efeda607afed465d59eb9a8e81a877",
+    "metadata_sha256": "d0037e21fb291faca08cd0f379d51f8a452bb73992165b713d7b229653648f5b"
+  },
+  "reference_files": [
+    "STYLE.upstream.md",
+    "DEMO.md",
+    "style.upstream.json",
+    "LICENSE"
+  ],
+  "implementation": {
+    "status": "reference-source",
+    "entrypoints": [
+      "demo/build.sh",
+      "demo/index.html",
+      "demo/main.js"
+    ],
+    "shared_runtime": "vendor/lemo-opuscar",
+    "assets": "第三方素材按 demo/CREDITS 查找，具体项目另行准备与核验。"
+  },
+  "gallery": {
+    "poster": "preview.jpg",
+    "poster_sha256": "aaf08759959faa4c1059e8e97b707228b209457eb2eb345811513e5a54e109b3",
+    "poster_source": "https://github.com/lemomo-ai/lemo-opuscar/blob/413a6bd6d78ebd3bdd5abaec9538a26867f890df/styleboard/img/whiteboard_0.jpg",
+    "video": "sample.mp4",
+    "video_sha256": "7c4963607644c4e3fcda80b06c59760ace2516e45b96b091d51736d668efa282",
+    "attribution": {
+      "name": "LemoLab · Lemo-Opuscar",
+      "url": "https://github.com/lemomo-ai/lemo-opuscar"
+    }
+  }
+}

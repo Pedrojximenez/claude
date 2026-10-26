@@ -1,0 +1,38 @@
+# 技术：能力、工程与真实交付
+
+创作计划采用 [plan-contract.md](references/plan-contract.md)，具体执行沿用 [runtime-and-delivery.md](references/runtime-and-delivery.md)。现有项目、素材、依赖缓存与工具优先，不以重装环境作为默认起点。
+
+## 三个独立层
+
+| 层 | 内容 | 边界 |
+| --- | --- | --- |
+| 导演与计划 | 观众变化、镜头任务、声音、整片排程 | 不从模板或案例反推故事 |
+| 风格包 | 材质、颜色、文字、运动、镜头、声音和原生动作 | 定义效果与实现参考，不自动成为渲染器 |
+| 实际制作路线 | 已有引擎、录屏、素材合成或生成工具 | 经实际探测、接入和导出后登记能力 |
+
+本库的查询、导入和校验脚本只用 Python 标准库。上游文本源码位于各包 demo/ 与 vendor/lemo-opuscar/；它们的运行依赖由本片项目按需准备，查询不会运行这些代码或安装依赖。
+
+## 适配执行路线
+
+| 已有路线 | 风格能力接入 | 验证重点 |
+| --- | --- | --- |
+| HTML／Canvas／WebGL | 可按上游 render(t)、DUR、READY 接口复用绘制与镜头技术 | 字体与素材就绪、任意时间定位、重复帧一致 |
+| Remotion／HyperFrames | 将绝对秒与事件映射为宿主时间，复用材质和动作关系 | 实际宿主版本、帧数、音轨与导出 |
+| Blender／Three.js | 按镜头拆摄像机、空间、材质、灯光与终态 | 渲染成本、世界与屏幕映射、实际输出 |
+| 现有影像与录屏合成 | 保留源入出点、裁切、速率、字幕和证据关系 | 素材来源、遮挡、阅读窗与声音接缝 |
+
+这些是适配合同；runtime.adapter 仍记录实际路线。能力不足先报告具体缺口，不把一个风格包的源码状态当作全部引擎支持。
+
+## 统一时间与资源
+
+画面、音效、旁白、字幕与检查从同一有效排程派生，使用稳定对象和事件 ID。确定性实现按时间计算状态、固定随机种子、等待字体和素材就绪；顺序、倒序和随机定位对照后再声称可重复。
+
+上游渲染器默认多 worker；本库制作默认串行、一个任务执行实例，明确设置并发上限。可复用现有浏览器、渲染器、端口和缓存时复用，失败先读日志，收尾只处理本任务资源。网站操作遵守宿主 Chrome 路由。
+
+上游的 readcheck、ASR、混音与渲染代码可供项目适配；现有 check_delivery、film_probe、audio_event_audit、explainer_timing_audit 分别检查文件、媒体与声明排程。缺少所需接口时登记未检查，不能当作通过。
+
+## 从源码进入项目
+
+先读选中包的 STYLE.md、STYLE.upstream.md；确定本片意图后读 DEMO.md，按需复制 demo/ 中的实现到用户工程。修正 LIB、导入、资源和构建路径，按当前官方文档与本地版本核实 API。不要在库内执行 build.sh，不直接照搬上游模型、声音服务、素材或发布脚本。
+
+素材取用见 [asset-routing.md](references/asset-routing.md) 和 [production-tool-contract.md](references/production-tool-contract.md)；角色、空间与跨引擎组装见 [scene-tool-composition.md](references/scene-tool-composition.md)。
