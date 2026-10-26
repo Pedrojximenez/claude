@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "project_id": "product-task-proof-example",
+  "revision": 1,
+  "goal": "结构示意：按同一任务或对齐片段组织可核实证据；不是成片",
+  "audience": "需要看懂产品工作方式的首次观众",
+  "scenario_id": "product-demo",
+  "mode": "recipe",
+  "output": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "duration_seconds": 12,
+    "language": "zh-CN",
+    "audio": "required"
+  },
+  "design": {
+    "style_id": "product-minimal",
+    "recipe_id": "product-task-proof",
+    "rationale": "仅示范镜头职责、状态与声音关系；换成真实项目证据后实现和审片。 声音时间/增益仅示例；结果反馈须在真实项目中绑定成功确认，失败不播放成功反馈。",
+    "preserve": [
+      "同一任务身份",
+      "输入/中间态/结果角色",
+      "核心内容可读"
+    ],
+    "expression_ids": [
+      "narrative.goal-proof",
+      "visual.scan-resolve",
+      "camera.focus-frame",
+      "sound.event-collision"
+    ]
+  },
+  "runtime": {
+    "adapter": "unresolved",
+    "status": "unresolved",
+    "capabilities": [],
+    "required_capabilities": [
+      "time-control",
+      "audio-scheduling"
+    ]
+  },
+  "assets": [
+    {
+      "id": "music-selected",
+      "kind": "audio",
+      "path": "media/selected-music.wav",
+      "source": "待从已获准的音乐候选选段；当前未提供文件",
+      "rights": "未核实；正式使用前按实际文件核对",
+      "status": "missing"
+    },
+    {
+      "id": "feedback-selected",
+      "kind": "audio",
+      "path": "media/soft-confirmation.wav",
+      "source": "待真实试听选择；文件名不证明柔和",
+      "rights": "未核实；正式使用前按实际文件核对",
+      "status": "missing"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "task-input",
+      "purpose": "辨认输入与任务",
+      "start": 0,
+      "end": 3,
+      "layout": "product-stage",
+      "elements": [
+        {
+          "id": "task-input-subject",
+          "role": "input",
+          "content": "示意：将一组参考图片整理为可查看结果",
+          "continuity_key": "demo-task"
+        }
+      ],
+      "beats": [
+        {
+          "id": "task-input-event",
+          "time": 0.4,
+          "meaning": "辨认输入与任务"
+        }
+      ],
+      "motions": [
+        {
+          "id": "task-input-reveal",
+          "pattern_id": "reveal",
+          "target_id": "task-input-subject",
+          "start": 0.1,
+          "end": 0.4
+        }
+      ],
+      "narration": [],
+      "audio_cues": [
+        {
+          "id": "music-onset",
+          "asset_id": "music-selected",
+          "time": 0,
+          "role": "music",
+          "gain_db": -6
+        }
+      ],
+      "hold_seconds": 1,
+      "intent": {
+        "viewer_change": "辨认输入与任务",
+        "reveal_order": [
+          "task-input-subject"
+        ],
+        "camera": {
+          "framing": "证据近景",
+          "movement": "稳定",
+          "purpose": "让核心内容可以读取"
+        },
+        "handoff": "保留同一任务身份；媒体源时间另作映射",
+        "acceptance": "当前为示意；真实证据、连续播放与声音均待验证"
+      }
+    },
+    {
+      "id": "task-process",
+      "purpose": "看清触发与处理中状态",
+      "start": 3,
+      "end": 7,
+      "layout": "product-stage",
+      "elements": [
+        {
+          "id": "task-process-subject",
+          "role": "intermediate",
+          "content": "示意：已发出整理请求；处理中不代表成功",
+          "continuity_key": "demo-task"
+        }
+      ],
+      "beats": [
+        {
+          "id": "task-process-event",
+          "time": 3.4,
+          "meaning": "看清触发与处理中状态"
+        }
+      ],
+      "motions": [
+        {
+          "id": "task-process-reveal",
+          "pattern_id": "reveal",
+          "target_id": "task-process-subject",
+          "start": 3.1,
+          "end": 3.4
+        }
+      ],
+      "narration": [],
+      "audio_cues": [],
+      "hold_seconds": 1,
+      "intent": {
+        "viewer_change": "看清触发与处理中状态",
+        "reveal_order": [
+          "task-process-subject"
+        ],
+        "camera": {
+          "framing": "证据近景",
+          "movement": "稳定",
+          "purpose": "让核心内容可以读取"
+        },
+        "handoff": "保留同一任务身份；媒体源时间另作映射",
+        "acceptance": "当前为示意；真实证据、连续播放与声音均待验证"
+      }
+    },
+    {
+      "id": "task-result",
+      "purpose": "读取结果并核是否满足同一任务",
+      "start": 7,
+      "end": 12,
+      "layout": "product-stage",
+      "elements": [
+        {
+          "id": "task-result-subject",
+          "role": "result",
+          "content": "示意：替换为真实产出；缺项/失败时保留未完成状态",
+          "continuity_key": "demo-task"
+        }
+      ],
+      "beats": [
+        {
+          "id": "task-result-event",
+          "time": 7.4,
+          "meaning": "读取结果并核是否满足同一任务"
+        }
+      ],
+      "motions": [
+        {
+          "id": "task-result-reveal",
+          "pattern_id": "reveal",
+          "target_id": "task-result-subject",
+          "start": 7.1,
+          "end": 7.4
+        }
+      ],
+      "narration": [],
+      "audio_cues": [
+        {
+          "id": "result-feedback",
+          "asset_id": "feedback-selected",
+          "time": 7.4,
+          "role": "sfx",
+          "beat_id": "task-result-event",
+          "gain_db": -9
+        }
+      ],
+      "hold_seconds": 2,
+      "intent": {
+        "viewer_change": "读取结果并核是否满足同一任务",
+        "reveal_order": [
+          "task-result-subject"
+        ],
+        "camera": {
+          "framing": "证据近景",
+          "movement": "稳定",
+          "purpose": "让核心内容可以读取"
+        },
+        "handoff": "保留同一任务身份；媒体源时间另作映射",
+        "acceptance": "当前为示意；真实证据、连续播放与声音均待验证"
+      }
+    }
+  ]
+}

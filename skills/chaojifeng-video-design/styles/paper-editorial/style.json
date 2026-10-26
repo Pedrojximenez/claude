@@ -1,0 +1,89 @@
+{
+  "id": "paper-editorial",
+  "name": "纸面编辑",
+  "intent": "承载解释、来源与阅读。",
+  "applicable_inputs": [
+    "内容目标和受众",
+    "已知品牌约束或允许原创的范围",
+    "实际素材与画幅"
+  ],
+  "constraints": [
+    "中文字体单独确认，不凭fallback判断加载。",
+    "来源不放不可读脚注。"
+  ],
+  "fallback": "纯色纸底与清晰字体，取消纹理。",
+  "verification": {
+    "design": {
+      "status": "authored",
+      "evidence": []
+    },
+    "preview": {
+      "status": "not_run",
+      "evidence": []
+    },
+    "exported": {
+      "status": "not_run",
+      "evidence": []
+    }
+  },
+  "tokens": {
+    "background": "#F6F1E7",
+    "foreground": "#252925",
+    "accent": "#B64D2C",
+    "muted": "#6E746D",
+    "font_stack": [
+      "Georgia",
+      "PingFang SC",
+      "Noto Sans SC",
+      "serif"
+    ],
+    "radius": {
+      "value": 4,
+      "unit": "px"
+    },
+    "spacing": {
+      "base": 8,
+      "unit": "px",
+      "scale": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        8
+      ]
+    },
+    "line_weight": {
+      "value": 1.5,
+      "unit": "px"
+    }
+  },
+  "motion_character": {
+    "tempo": "段落推进，留阅读空间",
+    "easing": "轻缓减速",
+    "emphasis": "每次突出一个语义焦点"
+  },
+  "avoid": [
+    "装饰性长英文标签",
+    "纹理盖过细字"
+  ],
+  "source_refs": [],
+  "pack_version": 1,
+  "guide": "STYLE.md",
+  "aliases": [],
+  "borrows": [],
+  "category": "超级峰原有风格",
+  "scenario_ids": [
+    "product-demo",
+    "knowledge-explainer",
+    "news-brief",
+    "image-story",
+    "story-video",
+    "brand-film",
+    "music-visual"
+  ],
+  "implementation": {
+    "status": "guidance",
+    "entrypoints": []
+  }
+}

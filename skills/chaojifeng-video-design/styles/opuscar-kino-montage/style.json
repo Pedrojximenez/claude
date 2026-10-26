@@ -1,0 +1,194 @@
+{
+  "pack_version": 1,
+  "id": "opuscar-kino-montage",
+  "name": "构成主义蒙太奇",
+  "english_name": "Constructivist Montage",
+  "category": "剪辑与纪实",
+  "aliases": [
+    "kino-montage",
+    "Constructivist Montage"
+  ],
+  "guide": "STYLE.md",
+  "borrows": [],
+  "scenario_ids": [
+    "news-brief",
+    "story-video",
+    "image-story"
+  ],
+  "intent": "采用构成主义蒙太奇的材质、构图、运动与声画语法组织当前题材。",
+  "applicable_inputs": [
+    "本片受众、事实和真实素材",
+    "品牌、语言与画幅",
+    "已选声音和可用制作环境"
+  ],
+  "constraints": [
+    "先读本包 STYLE.md 与完整 STYLE.upstream.md，再按镜头任务选择原生动作。",
+    "故事、产品、台词、音乐和时间线属于当前作品；上游案例仅用于学习技术。",
+    "上游的模型、BPM、语言、画幅和次数要求按本片需求适配，必要事实和素材授权继续核对。"
+  ],
+  "fallback": "按同一镜头目的降低材质或运动复杂度，保留主体、证据与阅读窗；能力缺口记 unresolved。",
+  "tokens": {
+    "source": "STYLE.upstream.md",
+    "navigation_only": true,
+    "preview_swatch": {
+      "background": "#151918",
+      "foreground": "#F3F0E7",
+      "accent": "#D5A86A",
+      "muted": "#B3B7AE",
+      "font_stack": [
+        "Georgia",
+        "PingFang SC",
+        "Noto Sans SC",
+        "serif"
+      ],
+      "radius": {
+        "value": 0,
+        "unit": "px"
+      },
+      "spacing": {
+        "base": 12,
+        "unit": "px",
+        "scale": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          8
+        ]
+      },
+      "line_weight": {
+        "value": 1.5,
+        "unit": "px"
+      }
+    }
+  },
+  "motion_character": {
+    "tempo": "依本片内容、实际声音与阅读窗编排",
+    "material": "见完整风格规则",
+    "emphasis": "保留选中风格的原生动作和材质关系"
+  },
+  "avoid": [
+    "仅替换示例字幕或照搬示例故事",
+    "把导航色板当作完整材质效果",
+    "沿用来源作品的通过状态"
+  ],
+  "required_capabilities": [
+    "time-control",
+    "media-composite"
+  ],
+  "verification": {
+    "design": {
+      "status": "authored",
+      "evidence": []
+    },
+    "preview": {
+      "status": "not_run",
+      "evidence": []
+    },
+    "exported": {
+      "status": "not_run",
+      "evidence": []
+    }
+  },
+  "source_refs": [
+    "https://github.com/lemomo-ai/lemo-opuscar/blob/413a6bd6d78ebd3bdd5abaec9538a26867f890df/styles/kino-montage/STYLE.md"
+  ],
+  "native_moves": [
+    "The document is marked, not quoted",
+    "The document becomes the chart",
+    "A + B → idea",
+    "Count the many",
+    "People build the structure",
+    "Silence, then the heaviest hit"
+  ],
+  "section_index": [
+    {
+      "title": "1. Essence, and what it is not",
+      "line": 6
+    },
+    {
+      "title": "2. Materials & rendering",
+      "line": 16
+    },
+    {
+      "title": "3. Colour logic",
+      "line": 25
+    },
+    {
+      "title": "4. Type & subtitles",
+      "line": 36
+    },
+    {
+      "title": "5. Edit grammar",
+      "line": 50
+    },
+    {
+      "title": "6. Formats (each is a function in `demo/index.html`)",
+      "line": 65
+    },
+    {
+      "title": "7. Sound palette",
+      "line": 87
+    },
+    {
+      "title": "8. Native moves",
+      "line": 95
+    },
+    {
+      "title": "9. Footage",
+      "line": 104
+    },
+    {
+      "title": "10. Facts",
+      "line": 117
+    },
+    {
+      "title": "11. Engine",
+      "line": 121
+    },
+    {
+      "title": "12. Pitfalls of the medium",
+      "line": 127
+    },
+    {
+      "title": "13. Variation space",
+      "line": 142
+    }
+  ],
+  "origin": {
+    "repository": "lemomo-ai/lemo-opuscar",
+    "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df",
+    "slug": "kino-montage",
+    "license": "MIT",
+    "style_sha256": "8c63deefda22d4677d286ddfffb243ce6385dfa7ab56fbc493705fe13908f204",
+    "demo_sha256": "93a5d4e87c770e181a6db54e407d3d1343cbbbbdd0d720b4acdaca02e33cf894",
+    "metadata_sha256": "57ffe5f5aabf16c010ea0ae8c96de5b265ab744307e76a473023b8b9008a7f6a"
+  },
+  "reference_files": [
+    "STYLE.upstream.md",
+    "DEMO.md",
+    "style.upstream.json",
+    "LICENSE"
+  ],
+  "implementation": {
+    "status": "reference-source",
+    "entrypoints": [
+      "demo/build.sh",
+      "demo/index.html"
+    ],
+    "shared_runtime": "vendor/lemo-opuscar",
+    "assets": "第三方素材按 demo/CREDITS 查找，具体项目另行准备与核验。"
+  },
+  "gallery": {
+    "poster": "preview.jpg",
+    "poster_sha256": "fdb890c5c68dfa4b8dee334712ba2906a06d6eda2809952060f8543f5ee7f591",
+    "poster_source": "https://github.com/lemomo-ai/lemo-opuscar/blob/413a6bd6d78ebd3bdd5abaec9538a26867f890df/styleboard/img/kino-montage_0.jpg",
+    "video": "sample.mp4",
+    "video_sha256": "2a4776bd3bb34ae6bf4d95593cbe76ff2a1f4f954eeb3c861c8c4e02e9310180",
+    "attribution": {
+      "name": "LemoLab · Lemo-Opuscar",
+      "url": "https://github.com/lemomo-ai/lemo-opuscar"
+    }
+  }
+}

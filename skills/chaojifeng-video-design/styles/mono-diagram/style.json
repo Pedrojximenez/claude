@@ -1,0 +1,86 @@
+{
+  "id": "mono-diagram",
+  "name": "单色图解",
+  "intent": "用位置、线条和强调表达关系。",
+  "applicable_inputs": [
+    "内容目标和受众",
+    "已知品牌约束或允许原创的范围",
+    "实际素材与画幅"
+  ],
+  "constraints": [
+    "箭头定义含义，因果/时间/指向分开。",
+    "类别另用文字或线型区分。"
+  ],
+  "fallback": "拆分关系或静态图逐段讲解。",
+  "verification": {
+    "design": {
+      "status": "authored",
+      "evidence": []
+    },
+    "preview": {
+      "status": "not_run",
+      "evidence": []
+    },
+    "exported": {
+      "status": "not_run",
+      "evidence": []
+    }
+  },
+  "tokens": {
+    "background": "#FAFAF7",
+    "foreground": "#202421",
+    "accent": "#386A50",
+    "muted": "#70796F",
+    "font_stack": [
+      "system-ui",
+      "PingFang SC",
+      "Noto Sans SC",
+      "sans-serif"
+    ],
+    "radius": {
+      "value": 6,
+      "unit": "px"
+    },
+    "spacing": {
+      "base": 8,
+      "unit": "px",
+      "scale": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        8
+      ]
+    },
+    "line_weight": {
+      "value": 2.5,
+      "unit": "px"
+    }
+  },
+  "motion_character": {
+    "tempo": "先对象后关系，关系后停留",
+    "easing": "直接轻减速",
+    "emphasis": "每次突出一个语义焦点"
+  },
+  "avoid": [
+    "无含义连线",
+    "装饰箭头",
+    "多个焦点同时闪烁"
+  ],
+  "source_refs": [],
+  "pack_version": 1,
+  "guide": "STYLE.md",
+  "aliases": [],
+  "borrows": [],
+  "category": "超级峰原有风格",
+  "scenario_ids": [
+    "knowledge-explainer",
+    "news-brief",
+    "feature-motion"
+  ],
+  "implementation": {
+    "status": "guidance",
+    "entrypoints": []
+  }
+}

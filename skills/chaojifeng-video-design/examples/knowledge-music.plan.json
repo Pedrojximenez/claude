@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "project_id": "knowledge-music-structure",
+  "revision": 1,
+  "goal": "明确一个有依据的变化",
+  "audience": "目标观众",
+  "scenario_id": "knowledge-explainer",
+  "mode": "recipe",
+  "output": {"width": 1920, "height": 1080, "fps": 30, "duration_seconds": 8, "audio": "silent"},
+  "design": {"style_id": "paper-editorial", "recipe_id": "knowledge-music-explainer", "rationale": "结构样例；当前不含实际音乐，不能据此交付有声作品。"},
+  "runtime": {"adapter": "unresolved", "status": "unresolved", "capabilities": [], "required_capabilities": ["time-control", "opacity", "position"]},
+  "assets": [],
+  "scenes": [{
+    "id": "scene-01", "purpose": "看清主体与变化", "start": 0, "end": 8,
+    "elements": [{"id": "object-01", "role": "subject", "content": "替换为真实内容"}],
+    "beats": [
+      {"id": "beat-01", "time": 1, "meaning": "主体和文字完整可读"},
+      {"id": "beat-read-end", "time": 5, "meaning": "稳定阅读窗口结束"},
+      {"id": "beat-result", "time": 6, "meaning": "结果完整可见"}
+    ],
+    "motions": [{"id": "motion-01", "pattern_id": "reveal", "target_id": "object-01", "start": 0, "end": 1, "parameters": {}, "beat_id": "beat-01"}],
+    "narration": [], "audio_cues": [], "hold_seconds": 4
+  }]
+}

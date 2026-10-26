@@ -1,0 +1,86 @@
+{
+  "id": "product-minimal",
+  "name": "清晰产品",
+  "intent": "突出界面与操作。",
+  "applicable_inputs": [
+    "内容目标和受众",
+    "已知品牌约束或允许原创的范围",
+    "实际素材与画幅"
+  ],
+  "constraints": [
+    "产品原tokens优先，包装不改写真实UI。",
+    "关键文字保持清楚对比。"
+  ],
+  "fallback": "保留真实界面、高对比标题和静态焦点。",
+  "verification": {
+    "design": {
+      "status": "authored",
+      "evidence": []
+    },
+    "preview": {
+      "status": "not_run",
+      "evidence": []
+    },
+    "exported": {
+      "status": "not_run",
+      "evidence": []
+    }
+  },
+  "tokens": {
+    "background": "#F5F7FA",
+    "foreground": "#172033",
+    "accent": "#2463EB",
+    "muted": "#66748C",
+    "font_stack": [
+      "system-ui",
+      "PingFang SC",
+      "Noto Sans SC",
+      "sans-serif"
+    ],
+    "radius": {
+      "value": 16,
+      "unit": "px"
+    },
+    "spacing": {
+      "base": 8,
+      "unit": "px",
+      "scale": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        8
+      ]
+    },
+    "line_weight": {
+      "value": 2,
+      "unit": "px"
+    }
+  },
+  "motion_character": {
+    "tempo": "克制动作后稳定呈现结果",
+    "easing": "平稳减速",
+    "emphasis": "每次突出一个语义焦点"
+  },
+  "avoid": [
+    "装饰粒子抢焦点",
+    "全局文字反复缩放"
+  ],
+  "source_refs": [],
+  "pack_version": 1,
+  "guide": "STYLE.md",
+  "aliases": [],
+  "borrows": [],
+  "category": "超级峰原有风格",
+  "scenario_ids": [
+    "product-demo",
+    "knowledge-explainer",
+    "feature-motion",
+    "brand-film"
+  ],
+  "implementation": {
+    "status": "guidance",
+    "entrypoints": []
+  }
+}

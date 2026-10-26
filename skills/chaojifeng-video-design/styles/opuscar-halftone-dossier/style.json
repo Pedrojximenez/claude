@@ -1,0 +1,187 @@
+{
+  "pack_version": 1,
+  "id": "opuscar-halftone-dossier",
+  "name": "复古半调案卷",
+  "english_name": "Halftone Dossier",
+  "category": "印刷与版画",
+  "aliases": [
+    "halftone-dossier",
+    "Halftone Dossier"
+  ],
+  "guide": "STYLE.md",
+  "borrows": [],
+  "scenario_ids": [
+    "news-brief",
+    "story-video",
+    "brand-film"
+  ],
+  "intent": "采用复古半调案卷的材质、构图、运动与声画语法组织当前题材。",
+  "applicable_inputs": [
+    "本片受众、事实和真实素材",
+    "品牌、语言与画幅",
+    "已选声音和可用制作环境"
+  ],
+  "constraints": [
+    "先读本包 STYLE.md 与完整 STYLE.upstream.md，再按镜头任务选择原生动作。",
+    "故事、产品、台词、音乐和时间线属于当前作品；上游案例仅用于学习技术。",
+    "上游的模型、BPM、语言、画幅和次数要求按本片需求适配，必要事实和素材授权继续核对。"
+  ],
+  "fallback": "按同一镜头目的降低材质或运动复杂度，保留主体、证据与阅读窗；能力缺口记 unresolved。",
+  "tokens": {
+    "source": "STYLE.upstream.md",
+    "navigation_only": true,
+    "preview_swatch": {
+      "background": "#F6F1E7",
+      "foreground": "#252925",
+      "accent": "#B64D2C",
+      "muted": "#6E746D",
+      "font_stack": [
+        "Georgia",
+        "PingFang SC",
+        "Noto Sans SC",
+        "serif"
+      ],
+      "radius": {
+        "value": 4,
+        "unit": "px"
+      },
+      "spacing": {
+        "base": 8,
+        "unit": "px",
+        "scale": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          8
+        ]
+      },
+      "line_weight": {
+        "value": 1.5,
+        "unit": "px"
+      }
+    }
+  },
+  "motion_character": {
+    "tempo": "依本片内容、实际声音与阅读窗编排",
+    "material": "见完整风格规则",
+    "emphasis": "保留选中风格的原生动作和材质关系"
+  },
+  "avoid": [
+    "仅替换示例字幕或照搬示例故事",
+    "把导航色板当作完整材质效果",
+    "沿用来源作品的通过状态"
+  ],
+  "required_capabilities": [
+    "time-control",
+    "graphics-2d"
+  ],
+  "verification": {
+    "design": {
+      "status": "authored",
+      "evidence": []
+    },
+    "preview": {
+      "status": "not_run",
+      "evidence": []
+    },
+    "exported": {
+      "status": "not_run",
+      "evidence": []
+    }
+  },
+  "source_refs": [
+    "https://github.com/lemomo-ai/lemo-opuscar/blob/413a6bd6d78ebd3bdd5abaec9538a26867f890df/styles/halftone-dossier/STYLE.md"
+  ],
+  "native_moves": [
+    "The accusation frame.",
+    "Numbered exhibits.",
+    "The stamp.",
+    "The mugshot.",
+    "Evidence board.",
+    "Dot density = emotion.",
+    "Redaction."
+  ],
+  "section_index": [
+    {
+      "title": "1. Essence, and what it is not",
+      "line": 6
+    },
+    {
+      "title": "2. Materials & rendering",
+      "line": 15
+    },
+    {
+      "title": "3. Colour logic",
+      "line": 26
+    },
+    {
+      "title": "4. Type & subtitles",
+      "line": 35
+    },
+    {
+      "title": "5. Motion quality",
+      "line": 46
+    },
+    {
+      "title": "6. Camera grammar",
+      "line": 56
+    },
+    {
+      "title": "7. Sound palette",
+      "line": 73
+    },
+    {
+      "title": "8. Native moves",
+      "line": 81
+    },
+    {
+      "title": "9. Pitfalls of the medium",
+      "line": 93
+    },
+    {
+      "title": "10. Engine",
+      "line": 104
+    },
+    {
+      "title": "11. Variation space",
+      "line": 108
+    }
+  ],
+  "origin": {
+    "repository": "lemomo-ai/lemo-opuscar",
+    "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df",
+    "slug": "halftone-dossier",
+    "license": "MIT",
+    "style_sha256": "71b4b8f089836d95f6bd8fc3719ae184cbf2be4a04ecd935c6d55d89a5bb558d",
+    "demo_sha256": "df31e79c29547ed3753c68239824bc290cda83cf75e8a6b3f35f25f5484778ab",
+    "metadata_sha256": "c732c96a0d0b117252fda4cc734dac4f73ab14c323742d6ace0eff04f45c6d95"
+  },
+  "reference_files": [
+    "STYLE.upstream.md",
+    "DEMO.md",
+    "style.upstream.json",
+    "LICENSE"
+  ],
+  "implementation": {
+    "status": "reference-source",
+    "entrypoints": [
+      "demo/index.html",
+      "demo/render.mjs"
+    ],
+    "shared_runtime": "vendor/lemo-opuscar",
+    "assets": "第三方素材按 demo/CREDITS 查找，具体项目另行准备与核验。"
+  },
+  "gallery": {
+    "poster": "preview.jpg",
+    "poster_sha256": "8a145a2edb7d1b4cfbe289bdf0a606430219f53c2f25c55ba619725158f9a815",
+    "poster_source": "https://github.com/lemomo-ai/lemo-opuscar/blob/413a6bd6d78ebd3bdd5abaec9538a26867f890df/styleboard/img/halftone-dossier_0.jpg",
+    "video": "sample.mp4",
+    "video_sha256": "ec0dac24d2f2c70df974b8d75ac81d4301afe9bef6b105edc2f49724c622a520",
+    "attribution": {
+      "name": "LemoLab · Lemo-Opuscar",
+      "url": "https://github.com/lemomo-ai/lemo-opuscar"
+    }
+  }
+}

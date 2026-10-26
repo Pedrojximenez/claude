@@ -1,0 +1,1228 @@
+{
+  "schema_version": 1,
+  "project_id": "example-evidence-board-fictional",
+  "revision": 1,
+  "goal": "分清一条资讯里已核实的事实、口径不同的数字和尚未确认的内容。",
+  "audience": "没有核对过资讯来源的普通读者",
+  "scenario_id": "news-brief",
+  "mode": "recipe",
+  "example": {
+    "classification": "fictional-structure-only",
+    "notice": "原创虚构结构示例；事件、机构、日期和数字均为虚构，不是真实新闻，不得直接发布。未生成实际视频、预览或配音。",
+    "actual_video": false,
+    "model_ranking": false
+  },
+  "output": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "duration_seconds": 93,
+    "language": "zh-CN",
+    "audio": "optional"
+  },
+  "design": {
+    "style_id": "paper-editorial",
+    "rationale": "纸面编辑风格：实线卡表示已核实，虚线空槽表示未确认；颜色不承担数据。",
+    "preserve": [
+      "事实卡与来源标签成对",
+      "空槽保留到结尾",
+      "虚构角标全程可见"
+    ],
+    "expression_ids": [
+      "knowledge.evidence-board",
+      "knowledge.truth-ledger",
+      "knowledge.layered-reveal",
+      "knowledge.model-boundary",
+      "knowledge.controlled-register",
+      "visual.target-callout"
+    ],
+    "recipe_id": "evidence-board-brief"
+  },
+  "runtime": {
+    "adapter": "unselected",
+    "status": "unresolved",
+    "capabilities": [],
+    "required_capabilities": [
+      "time-control",
+      "opacity",
+      "position",
+      "stroke",
+      "color",
+      "value"
+    ]
+  },
+  "knowledge": {
+    "topic": "资讯示例：周末延长开放（虚构）",
+    "claim": "已核实的事实挂着来源与日期；口径不同的数字分开放；没有证据的地方留空槽。",
+    "relation_type": "event",
+    "audience": {
+      "level": "novice",
+      "known": [
+        "知道图书馆会公布开放时间"
+      ],
+      "unknown": [
+        "为什么数字要带口径",
+        "怎样区分已核实与未确认"
+      ]
+    },
+    "domain": {
+      "field": "资讯核对（虚构示例）",
+      "standards": [
+        {
+          "id": "std-none",
+          "title": "无适用标准",
+          "kind": "none",
+          "status": "none",
+          "reason": "虚构事件，没有适用的行业标准；真实资讯请选取新闻写作规范与事实核查原则，并登记来源状态"
+        }
+      ],
+      "terms": [
+        {
+          "id": "term-board",
+          "preferred": "证据板",
+          "definition": "摆放事实卡与来源标签的板",
+          "source": "本片自定术语卡（虚构示例）",
+          "aliases_forbidden": [
+            "资料墙"
+          ]
+        },
+        {
+          "id": "term-card",
+          "preferred": "事实卡",
+          "definition": "一条已核实事实的卡片",
+          "source": "本片自定术语卡（虚构示例）",
+          "aliases_forbidden": [
+            "消息卡"
+          ]
+        },
+        {
+          "id": "term-source-tag",
+          "preferred": "来源标签",
+          "definition": "写明事实出处与读到日期的标签",
+          "source": "本片自定术语卡（虚构示例）"
+        },
+        {
+          "id": "term-scope",
+          "preferred": "口径",
+          "definition": "一个数字怎么统计",
+          "source": "本片自定术语卡（虚构示例）",
+          "aliases_forbidden": [
+            "统计方式"
+          ]
+        }
+      ]
+    },
+    "expression": {
+      "profile": "ste-zh-spoken"
+    },
+    "carrier": {
+      "kind": "object",
+      "object": "证据板：事实卡、来源标签、时间轨、量具、空槽、版本戳",
+      "mechanism": "事实卡挂了来源标签才能上板；数字按口径放进各自的量具；没有证据的内容留空槽",
+      "fallback": "改用来源对照表：事实、来源、日期、状态四列",
+      "limits": [
+        "版式整齐不等于已核实"
+      ],
+      "mappings": [
+        {
+          "id": "map-fact-card",
+          "concept": "一条已核实的事实",
+          "part": "事实卡",
+          "fidelity": "structural",
+          "element_id": "cs-fact-card",
+          "layer_id": "layer-cast",
+          "questions": {
+            "what": "板上的一张卡，写一件事",
+            "why": "一卡一事实，才能逐条核对"
+          },
+          "breaks_at": "卡片整齐不代表内容已核实；只有挂了来源标签的卡才算"
+        },
+        {
+          "id": "map-source-tag",
+          "concept": "事实的来源与日期",
+          "part": "来源标签",
+          "fidelity": "structural",
+          "element_id": "cs-source-tag",
+          "layer_id": "layer-cast",
+          "questions": {
+            "what": "贴在卡上的小标签，写出处与日期",
+            "why": "让观众能回到原文核对"
+          },
+          "breaks_at": "标签只说明出处，不说明出处本身可靠"
+        },
+        {
+          "id": "map-gauge",
+          "concept": "带口径的数字",
+          "part": "数据量具",
+          "fidelity": "structural",
+          "element_id": "tl-gauge-print",
+          "layer_id": "layer-timeline",
+          "questions": {
+            "what": "一把刻度固定的尺，量一个口径的数字",
+            "why": "口径不同的数字不能放在同一把尺上"
+          },
+          "breaks_at": "量具长度只表示这个口径内的大小，不能跨口径比较"
+        },
+        {
+          "id": "map-slot",
+          "concept": "未确认或有争议的内容",
+          "part": "空槽",
+          "fidelity": "structural",
+          "element_id": "un-slot-holiday",
+          "layer_id": "layer-unknown",
+          "questions": {
+            "what": "板上的虚线空框，写明缺什么",
+            "why": "把未知放在明处，不让整齐的版面掩盖它"
+          },
+          "breaks_at": "空槽表示目前没有证据，不表示答案是否定的"
+        },
+        {
+          "id": "map-stamp",
+          "concept": "截至日期",
+          "part": "版本戳",
+          "fidelity": "exact",
+          "element_id": "hk-stamp",
+          "layer_id": "layer-hook",
+          "questions": {
+            "what": "板角的日期章",
+            "why": "事实会变化，要说明读到的是哪一天的版本"
+          },
+          "breaks_at": "日期只说明读取时间，不说明事实之后是否变化"
+        }
+      ]
+    },
+    "truth": {
+      "claims": [
+        {
+          "id": "claim-fiction",
+          "text": "整条事件为虚构示例，非真实新闻",
+          "kind": "illustrative",
+          "disclosure": "画面角标写明：虚构示例，非真实新闻"
+        },
+        {
+          "id": "claim-announce",
+          "text": "公告宣布：周末延长开放",
+          "kind": "sourced",
+          "source": "北辰区图书馆公告（虚构）第 1 条",
+          "as_of": "2026-10-19"
+        },
+        {
+          "id": "claim-effective",
+          "text": "公告：自 11 月 1 日起实施",
+          "kind": "sourced",
+          "source": "北辰区图书馆公告（虚构）第 3 条",
+          "as_of": "2026-10-19"
+        },
+        {
+          "id": "claim-new-close",
+          "text": "公告：周末闭馆时间改为 19 点",
+          "kind": "sourced",
+          "source": "北辰区图书馆公告（虚构）第 2 条",
+          "as_of": "2026-10-19",
+          "value": 19,
+          "unit": "点"
+        },
+        {
+          "id": "claim-old-close",
+          "text": "公告说明：原来周末 17 点闭馆",
+          "kind": "sourced",
+          "source": "北辰区图书馆公告（虚构）第 2 条",
+          "as_of": "2026-10-19",
+          "value": 17,
+          "unit": "点"
+        },
+        {
+          "id": "claim-extension",
+          "text": "每个周末延长 2 小时",
+          "kind": "derived",
+          "derivation": "19 点减去 17 点等于 2 小时",
+          "from": [
+            "claim-new-close",
+            "claim-old-close"
+          ],
+          "value": 2,
+          "unit": "小时"
+        },
+        {
+          "id": "claim-print",
+          "text": "纸质图书外借 8.4 万册，统计范围为 2025 全年纸质图书外借",
+          "kind": "sourced",
+          "source": "北辰区图书馆公告（虚构）附表 1",
+          "as_of": "2026-10-19",
+          "value": 8.4,
+          "unit": "万册"
+        },
+        {
+          "id": "claim-ebook",
+          "text": "电子借阅 3.1 万次，统计范围为 2025 全年电子资源借阅",
+          "kind": "sourced",
+          "source": "北辰区图书馆公告（虚构）附表 2",
+          "as_of": "2026-10-19",
+          "value": 3.1,
+          "unit": "万次"
+        }
+      ],
+      "unknown": [
+        {
+          "id": "unk-holiday",
+          "text": "法定节假日是否同样延长",
+          "status": "unconfirmed",
+          "reason": "公告没有说明"
+        },
+        {
+          "id": "unk-lighting",
+          "text": "夜间灯光是否足够",
+          "status": "disputed",
+          "reason": "只有读者说法，没有馆方或第三方记录"
+        }
+      ]
+    },
+    "layers": [
+      {
+        "id": "layer-hook",
+        "level": "L0",
+        "goal": "让观众想知道哪些已核实",
+        "new_load": "一个问题：这条消息哪些已核实",
+        "exit_test": "能复述事件与截至日期",
+        "scene_ids": [
+          "scene-hook"
+        ]
+      },
+      {
+        "id": "layer-blackbox",
+        "level": "L1",
+        "goal": "给出黑箱：资讯由谁、做了什么、何时、影响组成",
+        "new_load": "黑箱：一条资讯的四件事",
+        "exit_test": "能说出资讯的四件事",
+        "bridge_from_previous": "把标题里的事件拆成板上的四个位置",
+        "scene_ids": [
+          "scene-blackbox"
+        ],
+        "claim_ids": [
+          "claim-announce",
+          "claim-effective"
+        ]
+      },
+      {
+        "id": "layer-cast",
+        "level": "L2",
+        "goal": "认识事实卡与来源标签",
+        "new_load": "事实卡与来源标签",
+        "exit_test": "能说出每条事实要挂什么",
+        "bridge_from_previous": "四个位置里的第一个位置变成一张事实卡",
+        "scene_ids": [
+          "scene-cast"
+        ],
+        "focus_element_id": "cs-fact-card",
+        "claim_ids": [
+          "claim-new-close"
+        ]
+      },
+      {
+        "id": "layer-timeline",
+        "level": "L3",
+        "goal": "理解数字要带口径",
+        "new_load": "一条规则：口径不同不放同一把尺",
+        "exit_test": "能说出为什么两个数字分开放",
+        "bridge_from_previous": "事实卡里的数字拿出来，放到各自的量具上",
+        "scene_ids": [
+          "scene-timeline"
+        ],
+        "focus_element_id": "tl-gauge-print",
+        "claim_ids": [
+          "claim-print",
+          "claim-ebook"
+        ]
+      },
+      {
+        "id": "layer-chain",
+        "level": "L4",
+        "goal": "沿一条证据链核对到结论",
+        "new_load": "一次完整核对",
+        "exit_test": "能说出结论由哪些事实推出",
+        "bridge_from_previous": "回到事实卡，把新旧两个时间并排",
+        "scene_ids": [
+          "scene-chain"
+        ],
+        "focus_element_id": "ch-diff",
+        "claim_ids": [
+          "claim-new-close",
+          "claim-old-close",
+          "claim-extension"
+        ]
+      },
+      {
+        "id": "layer-unknown",
+        "level": "L5",
+        "goal": "把未确认与争议放在明处",
+        "new_load": "一个反面：没有证据的地方",
+        "exit_test": "能说出还缺哪两件事",
+        "bridge_from_previous": "板上没有挂卡的位置变成空槽",
+        "scene_ids": [
+          "scene-unknown"
+        ],
+        "focus_element_id": "un-slot-holiday"
+      },
+      {
+        "id": "layer-recap",
+        "level": "L6",
+        "goal": "回到总览并交代边界",
+        "new_load": "无新概念：只回顾、划边界和指路",
+        "exit_test": "能说出没有核对什么，以及去哪里核对",
+        "bridge_from_previous": "拉回整块证据板",
+        "scene_ids": [
+          "scene-recap"
+        ],
+        "model_boundary": "证据板只核对公告本身；没有核对读者人数的变化，版式整齐不等于已核实",
+        "extension_pointers": [
+          "回到公告原文，核对全文与日期"
+        ]
+      }
+    ],
+    "checks": {
+      "terminology": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "accuracy": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "novice_read": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "peer_read": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "expert_read": {
+        "status": "not_run",
+        "evidence": []
+      }
+    }
+  },
+  "assets": [],
+  "scenes": [
+    {
+      "id": "scene-hook",
+      "purpose": "提出问题：这条消息哪些已核实",
+      "start": 0,
+      "end": 10,
+      "layout": "headline-source",
+      "elements": [
+        {
+          "id": "hk-event",
+          "role": "subject",
+          "content": "北辰区图书馆：周末延长开放"
+        },
+        {
+          "id": "hk-stamp",
+          "role": "state",
+          "content": "截至 2026-10-19"
+        },
+        {
+          "id": "hk-fiction",
+          "role": "caption",
+          "content": "虚构示例，非真实新闻"
+        }
+      ],
+      "beats": [
+        {
+          "id": "hk-event-beat",
+          "time": 0.6,
+          "meaning": "北辰区图书馆：周末延长开放 出场",
+          "narration_id": "hook-narr"
+        },
+        {
+          "id": "hk-stamp-beat",
+          "time": 2.9,
+          "meaning": "截至 2026-10-19 出场"
+        },
+        {
+          "id": "hk-fiction-beat",
+          "time": 5.3,
+          "meaning": "虚构示例，非真实新闻 出场"
+        }
+      ],
+      "motions": [
+        {
+          "id": "hk-event-m",
+          "pattern_id": "reveal",
+          "target_id": "hk-event",
+          "start": 0.6,
+          "end": 1.2,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "hk-event-beat"
+        },
+        {
+          "id": "hk-stamp-m",
+          "pattern_id": "reveal",
+          "target_id": "hk-stamp",
+          "start": 2.9,
+          "end": 3.5,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "hk-stamp-beat"
+        },
+        {
+          "id": "hk-fiction-m",
+          "pattern_id": "reveal",
+          "target_id": "hk-fiction",
+          "start": 5.3,
+          "end": 5.9,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "hk-fiction-beat"
+        },
+        {
+          "id": "scene-hook-hold",
+          "pattern_id": "hold",
+          "target_id": "hk-fiction",
+          "start": 8.0,
+          "end": 10,
+          "parameters": {
+            "minimum_reading": 2
+          }
+        }
+      ],
+      "narration": [
+        {
+          "id": "hook-narr",
+          "display": "假设北辰区图书馆宣布，周末延长开放。这条消息，哪些已经核实，哪些还不确定？",
+          "spoken": "假设北辰区图书馆宣布，周末延长开放。这条消息，哪些已经核实，哪些还不确定？",
+          "start": 0.5,
+          "duration_seconds": 8.0,
+          "timing": "estimated"
+        }
+      ],
+      "audio_cues": [],
+      "hold_seconds": 2
+    },
+    {
+      "id": "scene-blackbox",
+      "purpose": "黑箱：一条资讯由四件事组成",
+      "start": 10,
+      "end": 21,
+      "layout": "brief-list",
+      "elements": [
+        {
+          "id": "bb-board",
+          "role": "structure",
+          "content": "证据板",
+          "continuity_key": "board"
+        },
+        {
+          "id": "bb-who",
+          "role": "subject",
+          "content": "谁：北辰区图书馆"
+        },
+        {
+          "id": "bb-did",
+          "role": "subject",
+          "content": "做了什么：周末延长开放"
+        },
+        {
+          "id": "bb-when",
+          "role": "subject",
+          "content": "何时：11 月 1 日起"
+        },
+        {
+          "id": "bb-impact",
+          "role": "subject",
+          "content": "影响：周末多开 2 小时"
+        }
+      ],
+      "beats": [
+        {
+          "id": "bb-board-beat",
+          "time": 10.6,
+          "meaning": "证据板 出场",
+          "narration_id": "blackbox-narr"
+        },
+        {
+          "id": "bb-who-beat",
+          "time": 12.2,
+          "meaning": "谁：北辰区图书馆 出场"
+        },
+        {
+          "id": "bb-did-beat",
+          "time": 13.8,
+          "meaning": "做了什么：周末延长开放 出场"
+        },
+        {
+          "id": "bb-when-beat",
+          "time": 15.4,
+          "meaning": "何时：11 月 1 日起 出场"
+        },
+        {
+          "id": "bb-impact-beat",
+          "time": 17.0,
+          "meaning": "影响：周末多开 2 小时 出场"
+        }
+      ],
+      "motions": [
+        {
+          "id": "bb-board-m",
+          "pattern_id": "reveal",
+          "target_id": "bb-board",
+          "start": 10.6,
+          "end": 11.2,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "bb-board-beat"
+        },
+        {
+          "id": "bb-who-m",
+          "pattern_id": "reveal",
+          "target_id": "bb-who",
+          "start": 12.2,
+          "end": 12.8,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "bb-who-beat"
+        },
+        {
+          "id": "bb-did-m",
+          "pattern_id": "reveal",
+          "target_id": "bb-did",
+          "start": 13.8,
+          "end": 14.4,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "bb-did-beat"
+        },
+        {
+          "id": "bb-when-m",
+          "pattern_id": "reveal",
+          "target_id": "bb-when",
+          "start": 15.4,
+          "end": 16.0,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "bb-when-beat"
+        },
+        {
+          "id": "bb-impact-m",
+          "pattern_id": "reveal",
+          "target_id": "bb-impact",
+          "start": 17.0,
+          "end": 17.6,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "bb-impact-beat"
+        },
+        {
+          "id": "scene-blackbox-hold",
+          "pattern_id": "hold",
+          "target_id": "bb-impact",
+          "start": 19.0,
+          "end": 21,
+          "parameters": {
+            "minimum_reading": 2
+          }
+        }
+      ],
+      "narration": [
+        {
+          "id": "blackbox-narr",
+          "display": "一条资讯由四件事组成：谁，做了什么，何时，有什么影响。证据板就是一块摆放事实卡的板。",
+          "spoken": "一条资讯由四件事组成：谁，做了什么，何时，有什么影响。证据板就是一块摆放事实卡的板。",
+          "start": 10.5,
+          "duration_seconds": 9.0,
+          "timing": "estimated"
+        }
+      ],
+      "audio_cues": [],
+      "hold_seconds": 2
+    },
+    {
+      "id": "scene-cast",
+      "purpose": "认识事实卡与来源标签",
+      "start": 21,
+      "end": 36,
+      "layout": "quote-evidence",
+      "elements": [
+        {
+          "id": "cs-fact-card",
+          "role": "subject",
+          "content": "事实卡：周末闭馆时间改为 19 点",
+          "continuity_key": "fact-card"
+        },
+        {
+          "id": "cs-source-tag",
+          "role": "subject",
+          "content": "来源标签：公告第 2 条，2026-10-19"
+        }
+      ],
+      "beats": [
+        {
+          "id": "cs-fact-card-beat",
+          "time": 21.6,
+          "meaning": "事实卡：周末闭馆时间改为 1 出场",
+          "narration_id": "cast-narr"
+        },
+        {
+          "id": "cs-source-tag-beat",
+          "time": 27.2,
+          "meaning": "来源标签：公告第 2 条，2 出场"
+        }
+      ],
+      "motions": [
+        {
+          "id": "cs-fact-card-m",
+          "pattern_id": "reveal",
+          "target_id": "cs-fact-card",
+          "start": 21.6,
+          "end": 22.2,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "cs-fact-card-beat"
+        },
+        {
+          "id": "cs-fact-card-lit",
+          "pattern_id": "highlight",
+          "target_id": "cs-fact-card",
+          "start": 22.3,
+          "end": 24.3,
+          "parameters": {
+            "strength": 0.85,
+            "dim_others_to": 0.45
+          },
+          "beat_id": "cs-fact-card-beat"
+        },
+        {
+          "id": "cs-source-tag-m",
+          "pattern_id": "reveal",
+          "target_id": "cs-source-tag",
+          "start": 27.2,
+          "end": 27.8,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "cs-source-tag-beat"
+        },
+        {
+          "id": "scene-cast-hold",
+          "pattern_id": "hold",
+          "target_id": "cs-source-tag",
+          "start": 34.0,
+          "end": 36,
+          "parameters": {
+            "minimum_reading": 2
+          }
+        }
+      ],
+      "narration": [
+        {
+          "id": "cast-narr",
+          "display": "板上先放事实卡。事实卡表示一条已核实的事实。每张卡挂一个来源标签。来源标签表示这条事实出自哪里，哪一天读到。",
+          "spoken": "板上先放事实卡。事实卡表示一条已核实的事实。每张卡挂一个来源标签。来源标签表示这条事实出自哪里，哪一天读到。",
+          "start": 21.5,
+          "duration_seconds": 12.2,
+          "timing": "estimated"
+        }
+      ],
+      "audio_cues": [],
+      "hold_seconds": 2
+    },
+    {
+      "id": "scene-timeline",
+      "purpose": "数字要带口径，分两把尺",
+      "start": 36,
+      "end": 50,
+      "layout": "data-comparison",
+      "elements": [
+        {
+          "id": "tl-rail",
+          "role": "structure",
+          "content": "时间轨：2025 全年"
+        },
+        {
+          "id": "tl-gauge-print",
+          "role": "subject",
+          "content": "纸质外借 8.4 万册（2025 全年）"
+        },
+        {
+          "id": "tl-gauge-ebook",
+          "role": "subject",
+          "content": "电子借阅 3.1 万次（2025 全年）"
+        },
+        {
+          "id": "tl-scope-note",
+          "role": "caption",
+          "content": "口径不同，分两把尺"
+        }
+      ],
+      "beats": [
+        {
+          "id": "tl-rail-beat",
+          "time": 36.6,
+          "meaning": "时间轨：2025 全年 出场",
+          "narration_id": "timeline-narr"
+        },
+        {
+          "id": "tl-gauge-print-beat",
+          "time": 39.4,
+          "meaning": "纸质外借 8.4 万册（20 出场"
+        },
+        {
+          "id": "tl-gauge-ebook-beat",
+          "time": 42.1,
+          "meaning": "电子借阅 3.1 万次（20 出场"
+        },
+        {
+          "id": "tl-scope-note-beat",
+          "time": 44.9,
+          "meaning": "口径不同，分两把尺 出场"
+        }
+      ],
+      "motions": [
+        {
+          "id": "tl-rail-m",
+          "pattern_id": "reveal",
+          "target_id": "tl-rail",
+          "start": 36.6,
+          "end": 37.2,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "tl-rail-beat"
+        },
+        {
+          "id": "tl-gauge-print-m",
+          "pattern_id": "reveal",
+          "target_id": "tl-gauge-print",
+          "start": 39.4,
+          "end": 40.0,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "tl-gauge-print-beat"
+        },
+        {
+          "id": "tl-gauge-print-lit",
+          "pattern_id": "highlight",
+          "target_id": "tl-gauge-print",
+          "start": 40.1,
+          "end": 42.1,
+          "parameters": {
+            "strength": 0.85,
+            "dim_others_to": 0.45
+          },
+          "beat_id": "tl-gauge-print-beat"
+        },
+        {
+          "id": "tl-gauge-ebook-m",
+          "pattern_id": "reveal",
+          "target_id": "tl-gauge-ebook",
+          "start": 42.1,
+          "end": 42.7,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "tl-gauge-ebook-beat"
+        },
+        {
+          "id": "tl-scope-note-m",
+          "pattern_id": "reveal",
+          "target_id": "tl-scope-note",
+          "start": 44.9,
+          "end": 45.5,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "tl-scope-note-beat"
+        },
+        {
+          "id": "scene-timeline-hold",
+          "pattern_id": "hold",
+          "target_id": "tl-scope-note",
+          "start": 48.0,
+          "end": 50,
+          "parameters": {
+            "minimum_reading": 2
+          }
+        }
+      ],
+      "narration": [
+        {
+          "id": "timeline-narr",
+          "display": "数字要带口径。口径表示一个数字怎么统计。纸质外借 8.4 万册，电子借阅 3.1 万次。两个口径不同，不放在同一把尺上。",
+          "spoken": "数字要带口径。口径表示一个数字怎么统计。纸质外借 8.4 万册，电子借阅 3.1 万次。两个口径不同，不放在同一把尺上。",
+          "start": 36.5,
+          "duration_seconds": 12.0,
+          "timing": "estimated"
+        }
+      ],
+      "audio_cues": [],
+      "hold_seconds": 2
+    },
+    {
+      "id": "scene-chain",
+      "purpose": "核对一条证据链",
+      "start": 50,
+      "end": 62,
+      "layout": "quote-evidence",
+      "elements": [
+        {
+          "id": "ch-old",
+          "role": "subject",
+          "content": "原：周末 17 点闭馆"
+        },
+        {
+          "id": "ch-new",
+          "role": "subject",
+          "content": "新：周末 19 点闭馆"
+        },
+        {
+          "id": "ch-diff",
+          "role": "relation",
+          "content": "+2 小时",
+          "from_id": "ch-old",
+          "to_id": "ch-new",
+          "relation_type": "derived-difference"
+        }
+      ],
+      "beats": [
+        {
+          "id": "ch-old-beat",
+          "time": 50.6,
+          "meaning": "原：周末 17 点闭馆 出场",
+          "narration_id": "chain-narr"
+        },
+        {
+          "id": "ch-new-beat",
+          "time": 53.5,
+          "meaning": "新：周末 19 点闭馆 出场"
+        },
+        {
+          "id": "ch-diff-beat",
+          "time": 56.5,
+          "meaning": "+2 小时 出场"
+        }
+      ],
+      "motions": [
+        {
+          "id": "ch-old-m",
+          "pattern_id": "reveal",
+          "target_id": "ch-old",
+          "start": 50.6,
+          "end": 51.2,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "ch-old-beat"
+        },
+        {
+          "id": "ch-new-m",
+          "pattern_id": "reveal",
+          "target_id": "ch-new",
+          "start": 53.5,
+          "end": 54.1,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "ch-new-beat"
+        },
+        {
+          "id": "ch-diff-m",
+          "pattern_id": "count",
+          "target_id": "ch-diff",
+          "start": 56.5,
+          "end": 57.3,
+          "parameters": {
+            "from_value": 0,
+            "to_value": 2,
+            "decimals": 0
+          },
+          "beat_id": "ch-diff-beat"
+        },
+        {
+          "id": "ch-diff-lit",
+          "pattern_id": "highlight",
+          "target_id": "ch-diff",
+          "start": 57.2,
+          "end": 59.2,
+          "parameters": {
+            "strength": 0.85,
+            "dim_others_to": 0.45
+          },
+          "beat_id": "ch-diff-beat"
+        },
+        {
+          "id": "scene-chain-hold",
+          "pattern_id": "hold",
+          "target_id": "ch-diff",
+          "start": 60.0,
+          "end": 62,
+          "parameters": {
+            "minimum_reading": 2
+          }
+        }
+      ],
+      "narration": [
+        {
+          "id": "chain-narr",
+          "display": "核对一条证据链。公告写明，周末闭馆时间改为 19 点。原来是 17 点。所以每个周末延长 2 小时。",
+          "spoken": "核对一条证据链。公告写明，周末闭馆时间改为 19 点。原来是 17 点。所以每个周末延长 2 小时。",
+          "start": 50.5,
+          "duration_seconds": 9.8,
+          "timing": "estimated"
+        }
+      ],
+      "audio_cues": [],
+      "hold_seconds": 2
+    },
+    {
+      "id": "scene-unknown",
+      "purpose": "未知与争议留空槽",
+      "start": 62,
+      "end": 76,
+      "layout": "brief-list",
+      "elements": [
+        {
+          "id": "un-slot-holiday",
+          "role": "subject",
+          "content": "空槽·未确认：法定节假日是否同样延长"
+        },
+        {
+          "id": "un-slot-lighting",
+          "role": "subject",
+          "content": "空槽·有争议：夜间灯光是否足够"
+        }
+      ],
+      "beats": [
+        {
+          "id": "un-slot-holiday-beat",
+          "time": 62.6,
+          "meaning": "空槽·未确认：法定节假日是否 出场",
+          "narration_id": "unknown-narr"
+        },
+        {
+          "id": "un-slot-lighting-beat",
+          "time": 68.0,
+          "meaning": "空槽·有争议：夜间灯光是否足 出场"
+        }
+      ],
+      "motions": [
+        {
+          "id": "un-slot-holiday-m",
+          "pattern_id": "reveal",
+          "target_id": "un-slot-holiday",
+          "start": 62.6,
+          "end": 63.2,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "un-slot-holiday-beat"
+        },
+        {
+          "id": "un-slot-holiday-lit",
+          "pattern_id": "highlight",
+          "target_id": "un-slot-holiday",
+          "start": 63.3,
+          "end": 65.3,
+          "parameters": {
+            "strength": 0.85,
+            "dim_others_to": 0.45
+          },
+          "beat_id": "un-slot-holiday-beat"
+        },
+        {
+          "id": "un-slot-lighting-m",
+          "pattern_id": "reveal",
+          "target_id": "un-slot-lighting",
+          "start": 68.0,
+          "end": 68.6,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "un-slot-lighting-beat"
+        },
+        {
+          "id": "scene-unknown-hold",
+          "pattern_id": "hold",
+          "target_id": "un-slot-lighting",
+          "start": 74.0,
+          "end": 76,
+          "parameters": {
+            "minimum_reading": 2
+          }
+        }
+      ],
+      "narration": [
+        {
+          "id": "unknown-narr",
+          "display": "有两件事还没有确认。第一件：公告没有说法定节假日是否同样延长。第二件：有读者称夜间灯光不足，各方说法不一。",
+          "spoken": "有两件事还没有确认。第一件：公告没有说法定节假日是否同样延长。第二件：有读者称夜间灯光不足，各方说法不一。",
+          "start": 62.5,
+          "duration_seconds": 11.8,
+          "timing": "estimated"
+        }
+      ],
+      "audio_cues": [],
+      "hold_seconds": 2
+    },
+    {
+      "id": "scene-recap",
+      "purpose": "回顾、边界与指路",
+      "start": 76,
+      "end": 93,
+      "layout": "headline-source",
+      "elements": [
+        {
+          "id": "rc-board",
+          "role": "subject",
+          "content": "证据板总览"
+        },
+        {
+          "id": "rc-boundary",
+          "role": "caption",
+          "content": "没有核对：读者人数的变化"
+        },
+        {
+          "id": "rc-pointer",
+          "role": "caption",
+          "content": "延伸：回到公告原文核对全文与日期"
+        }
+      ],
+      "beats": [
+        {
+          "id": "rc-board-beat",
+          "time": 76.6,
+          "meaning": "证据板总览 出场",
+          "narration_id": "recap-narr"
+        },
+        {
+          "id": "rc-boundary-beat",
+          "time": 81.1,
+          "meaning": "没有核对：读者人数的变化 出场"
+        },
+        {
+          "id": "rc-pointer-beat",
+          "time": 85.6,
+          "meaning": "延伸：回到公告原文核对全文与 出场"
+        }
+      ],
+      "motions": [
+        {
+          "id": "rc-board-m",
+          "pattern_id": "reveal",
+          "target_id": "rc-board",
+          "start": 76.6,
+          "end": 77.2,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "rc-board-beat"
+        },
+        {
+          "id": "rc-boundary-m",
+          "pattern_id": "reveal",
+          "target_id": "rc-boundary",
+          "start": 81.1,
+          "end": 81.7,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "rc-boundary-beat"
+        },
+        {
+          "id": "rc-pointer-m",
+          "pattern_id": "reveal",
+          "target_id": "rc-pointer",
+          "start": 85.6,
+          "end": 86.2,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "rc-pointer-beat"
+        },
+        {
+          "id": "scene-recap-hold",
+          "pattern_id": "hold",
+          "target_id": "rc-pointer",
+          "start": 91.0,
+          "end": 93,
+          "parameters": {
+            "minimum_reading": 2
+          }
+        }
+      ],
+      "narration": [
+        {
+          "id": "recap-narr",
+          "display": "回到证据板：已核实的事实挂着来源，没有核实的留着空槽。这块板只核对了公告本身，没有核对读者人数的变化。想继续核对，请回到公告原文。",
+          "spoken": "回到证据板：已核实的事实挂着来源，没有核实的留着空槽。这块板只核对了公告本身，没有核对读者人数的变化。想继续核对，请回到公告原文。",
+          "start": 76.5,
+          "duration_seconds": 14.5,
+          "timing": "estimated"
+        }
+      ],
+      "audio_cues": [],
+      "hold_seconds": 2
+    }
+  ],
+  "delivery": {
+    "status": "not_run",
+    "outputs": [],
+    "checks": {
+      "structure": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "semantic": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "visual": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "playback": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "audio": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "comprehension": {
+        "status": "not_run",
+        "evidence": []
+      }
+    }
+  }
+}

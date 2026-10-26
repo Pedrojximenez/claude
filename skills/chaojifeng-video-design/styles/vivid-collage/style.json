@@ -1,0 +1,87 @@
+{
+  "id": "vivid-collage",
+  "name": "鲜明拼贴",
+  "intent": "用图片切块和尺度差建立节奏。",
+  "applicable_inputs": [
+    "内容目标和受众",
+    "已知品牌约束或允许原创的范围",
+    "实际素材与画幅"
+  ],
+  "constraints": [
+    "只用获准素材，不无依据重构人物品牌。",
+    "复杂内容不用碎片排版。"
+  ],
+  "fallback": "单图加说明，取消旋转拼贴。",
+  "verification": {
+    "design": {
+      "status": "authored",
+      "evidence": []
+    },
+    "preview": {
+      "status": "not_run",
+      "evidence": []
+    },
+    "exported": {
+      "status": "not_run",
+      "evidence": []
+    }
+  },
+  "tokens": {
+    "background": "#FFF8E9",
+    "foreground": "#272128",
+    "accent": "#DD4D38",
+    "muted": "#786E75",
+    "font_stack": [
+      "Arial Black",
+      "PingFang SC",
+      "Noto Sans SC",
+      "sans-serif"
+    ],
+    "radius": {
+      "value": 0,
+      "unit": "px"
+    },
+    "spacing": {
+      "base": 12,
+      "unit": "px",
+      "scale": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        8
+      ]
+    },
+    "line_weight": {
+      "value": 3,
+      "unit": "px"
+    }
+  },
+  "motion_character": {
+    "tempo": "切块出现后稳定阅读",
+    "easing": "有限回弹",
+    "emphasis": "每次突出一个语义焦点"
+  },
+  "avoid": [
+    "所有块同时旋转",
+    "高频闪烁",
+    "来源不明图片"
+  ],
+  "source_refs": [],
+  "pack_version": 1,
+  "guide": "STYLE.md",
+  "aliases": [],
+  "borrows": [],
+  "category": "超级峰原有风格",
+  "scenario_ids": [
+    "image-story",
+    "story-video",
+    "brand-film",
+    "music-visual"
+  ],
+  "implementation": {
+    "status": "guidance",
+    "entrypoints": []
+  }
+}

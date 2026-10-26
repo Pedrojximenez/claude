@@ -1,0 +1,1675 @@
+{
+  "schema_version": 1,
+  "project_id": "example-tcp-three-way-handshake",
+  "revision": 1,
+  "goal": "理解 TCP 三次握手：两站用三个报文段互相核对序号，并说明为什么旧的重复请求不会造成错误连接。",
+  "audience": "会上网、没学过网络协议的初学者",
+  "scenario_id": "knowledge-explainer",
+  "mode": "recipe",
+  "example": {
+    "classification": "real-facts-structure-only",
+    "notice": "结构示例；未生成实际视频、预览或配音。事实取自 RFC 9293 §3.5 图 6 与图 8（2026-10-19 核对）；对账台载体是本 Skill 设计的示意机器，不是 RFC 内容。未做真实观众理解测试。",
+    "actual_video": false,
+    "model_ranking": false
+  },
+  "output": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "duration_seconds": 115,
+    "language": "zh-CN",
+    "audio": "optional"
+  },
+  "design": {
+    "style_id": "mono-diagram",
+    "rationale": "单色图解：底层低调、结构中调、主体高亮，每个画面只点亮一个焦点；颜色不承担数据，数字只来自真值账本。",
+    "preserve": [
+      "左站、右站与信封的身份",
+      "每个数字都来自真值账本",
+      "示意内容在画面中披露"
+    ],
+    "expression_ids": [
+      "knowledge.object-is-explanation",
+      "knowledge.layered-reveal",
+      "knowledge.layer-bridge",
+      "knowledge.part-cast",
+      "knowledge.one-full-run",
+      "knowledge.counterfactual-probe",
+      "knowledge.landed-label",
+      "knowledge.truth-ledger",
+      "knowledge.controlled-register",
+      "knowledge.model-boundary",
+      "visual.target-callout"
+    ],
+    "recipe_id": "layered-concept-reveal"
+  },
+  "runtime": {
+    "adapter": "unselected",
+    "status": "unresolved",
+    "capabilities": [],
+    "required_capabilities": [
+      "time-control",
+      "opacity",
+      "position",
+      "stroke",
+      "color",
+      "value"
+    ]
+  },
+  "knowledge": {
+    "topic": "TCP 三次握手",
+    "claim": "两端用三个报文段互相核对序号，才确认连接真的建立；旧的重复请求会在核对时被拦下。",
+    "relation_type": "process",
+    "audience": {
+      "level": "novice",
+      "known": [
+        "上网要先连上服务器",
+        "网络里传的是一份份数据"
+      ],
+      "unknown": [
+        "序号与确认号",
+        "SYN、ACK、RST 这些标志位"
+      ]
+    },
+    "domain": {
+      "field": "计算机网络 / 传输层协议",
+      "standards": [
+        {
+          "id": "std-rfc9293",
+          "title": "RFC 9293 Transmission Control Protocol (TCP)",
+          "kind": "standard",
+          "status": "verified",
+          "version": "STD 7；2022 年 8 月发布；取代 RFC 793",
+          "locator": "§3.5 建立连接；图 6 基本三次握手；图 8 旧的重复 SYN 的恢复",
+          "checked_on": "2026-10-19",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html",
+          "scope": "握手过程、标志位、连接状态与序号规则的权威写法"
+        }
+      ],
+      "terms": [
+        {
+          "id": "term-3whs",
+          "preferred": "三次握手",
+          "definition": "双方用三个报文段建立一条 TCP 连接的过程",
+          "standard_ref": "std-rfc9293",
+          "aliases_forbidden": [
+            "三次挥手",
+            "握手协议"
+          ]
+        },
+        {
+          "id": "term-segment",
+          "preferred": "报文段",
+          "definition": "TCP 传输的一份带编号的数据单元",
+          "standard_ref": "std-rfc9293",
+          "source": "RFC 9293 术语 segment；中文名取计算机网络教材通行译名，未逐条对照国标",
+          "aliases_forbidden": [
+            "数据包",
+            "报文包"
+          ]
+        },
+        {
+          "id": "term-seq",
+          "preferred": "序号",
+          "abbr": "SEQ",
+          "definition": "发送方给报文段编的号；握手时指发送方的起始编号",
+          "standard_ref": "std-rfc9293",
+          "aliases_forbidden": [
+            "序列号"
+          ]
+        },
+        {
+          "id": "term-ackno",
+          "preferred": "确认号",
+          "definition": "接收方期待收到的下一个序号",
+          "standard_ref": "std-rfc9293",
+          "aliases_forbidden": [
+            "应答号"
+          ]
+        },
+        {
+          "id": "term-syn",
+          "preferred": "SYN",
+          "spoken_as": "S Y N",
+          "definition": "TCP 报文头里的标志位，表示请求连接并同步起始序号",
+          "standard_ref": "std-rfc9293",
+          "aliases_forbidden": [
+            "同步包",
+            "握手包"
+          ]
+        },
+        {
+          "id": "term-ack",
+          "preferred": "ACK",
+          "spoken_as": "A C K",
+          "definition": "TCP 报文头里的标志位，表示确认号有效",
+          "standard_ref": "std-rfc9293",
+          "aliases_forbidden": [
+            "应答包"
+          ]
+        },
+        {
+          "id": "term-rst",
+          "preferred": "RST",
+          "spoken_as": "R S T",
+          "definition": "TCP 报文头里的标志位，表示重置，要求对方放弃这次连接",
+          "standard_ref": "std-rfc9293",
+          "aliases_forbidden": [
+            "重置包",
+            "复位包"
+          ]
+        },
+        {
+          "id": "term-established",
+          "preferred": "已建立",
+          "abbr": "ESTABLISHED",
+          "definition": "连接状态之一：连接已打开，可以收发数据",
+          "standard_ref": "std-rfc9293",
+          "aliases_forbidden": [
+            "连通状态"
+          ]
+        }
+      ],
+      "notation": {
+        "报文段": "画面用“报文段”，口播同样用“报文段”，不用“包”",
+        "标志位": "SYN、ACK、RST 保持大写；口播读字母"
+      }
+    },
+    "expression": {
+      "profile": "ste-zh-spoken",
+      "pronunciations": {
+        "RFC": "R F C",
+        "TCP": "T C P",
+        "ESTABLISHED": "已建立"
+      }
+    },
+    "carrier": {
+      "kind": "object",
+      "object": "对账台：左右两站，中间一条轨道，信封沿轨道滑行",
+      "mechanism": "每站有序号盘、确认号盘和一排状态灯；信封载着标志拨片从一站滑到另一站；信封到位后，站按规则转动盘并点亮下一格灯",
+      "fallback": "改用三行时序表（左站 | 报文段 | 右站），逐行高亮，保留相同数字",
+      "limits": [
+        "轨道看起来不会丢信封；真实网络会丢包、重复和乱序",
+        "拨盘是整数里程表；真实序号是 32 位、按字节计数的数"
+      ],
+      "mappings": [
+        {
+          "id": "map-station-a",
+          "concept": "发起连接的一端（RFC 图 6 的 TCP Peer A）",
+          "part": "左站",
+          "fidelity": "structural",
+          "element_id": "cd-station-a",
+          "layer_id": "layer-cast-dials",
+          "questions": {
+            "what": "左边这台带两个盘的收发站",
+            "happening": "它先把信封送上轨道",
+            "why": "谁先发出请求，谁就是发起的一端"
+          },
+          "breaks_at": "真实的两端是对等的软件，不固定在左右两侧；只是图里先发 SYN 的那一端站在左边"
+        },
+        {
+          "id": "map-station-b",
+          "concept": "等待连接的一端（RFC 图 6 的 TCP Peer B）",
+          "part": "右站",
+          "fidelity": "structural",
+          "element_id": "cd-station-b",
+          "layer_id": "layer-cast-dials",
+          "questions": {
+            "what": "右边那台同样带两个盘的收发站",
+            "happening": "它先守在轨道另一头等信封",
+            "why": "需要有一端先等着，才能接到请求"
+          },
+          "breaks_at": "真实的等待端可以同时等很多个请求；图里只画一个"
+        },
+        {
+          "id": "map-seq",
+          "concept": "序号",
+          "part": "站上的序号盘",
+          "fidelity": "structural",
+          "element_id": "cd-seq-dial",
+          "layer_id": "layer-cast-dials",
+          "questions": {
+            "what": "每站的第一个里程表式拨盘",
+            "happening": "发出信封前，盘面就是信封上写的序号",
+            "why": "给本方发出的字节编号，对方才能指明收到哪里"
+          },
+          "breaks_at": "拨盘是普通整数；真实序号是 32 位的数，按字节计数，起点由系统选定，图 6 的 100 与 300 只是演示值"
+        },
+        {
+          "id": "map-ackno",
+          "concept": "确认号（期待收到的下一个序号）",
+          "part": "站上的确认号盘",
+          "fidelity": "structural",
+          "element_id": "cd-ack-dial",
+          "layer_id": "layer-cast-dials",
+          "questions": {
+            "what": "每站的第二个拨盘",
+            "happening": "收到对方的序号后，盘面转到对方序号加一",
+            "why": "告诉对方：它的编号我收到哪里了"
+          },
+          "breaks_at": "拨盘只表示一个数；真实确认号还要配合 ACK 标志位才有效"
+        },
+        {
+          "id": "map-state",
+          "concept": "连接状态（本片涉及的几个状态）",
+          "part": "站上的一排状态灯",
+          "fidelity": "structural",
+          "element_id": "cd-lamps",
+          "layer_id": "layer-cast-dials",
+          "questions": {
+            "what": "盘下面的一排灯，同一时刻只亮一格",
+            "happening": "信封到达或离开后，灯移到下一格",
+            "why": "让人一眼看出这一站现在走到了哪一步"
+          },
+          "breaks_at": "真实 TCP 还有关闭连接用的其他状态，本片不演示"
+        },
+        {
+          "id": "map-segment",
+          "concept": "报文段",
+          "part": "轨道上的信封",
+          "fidelity": "structural",
+          "element_id": "cf-envelope",
+          "layer_id": "layer-cast-flags",
+          "questions": {
+            "what": "一封带编号的信，在轨道上从一站滑向另一站",
+            "happening": "每次握手送出一封",
+            "why": "两站只能靠信封交换信息"
+          },
+          "breaks_at": "轨道看起来不会丢信封；真实网络会丢包、重复和乱序，需要另外演示"
+        },
+        {
+          "id": "map-flags",
+          "concept": "标志位 SYN 与 ACK",
+          "part": "信封上的两枚拨片",
+          "fidelity": "structural",
+          "element_id": "cf-flag-syn",
+          "layer_id": "layer-cast-flags",
+          "questions": {
+            "what": "信封上可以拨亮的小片",
+            "happening": "拨亮哪一片，就告诉对方这封信想做什么",
+            "why": "同一种信封要承担请求和确认两种用途"
+          },
+          "breaks_at": "真实标志位是报文头里的二进制位，还有本片没有展示的其他位；RST 在反例一层才出现"
+        },
+        {
+          "id": "map-old-dup",
+          "concept": "迟到的旧连接请求（重复 SYN）",
+          "part": "一只迟到的旧信封",
+          "fidelity": "structural",
+          "element_id": "wy-old-envelope",
+          "layer_id": "layer-why",
+          "questions": {
+            "what": "一只序号 90 的旧信封，在新请求之前迟到",
+            "happening": "它在轨道上滞留后才到达右站",
+            "why": "用它说明：只靠两步，右站无法判断请求是新是旧"
+          },
+          "breaks_at": "真实网络中的重复可能来自重传，到达时间不可预测；图里只演示 RFC 图 8 的一种顺序"
+        }
+      ]
+    },
+    "truth": {
+      "claims": [
+        {
+          "id": "claim-handshake-count",
+          "text": "建立连接的基本过程叫三次握手：双方交换三个报文段",
+          "kind": "sourced",
+          "standard_ref": "std-rfc9293",
+          "source": "§3.5 与图 6",
+          "value": 3,
+          "unit": "个报文段",
+          "used_in": [
+            "bb-narr"
+          ]
+        },
+        {
+          "id": "claim-a-syn",
+          "text": "图 6 的演示：左站发出 SYN，序号 100",
+          "kind": "sourced",
+          "standard_ref": "std-rfc9293",
+          "source": "图 6 第 2 行",
+          "value": 100,
+          "unit": "序号（演示值）",
+          "used_in": [
+            "rn-narr",
+            "rl-narr"
+          ]
+        },
+        {
+          "id": "claim-b-synack",
+          "text": "图 6 的演示：右站回复 SYN 与 ACK，自己的序号 300，确认号 101",
+          "kind": "sourced",
+          "standard_ref": "std-rfc9293",
+          "source": "图 6 第 3 行",
+          "used_in": [
+            "rn-narr",
+            "rl-narr"
+          ]
+        },
+        {
+          "id": "claim-a-ack",
+          "text": "图 6 的演示：左站回复 ACK，序号 101，确认号 301",
+          "kind": "sourced",
+          "standard_ref": "std-rfc9293",
+          "source": "图 6 第 4 行",
+          "used_in": [
+            "rn-narr"
+          ]
+        },
+        {
+          "id": "claim-ack-plus-one",
+          "text": "确认号等于对方序号加 1：SYN 占用一个序号",
+          "kind": "derived",
+          "derivation": "图 6 中 100 对应 101，300 对应 301，两次差值都是 1；RFC 文字说明确认号指向 SYN 占用序号之后的下一个序号",
+          "from": [
+            "claim-a-syn",
+            "claim-b-synack",
+            "claim-a-ack"
+          ],
+          "value": 1,
+          "unit": "个序号",
+          "used_in": [
+            "rl-narr"
+          ]
+        },
+        {
+          "id": "claim-states",
+          "text": "图 6 中两端最终都进入已建立（ESTABLISHED）状态；左站在收到 SYN 与 ACK 后进入，右站在收到最后的 ACK 后进入",
+          "kind": "sourced",
+          "standard_ref": "std-rfc9293",
+          "source": "图 6 第 3、4 行；图注：状态表示报文段离开或到达之后的状态",
+          "used_in": [
+            "rn-narr"
+          ]
+        },
+        {
+          "id": "claim-why-old-dup",
+          "text": "三次握手的主要原因：防止旧的重复连接请求造成混乱",
+          "kind": "sourced",
+          "standard_ref": "std-rfc9293",
+          "source": "§3.5 正文",
+          "used_in": [
+            "wy-narr"
+          ]
+        },
+        {
+          "id": "claim-old-dup",
+          "text": "图 8 的演示：旧的重复 SYN 序号 90；右站照常回复，序号 300，确认号 91；左站发现确认号不对，回复 RST，右站回到等待（LISTEN）状态",
+          "kind": "sourced",
+          "standard_ref": "std-rfc9293",
+          "source": "图 8 第 3 至 5 行与图后说明",
+          "used_in": [
+            "wy-narr"
+          ]
+        },
+        {
+          "id": "claim-rail-speed",
+          "text": "信封在轨道上的滑行快慢只为方便观看",
+          "kind": "illustrative",
+          "disclosure": "画面角标写明：滑行速度仅为示意，不代表网络延迟"
+        }
+      ]
+    },
+    "layers": [
+      {
+        "id": "layer-hook",
+        "level": "L0",
+        "goal": "让观众想知道答案",
+        "new_load": "一个问题：怎样确认对方在线",
+        "exit_test": "能复述这个问题：两台陌生电脑怎样确认彼此在线且听得到",
+        "scene_ids": [
+          "scene-hook"
+        ]
+      },
+      {
+        "id": "layer-blackbox",
+        "level": "L1",
+        "goal": "给出黑箱：输入两个陌生端点，输出一条连接",
+        "new_load": "黑箱：三个报文段建立一条连接",
+        "exit_test": "能说出握手的结果，以及用了几个报文段",
+        "bridge_from_previous": "把问题里的两台电脑换成左右两站，把“确认对方在线”换成一封封信",
+        "scene_ids": [
+          "scene-blackbox"
+        ],
+        "claim_ids": [
+          "claim-handshake-count"
+        ]
+      },
+      {
+        "id": "layer-cast-dials",
+        "level": "L2",
+        "goal": "认识每站的两个拨盘和一排状态灯",
+        "new_load": "站上的盘与灯",
+        "exit_test": "能说出序号盘与确认号盘各记什么",
+        "bridge_from_previous": "黑箱里的两站原地不动，打开站体，露出里面的盘和灯",
+        "scene_ids": [
+          "scene-cast-dials"
+        ],
+        "focus_element_id": "cd-seq-dial",
+        "element_ids": [
+          "cd-seq-dial",
+          "cd-ack-dial",
+          "cd-lamps"
+        ]
+      },
+      {
+        "id": "layer-cast-flags",
+        "level": "L2",
+        "goal": "认识信封上的两枚拨片",
+        "new_load": "信封上的标志拨片",
+        "exit_test": "能说出 SYN 与 ACK 各表示什么",
+        "bridge_from_previous": "两只盘留在站上，镜头转向轨道，打开信封，露出拨片",
+        "scene_ids": [
+          "scene-cast-flags"
+        ],
+        "focus_element_id": "cf-flag-syn",
+        "element_ids": [
+          "cf-envelope",
+          "cf-flag-syn",
+          "cf-flag-ack"
+        ]
+      },
+      {
+        "id": "layer-relation",
+        "level": "L3",
+        "goal": "理解确认号等于对方序号加一",
+        "new_load": "一条关系：确认号等于对方序号加一",
+        "exit_test": "给出对方序号 100，能说出确认号",
+        "bridge_from_previous": "把左站的序号盘和右站的确认号盘并排放回画面，用 SYN 占一个序号解释为什么加一",
+        "scene_ids": [
+          "scene-relation"
+        ],
+        "focus_element_id": "rl-plus-one",
+        "claim_ids": [
+          "claim-ack-plus-one",
+          "claim-a-syn",
+          "claim-b-synack"
+        ]
+      },
+      {
+        "id": "layer-run",
+        "level": "L4",
+        "goal": "跟着真实数字走完一圈",
+        "new_load": "一次完整运行",
+        "exit_test": "能按顺序说出三个报文段的标志和序号",
+        "bridge_from_previous": "同一台机器，把刚才的 100 与 101 换成 RFC 图 6 的完整三步",
+        "scene_ids": [
+          "scene-run"
+        ],
+        "focus_element_id": "rn-envelope-1",
+        "claim_ids": [
+          "claim-a-syn",
+          "claim-b-synack",
+          "claim-a-ack",
+          "claim-states"
+        ]
+      },
+      {
+        "id": "layer-why",
+        "level": "L5",
+        "goal": "理解为什么需要核对：旧的重复 SYN 会被拦下",
+        "new_load": "一个反例：迟到的旧信封",
+        "exit_test": "能说出旧 SYN 到达后，谁发现了问题、怎样处理",
+        "bridge_from_previous": "同一台机器，同一条轨道，多放一只迟到的旧信封",
+        "scene_ids": [
+          "scene-why"
+        ],
+        "focus_element_id": "wy-old-envelope",
+        "claim_ids": [
+          "claim-why-old-dup",
+          "claim-old-dup"
+        ]
+      },
+      {
+        "id": "layer-recap",
+        "level": "L6",
+        "goal": "回到总览并交代边界",
+        "new_load": "无新概念：只回顾、划边界和指路",
+        "exit_test": "能说出这台机器没有演示什么，以及去哪里继续读",
+        "bridge_from_previous": "拉回整机，三个信封和两站退到总览",
+        "scene_ids": [
+          "scene-recap"
+        ],
+        "model_boundary": "对账台只演示建立连接；没有演示丢包、重传、窗口和关闭连接；轨道看起来不会丢信封",
+        "extension_pointers": [
+          "RFC 9293 §3.5.1 半开连接与其他异常",
+          "RFC 9293 §3.6 关闭连接"
+        ]
+      }
+    ],
+    "checks": {
+      "terminology": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "accuracy": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "novice_read": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "peer_read": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "expert_read": {
+        "status": "not_run",
+        "evidence": []
+      }
+    }
+  },
+  "assets": [],
+  "scenes": [
+    {
+      "id": "scene-hook",
+      "purpose": "提出问题：两台陌生电脑怎样确认彼此",
+      "start": 0,
+      "end": 8,
+      "layout": "paired-comparison",
+      "elements": [
+        {
+          "id": "hk-station-a",
+          "role": "subject",
+          "content": "左站",
+          "continuity_key": "station-a"
+        },
+        {
+          "id": "hk-station-b",
+          "role": "subject",
+          "content": "右站",
+          "continuity_key": "station-b"
+        },
+        {
+          "id": "hk-question",
+          "role": "question",
+          "content": "对方在线吗？听得到吗？"
+        }
+      ],
+      "beats": [
+        {
+          "id": "hk-beat-stations",
+          "time": 0.8,
+          "meaning": "两站出现，灯全灭"
+        },
+        {
+          "id": "hk-beat-question",
+          "time": 4.5,
+          "meaning": "提出两个问题",
+          "narration_id": "hk-narr"
+        }
+      ],
+      "motions": [
+        {
+          "id": "hk-m-a",
+          "pattern_id": "reveal",
+          "target_id": "hk-station-a",
+          "start": 0.5,
+          "end": 1.1,
+          "parameters": {
+            "distance": 12,
+            "opacity_from": 0
+          },
+          "beat_id": "hk-beat-stations"
+        },
+        {
+          "id": "hk-m-b",
+          "pattern_id": "reveal",
+          "target_id": "hk-station-b",
+          "start": 0.8,
+          "end": 1.4,
+          "parameters": {
+            "distance": 12,
+            "opacity_from": 0
+          },
+          "beat_id": "hk-beat-stations"
+        },
+        {
+          "id": "hk-m-q",
+          "pattern_id": "reveal",
+          "target_id": "hk-question",
+          "start": 4.2,
+          "end": 4.8,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "hk-beat-question"
+        },
+        {
+          "id": "hk-m-hold",
+          "pattern_id": "hold",
+          "target_id": "hk-question",
+          "start": 5.0,
+          "end": 8.0,
+          "parameters": {
+            "minimum_reading": 2
+          }
+        }
+      ],
+      "narration": [
+        {
+          "id": "hk-narr",
+          "display": "两台陌生的电脑，怎样确认对方在线？又怎样确认对方听得到？",
+          "spoken": "两台陌生的电脑，怎样确认对方在线？又怎样确认对方听得到？",
+          "start": 0.5,
+          "duration_seconds": 6.5,
+          "timing": "estimated"
+        }
+      ],
+      "audio_cues": [],
+      "hold_seconds": 2
+    },
+    {
+      "id": "scene-blackbox",
+      "purpose": "黑箱：三个报文段，一条连接",
+      "start": 8,
+      "end": 18,
+      "layout": "relation-diagram",
+      "elements": [
+        {
+          "id": "bb-title",
+          "role": "title",
+          "content": "TCP 三次握手"
+        },
+        {
+          "id": "bb-station-a",
+          "role": "subject",
+          "content": "左站",
+          "continuity_key": "station-a"
+        },
+        {
+          "id": "bb-station-b",
+          "role": "subject",
+          "content": "右站",
+          "continuity_key": "station-b"
+        },
+        {
+          "id": "bb-rail",
+          "role": "structure",
+          "content": "轨道",
+          "continuity_key": "rail"
+        },
+        {
+          "id": "bb-envelope",
+          "role": "subject",
+          "content": "信封 = 报文段",
+          "continuity_key": "envelope"
+        },
+        {
+          "id": "bb-result",
+          "role": "caption",
+          "content": "输入：两个陌生端点。输出：一条连接。"
+        }
+      ],
+      "beats": [
+        {
+          "id": "bb-beat-rail",
+          "time": 8.6,
+          "meaning": "轨道接通两站"
+        },
+        {
+          "id": "bb-beat-define",
+          "time": 13.0,
+          "meaning": "说明信封就是报文段",
+          "narration_id": "bb-narr"
+        }
+      ],
+      "motions": [
+        {
+          "id": "bb-m-rail",
+          "pattern_id": "trace",
+          "target_id": "bb-rail",
+          "start": 8.4,
+          "end": 9.2,
+          "parameters": {
+            "line_width": 3
+          },
+          "beat_id": "bb-beat-rail"
+        },
+        {
+          "id": "bb-m-envelope",
+          "pattern_id": "reveal",
+          "target_id": "bb-envelope",
+          "start": 12.8,
+          "end": 13.4,
+          "parameters": {
+            "distance": 12,
+            "opacity_from": 0
+          },
+          "beat_id": "bb-beat-define"
+        },
+        {
+          "id": "bb-m-result",
+          "pattern_id": "reveal",
+          "target_id": "bb-result",
+          "start": 14.6,
+          "end": 15.2,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          }
+        },
+        {
+          "id": "bb-m-hold",
+          "pattern_id": "hold",
+          "target_id": "bb-result",
+          "start": 15.4,
+          "end": 18.0,
+          "parameters": {
+            "minimum_reading": 2
+          }
+        }
+      ],
+      "narration": [
+        {
+          "id": "bb-narr",
+          "display": "三次握手是指双方交换三个报文段，建立一条连接。报文段就是一封带编号的信。",
+          "spoken": "三次握手是指双方交换三个报文段，建立一条连接。报文段就是一封带编号的信。",
+          "start": 8.5,
+          "duration_seconds": 8.0,
+          "timing": "estimated"
+        }
+      ],
+      "audio_cues": [],
+      "hold_seconds": 2
+    },
+    {
+      "id": "scene-cast-dials",
+      "purpose": "认识两个拨盘与状态灯",
+      "start": 18,
+      "end": 35,
+      "layout": "paired-comparison",
+      "elements": [
+        {
+          "id": "cd-station-a",
+          "role": "subject",
+          "content": "左站",
+          "continuity_key": "station-a"
+        },
+        {
+          "id": "cd-station-b",
+          "role": "subject",
+          "content": "右站",
+          "continuity_key": "station-b"
+        },
+        {
+          "id": "cd-seq-dial",
+          "role": "subject",
+          "content": "序号盘",
+          "continuity_key": "seq-dial"
+        },
+        {
+          "id": "cd-ack-dial",
+          "role": "subject",
+          "content": "确认号盘",
+          "continuity_key": "ack-dial"
+        },
+        {
+          "id": "cd-lamps",
+          "role": "structure",
+          "content": "状态灯",
+          "continuity_key": "lamps"
+        }
+      ],
+      "beats": [
+        {
+          "id": "cd-beat-stations",
+          "time": 18.6,
+          "meaning": "两站打开"
+        },
+        {
+          "id": "cd-beat-seq",
+          "time": 21.8,
+          "meaning": "序号盘被点亮",
+          "narration_id": "cd-narr"
+        },
+        {
+          "id": "cd-beat-ack",
+          "time": 26.6,
+          "meaning": "确认号盘被点亮"
+        },
+        {
+          "id": "cd-beat-lamps",
+          "time": 32.0,
+          "meaning": "状态灯被点亮"
+        }
+      ],
+      "motions": [
+        {
+          "id": "cd-m-seq-in",
+          "pattern_id": "reveal",
+          "target_id": "cd-seq-dial",
+          "start": 21.5,
+          "end": 22.1,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "cd-beat-seq"
+        },
+        {
+          "id": "cd-m-seq-lit",
+          "pattern_id": "highlight",
+          "target_id": "cd-seq-dial",
+          "start": 22.2,
+          "end": 25.5,
+          "parameters": {
+            "strength": 0.85,
+            "dim_others_to": 0.45
+          },
+          "beat_id": "cd-beat-seq"
+        },
+        {
+          "id": "cd-m-ack-in",
+          "pattern_id": "reveal",
+          "target_id": "cd-ack-dial",
+          "start": 26.4,
+          "end": 27.0,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "cd-beat-ack"
+        },
+        {
+          "id": "cd-m-ack-lit",
+          "pattern_id": "highlight",
+          "target_id": "cd-ack-dial",
+          "start": 27.1,
+          "end": 31.0,
+          "parameters": {
+            "strength": 0.85,
+            "dim_others_to": 0.45
+          },
+          "beat_id": "cd-beat-ack"
+        },
+        {
+          "id": "cd-m-lamps-in",
+          "pattern_id": "reveal",
+          "target_id": "cd-lamps",
+          "start": 31.8,
+          "end": 32.4,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "cd-beat-lamps"
+        },
+        {
+          "id": "cd-m-hold",
+          "pattern_id": "hold",
+          "target_id": "cd-lamps",
+          "start": 32.6,
+          "end": 35.0,
+          "parameters": {
+            "minimum_reading": 2
+          }
+        }
+      ],
+      "narration": [
+        {
+          "id": "cd-narr",
+          "display": "机器分左右两站，各有一个序号盘。序号表示发送方给报文段编的号。再看确认号盘。确认号表示接收方期待的下一个序号。盘下面是一排状态灯。",
+          "spoken": "机器分左右两站，各有一个序号盘。序号表示发送方给报文段编的号。再看确认号盘。确认号表示接收方期待的下一个序号。盘下面是一排状态灯。",
+          "start": 18.5,
+          "duration_seconds": 15.3,
+          "timing": "estimated"
+        }
+      ],
+      "audio_cues": [],
+      "hold_seconds": 2
+    },
+    {
+      "id": "scene-cast-flags",
+      "purpose": "认识信封上的两枚拨片",
+      "start": 35,
+      "end": 47,
+      "layout": "single-concept",
+      "elements": [
+        {
+          "id": "cf-envelope",
+          "role": "subject",
+          "content": "信封 = 报文段",
+          "continuity_key": "envelope"
+        },
+        {
+          "id": "cf-flag-syn",
+          "role": "subject",
+          "content": "SYN 拨片"
+        },
+        {
+          "id": "cf-flag-ack",
+          "role": "subject",
+          "content": "ACK 拨片"
+        }
+      ],
+      "beats": [
+        {
+          "id": "cf-beat-envelope",
+          "time": 35.6,
+          "meaning": "信封打开"
+        },
+        {
+          "id": "cf-beat-syn",
+          "time": 38.2,
+          "meaning": "SYN 拨片被点亮",
+          "narration_id": "cf-narr"
+        },
+        {
+          "id": "cf-beat-ack",
+          "time": 42.0,
+          "meaning": "ACK 拨片被点亮"
+        }
+      ],
+      "motions": [
+        {
+          "id": "cf-m-envelope",
+          "pattern_id": "reveal",
+          "target_id": "cf-envelope",
+          "start": 35.4,
+          "end": 36.0,
+          "parameters": {
+            "distance": 12,
+            "opacity_from": 0
+          },
+          "beat_id": "cf-beat-envelope"
+        },
+        {
+          "id": "cf-m-syn-in",
+          "pattern_id": "reveal",
+          "target_id": "cf-flag-syn",
+          "start": 38.0,
+          "end": 38.6,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "cf-beat-syn"
+        },
+        {
+          "id": "cf-m-syn-lit",
+          "pattern_id": "highlight",
+          "target_id": "cf-flag-syn",
+          "start": 38.7,
+          "end": 41.5,
+          "parameters": {
+            "strength": 0.85,
+            "dim_others_to": 0.45
+          },
+          "beat_id": "cf-beat-syn"
+        },
+        {
+          "id": "cf-m-ack-in",
+          "pattern_id": "reveal",
+          "target_id": "cf-flag-ack",
+          "start": 41.8,
+          "end": 42.4,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "cf-beat-ack"
+        },
+        {
+          "id": "cf-m-ack-lit",
+          "pattern_id": "highlight",
+          "target_id": "cf-flag-ack",
+          "start": 42.5,
+          "end": 46.0,
+          "parameters": {
+            "strength": 0.85,
+            "dim_others_to": 0.45
+          },
+          "beat_id": "cf-beat-ack"
+        }
+      ],
+      "narration": [
+        {
+          "id": "cf-narr",
+          "display": "信封上有两枚拨片。SYN 表示请求连接，并告诉对方起始序号。ACK 表示确认号有效，对方的序号我已收到。",
+          "spoken": "信封上有两枚拨片。S Y N 表示请求连接，并告诉对方起始序号。A C K 表示确认号有效，对方的序号我已收到。",
+          "start": 35.5,
+          "duration_seconds": 11.0,
+          "timing": "estimated"
+        }
+      ],
+      "audio_cues": [],
+      "hold_seconds": 1
+    },
+    {
+      "id": "scene-relation",
+      "purpose": "关系：确认号等于对方序号加一",
+      "start": 47,
+      "end": 57,
+      "layout": "relation-diagram",
+      "elements": [
+        {
+          "id": "rl-seq-a",
+          "role": "subject",
+          "content": "左站序号盘：100"
+        },
+        {
+          "id": "rl-ack-b",
+          "role": "subject",
+          "content": "右站确认号盘：101"
+        },
+        {
+          "id": "rl-plus-one",
+          "role": "relation",
+          "content": "+1",
+          "from_id": "rl-seq-a",
+          "to_id": "rl-ack-b",
+          "relation_type": "derived-plus-one"
+        }
+      ],
+      "beats": [
+        {
+          "id": "rl-beat-syn",
+          "time": 47.8,
+          "meaning": "SYN 占用一个序号",
+          "narration_id": "rl-narr"
+        },
+        {
+          "id": "rl-beat-rule",
+          "time": 51.0,
+          "meaning": "确认号等于序号加一"
+        },
+        {
+          "id": "rl-beat-example",
+          "time": 54.0,
+          "meaning": "用 100 和 101 举例"
+        }
+      ],
+      "motions": [
+        {
+          "id": "rl-m-seq",
+          "pattern_id": "reveal",
+          "target_id": "rl-seq-a",
+          "start": 47.6,
+          "end": 48.2,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "rl-beat-syn"
+        },
+        {
+          "id": "rl-m-plus",
+          "pattern_id": "connect",
+          "target_id": "rl-plus-one",
+          "start": 50.6,
+          "end": 51.4,
+          "parameters": {
+            "line_width": 2.5,
+            "progress_from": 0
+          },
+          "beat_id": "rl-beat-rule"
+        },
+        {
+          "id": "rl-m-plus-lit",
+          "pattern_id": "highlight",
+          "target_id": "rl-plus-one",
+          "start": 51.5,
+          "end": 53.5,
+          "parameters": {
+            "strength": 0.85,
+            "dim_others_to": 0.45
+          },
+          "beat_id": "rl-beat-rule"
+        },
+        {
+          "id": "rl-m-ack",
+          "pattern_id": "count",
+          "target_id": "rl-ack-b",
+          "start": 53.6,
+          "end": 54.6,
+          "parameters": {
+            "from_value": 100,
+            "to_value": 101,
+            "decimals": 0
+          },
+          "beat_id": "rl-beat-example"
+        }
+      ],
+      "narration": [
+        {
+          "id": "rl-narr",
+          "display": "对方的 SYN 占用一个序号。所以确认号等于对方序号加一。收到序号 100，就期待 101。",
+          "spoken": "对方的 S Y N 占用一个序号。所以确认号等于对方序号加一。收到序号 100，就期待 101。",
+          "start": 47.5,
+          "duration_seconds": 9.0,
+          "timing": "estimated"
+        }
+      ],
+      "audio_cues": [],
+      "hold_seconds": 1
+    },
+    {
+      "id": "scene-run",
+      "purpose": "完整运行一圈：照 RFC 图 6",
+      "start": 57,
+      "end": 80,
+      "layout": "step-sequence",
+      "elements": [
+        {
+          "id": "rn-title",
+          "role": "caption",
+          "content": "RFC 9293 图 6：基本三次握手"
+        },
+        {
+          "id": "rn-envelope-1",
+          "role": "subject",
+          "content": "① SYN 序号 100"
+        },
+        {
+          "id": "rn-envelope-2",
+          "role": "subject",
+          "content": "② SYN+ACK 序号 300 确认号 101"
+        },
+        {
+          "id": "rn-envelope-3",
+          "role": "subject",
+          "content": "③ ACK 序号 101 确认号 301"
+        },
+        {
+          "id": "rn-lamps-a",
+          "role": "state",
+          "content": "左站：关闭 → 同步已发送 → 已建立"
+        },
+        {
+          "id": "rn-lamps-b",
+          "role": "state",
+          "content": "右站：等待 → 同步已收到 → 已建立"
+        },
+        {
+          "id": "rn-note",
+          "role": "caption",
+          "content": "滑行速度仅为示意，不代表网络延迟"
+        }
+      ],
+      "beats": [
+        {
+          "id": "rn-beat-1",
+          "time": 57.8,
+          "meaning": "第一封信滑向右站",
+          "narration_id": "rn-narr"
+        },
+        {
+          "id": "rn-beat-2",
+          "time": 61.3,
+          "meaning": "第二封信滑回左站"
+        },
+        {
+          "id": "rn-beat-3",
+          "time": 69.3,
+          "meaning": "第三封信滑向右站"
+        },
+        {
+          "id": "rn-beat-end",
+          "time": 74.6,
+          "meaning": "两站灯都停在已建立"
+        }
+      ],
+      "motions": [
+        {
+          "id": "rn-m-title",
+          "pattern_id": "reveal",
+          "target_id": "rn-title",
+          "start": 57.2,
+          "end": 57.8,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "rn-beat-1"
+        },
+        {
+          "id": "rn-m-slide-1",
+          "pattern_id": "custom",
+          "custom": true,
+          "target_id": "rn-envelope-1",
+          "start": 58.0,
+          "end": 59.2,
+          "beat_id": "rn-beat-1",
+          "implementation": "信封沿轨道从左站滑到另一站，缓动到位；到位后才改拨盘与状态灯",
+          "channels": [
+            "position"
+          ],
+          "required_capabilities": [
+            "position",
+            "time-control"
+          ]
+        },
+        {
+          "id": "rn-m-lamp-b1",
+          "pattern_id": "state-swap",
+          "target_id": "rn-lamps-b",
+          "start": 59.3,
+          "end": 59.9,
+          "parameters": {
+            "crossfade_ratio": 0.15
+          },
+          "beat_id": "rn-beat-1"
+        },
+        {
+          "id": "rn-m-slide-2",
+          "pattern_id": "custom",
+          "custom": true,
+          "target_id": "rn-envelope-2",
+          "start": 61.4,
+          "end": 62.6,
+          "beat_id": "rn-beat-2",
+          "implementation": "信封沿轨道从右站滑到另一站，缓动到位；到位后才改拨盘与状态灯",
+          "channels": [
+            "position"
+          ],
+          "required_capabilities": [
+            "position",
+            "time-control"
+          ]
+        },
+        {
+          "id": "rn-m-lamp-a",
+          "pattern_id": "state-swap",
+          "target_id": "rn-lamps-a",
+          "start": 62.7,
+          "end": 63.3,
+          "parameters": {
+            "crossfade_ratio": 0.15
+          },
+          "beat_id": "rn-beat-2"
+        },
+        {
+          "id": "rn-m-slide-3",
+          "pattern_id": "custom",
+          "custom": true,
+          "target_id": "rn-envelope-3",
+          "start": 69.4,
+          "end": 70.6,
+          "beat_id": "rn-beat-3",
+          "implementation": "信封沿轨道从左站滑到另一站，缓动到位；到位后才改拨盘与状态灯",
+          "channels": [
+            "position"
+          ],
+          "required_capabilities": [
+            "position",
+            "time-control"
+          ]
+        },
+        {
+          "id": "rn-m-lamp-b2",
+          "pattern_id": "state-swap",
+          "target_id": "rn-lamps-b",
+          "start": 70.7,
+          "end": 71.3,
+          "parameters": {
+            "crossfade_ratio": 0.15
+          },
+          "beat_id": "rn-beat-3"
+        },
+        {
+          "id": "rn-m-end",
+          "pattern_id": "highlight",
+          "target_id": "rn-lamps-b",
+          "start": 74.6,
+          "end": 77.0,
+          "parameters": {
+            "strength": 0.85,
+            "dim_others_to": 0.45
+          },
+          "beat_id": "rn-beat-end"
+        },
+        {
+          "id": "rn-m-hold",
+          "pattern_id": "hold",
+          "target_id": "rn-note",
+          "start": 77.0,
+          "end": 80.0,
+          "parameters": {
+            "minimum_reading": 2
+          }
+        }
+      ],
+      "narration": [
+        {
+          "id": "rn-narr",
+          "display": "第一步，左站发出 SYN，序号 100。第二步，右站回复 SYN 和 ACK。右站自己的序号是 300，确认号是 101。第三步，左站回复 ACK，序号 101，确认号 301。已建立表示连接已打开，可以收发数据。",
+          "spoken": "第一步，左站发出 S Y N，序号 100。第二步，右站回复 S Y N 和 A C K。右站自己的序号是 300，确认号是 101。第三步，左站回复 A C K，序号 101，确认号 301。已建立表示连接已打开，可以收发数据。",
+          "start": 57.5,
+          "duration_seconds": 21.0,
+          "timing": "estimated"
+        }
+      ],
+      "audio_cues": [],
+      "hold_seconds": 3
+    },
+    {
+      "id": "scene-why",
+      "purpose": "反例：迟到的旧 SYN 会被拦下",
+      "start": 80,
+      "end": 103,
+      "layout": "step-sequence",
+      "elements": [
+        {
+          "id": "wy-title",
+          "role": "caption",
+          "content": "RFC 9293 图 8：旧的重复 SYN 的恢复"
+        },
+        {
+          "id": "wy-old-envelope",
+          "role": "subject",
+          "content": "旧 SYN 序号 90"
+        },
+        {
+          "id": "wy-reply-envelope",
+          "role": "subject",
+          "content": "SYN+ACK 序号 300 确认号 91"
+        },
+        {
+          "id": "wy-reset-envelope",
+          "role": "subject",
+          "content": "RST 序号 91"
+        },
+        {
+          "id": "wy-lamp-b",
+          "role": "state",
+          "content": "右站：等待 → 同步已收到 → 等待"
+        },
+        {
+          "id": "wy-result",
+          "role": "caption",
+          "content": "结果：旧请求没有建立连接，真请求照常建立"
+        }
+      ],
+      "beats": [
+        {
+          "id": "wy-beat-old",
+          "time": 80.8,
+          "meaning": "旧信封迟到",
+          "narration_id": "wy-narr"
+        },
+        {
+          "id": "wy-beat-reply",
+          "time": 86.5,
+          "meaning": "右站照常回复"
+        },
+        {
+          "id": "wy-beat-reset",
+          "time": 91.8,
+          "meaning": "左站发出 RST"
+        },
+        {
+          "id": "wy-beat-back",
+          "time": 97.5,
+          "meaning": "右站回到等待"
+        }
+      ],
+      "motions": [
+        {
+          "id": "wy-m-title",
+          "pattern_id": "reveal",
+          "target_id": "wy-title",
+          "start": 80.2,
+          "end": 80.8,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "wy-beat-old"
+        },
+        {
+          "id": "wy-m-slide-old",
+          "pattern_id": "custom",
+          "custom": true,
+          "target_id": "wy-old-envelope",
+          "start": 81.0,
+          "end": 82.2,
+          "beat_id": "wy-beat-old",
+          "implementation": "信封沿轨道从左站滑到另一站，缓动到位；到位后才改拨盘与状态灯",
+          "channels": [
+            "position"
+          ],
+          "required_capabilities": [
+            "position",
+            "time-control"
+          ]
+        },
+        {
+          "id": "wy-m-lamp-1",
+          "pattern_id": "state-swap",
+          "target_id": "wy-lamp-b",
+          "start": 82.3,
+          "end": 82.9,
+          "parameters": {
+            "crossfade_ratio": 0.15
+          },
+          "beat_id": "wy-beat-old"
+        },
+        {
+          "id": "wy-m-slide-reply",
+          "pattern_id": "custom",
+          "custom": true,
+          "target_id": "wy-reply-envelope",
+          "start": 87.0,
+          "end": 88.2,
+          "beat_id": "wy-beat-reply",
+          "implementation": "信封沿轨道从右站滑到另一站，缓动到位；到位后才改拨盘与状态灯",
+          "channels": [
+            "position"
+          ],
+          "required_capabilities": [
+            "position",
+            "time-control"
+          ]
+        },
+        {
+          "id": "wy-m-slide-reset",
+          "pattern_id": "custom",
+          "custom": true,
+          "target_id": "wy-reset-envelope",
+          "start": 93.0,
+          "end": 94.2,
+          "beat_id": "wy-beat-reset",
+          "implementation": "信封沿轨道从左站滑到另一站，缓动到位；到位后才改拨盘与状态灯",
+          "channels": [
+            "position"
+          ],
+          "required_capabilities": [
+            "position",
+            "time-control"
+          ]
+        },
+        {
+          "id": "wy-m-reset-lit",
+          "pattern_id": "highlight",
+          "target_id": "wy-reset-envelope",
+          "start": 94.3,
+          "end": 96.5,
+          "parameters": {
+            "strength": 0.85,
+            "dim_others_to": 0.45
+          },
+          "beat_id": "wy-beat-reset"
+        },
+        {
+          "id": "wy-m-lamp-2",
+          "pattern_id": "state-swap",
+          "target_id": "wy-lamp-b",
+          "start": 97.5,
+          "end": 98.1,
+          "parameters": {
+            "crossfade_ratio": 0.15
+          },
+          "beat_id": "wy-beat-back"
+        },
+        {
+          "id": "wy-m-result",
+          "pattern_id": "reveal",
+          "target_id": "wy-result",
+          "start": 99.0,
+          "end": 99.6,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "wy-beat-back"
+        },
+        {
+          "id": "wy-m-hold",
+          "pattern_id": "hold",
+          "target_id": "wy-result",
+          "start": 99.8,
+          "end": 103.0,
+          "parameters": {
+            "minimum_reading": 2
+          }
+        }
+      ],
+      "narration": [
+        {
+          "id": "wy-narr",
+          "display": "如果一个旧的 SYN 迟到了呢？旧 SYN 的序号是 90。右站不知道它是旧的，照常回复，确认号 91。左站发现确认号不对，就发送 RST。RST 表示重置，要求对方放弃这次连接。右站回到等待状态，真请求照常建立。",
+          "spoken": "如果一个旧的 S Y N 迟到了呢？旧 S Y N 的序号是 90。右站不知道它是旧的，照常回复，确认号 91。左站发现确认号不对，就发送 R S T。R S T 表示重置，要求对方放弃这次连接。右站回到等待状态，真请求照常建立。",
+          "start": 80.5,
+          "duration_seconds": 21.5,
+          "timing": "estimated"
+        }
+      ],
+      "audio_cues": [],
+      "hold_seconds": 3
+    },
+    {
+      "id": "scene-recap",
+      "purpose": "回到总览，交代边界并指路",
+      "start": 103,
+      "end": 115,
+      "layout": "single-concept",
+      "elements": [
+        {
+          "id": "rc-overview",
+          "role": "subject",
+          "content": "整机总览：两站、一条轨道、三封信"
+        },
+        {
+          "id": "rc-boundary",
+          "role": "caption",
+          "content": "没有演示：丢包与重传"
+        },
+        {
+          "id": "rc-pointer",
+          "role": "caption",
+          "content": "延伸阅读：RFC 9293 §3.5"
+        }
+      ],
+      "beats": [
+        {
+          "id": "rc-beat-overview",
+          "time": 103.4,
+          "meaning": "拉回总览",
+          "narration_id": "rc-narr"
+        },
+        {
+          "id": "rc-beat-boundary",
+          "time": 107.8,
+          "meaning": "说明没有演示什么"
+        },
+        {
+          "id": "rc-beat-pointer",
+          "time": 110.5,
+          "meaning": "指向延伸阅读"
+        }
+      ],
+      "motions": [
+        {
+          "id": "rc-m-overview",
+          "pattern_id": "reveal",
+          "target_id": "rc-overview",
+          "start": 103.4,
+          "end": 104.0,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "rc-beat-overview"
+        },
+        {
+          "id": "rc-m-boundary",
+          "pattern_id": "reveal",
+          "target_id": "rc-boundary",
+          "start": 107.8,
+          "end": 108.4,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "rc-beat-boundary"
+        },
+        {
+          "id": "rc-m-pointer",
+          "pattern_id": "reveal",
+          "target_id": "rc-pointer",
+          "start": 110.5,
+          "end": 111.1,
+          "parameters": {
+            "distance": 8,
+            "opacity_from": 0
+          },
+          "beat_id": "rc-beat-pointer"
+        },
+        {
+          "id": "rc-m-hold",
+          "pattern_id": "hold",
+          "target_id": "rc-pointer",
+          "start": 111.5,
+          "end": 115.0,
+          "parameters": {
+            "minimum_reading": 3
+          }
+        }
+      ],
+      "narration": [
+        {
+          "id": "rc-narr",
+          "display": "回到总览：三个报文段，两站互相对账。这台机器没演示丢包和重传。想继续看，读 RFC 9293 第 3.5 节。",
+          "spoken": "回到总览：三个报文段，两站互相对账。这台机器没演示丢包和重传。想继续看，读 R F C 九二九三的第三点五节。",
+          "start": 103.5,
+          "duration_seconds": 11.0,
+          "timing": "estimated"
+        }
+      ],
+      "audio_cues": [],
+      "hold_seconds": 3
+    }
+  ],
+  "delivery": {
+    "status": "not_run",
+    "outputs": [],
+    "checks": {
+      "structure": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "semantic": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "visual": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "playback": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "audio": {
+        "status": "not_run",
+        "evidence": []
+      },
+      "comprehension": {
+        "status": "not_run",
+        "evidence": []
+      }
+    }
+  }
+}

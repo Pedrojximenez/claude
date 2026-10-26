@@ -1,0 +1,190 @@
+{
+  "pack_version": 1,
+  "id": "opuscar-countdown",
+  "name": "实时倒计时分屏",
+  "english_name": "Live Countdown Split-screen",
+  "category": "剪辑与纪实",
+  "aliases": [
+    "countdown",
+    "Live Countdown Split-screen"
+  ],
+  "guide": "STYLE.md",
+  "borrows": [],
+  "scenario_ids": [
+    "news-brief",
+    "story-video",
+    "image-story"
+  ],
+  "intent": "采用实时倒计时分屏的材质、构图、运动与声画语法组织当前题材。",
+  "applicable_inputs": [
+    "本片受众、事实和真实素材",
+    "品牌、语言与画幅",
+    "已选声音和可用制作环境"
+  ],
+  "constraints": [
+    "先读本包 STYLE.md 与完整 STYLE.upstream.md，再按镜头任务选择原生动作。",
+    "故事、产品、台词、音乐和时间线属于当前作品；上游案例仅用于学习技术。",
+    "上游的模型、BPM、语言、画幅和次数要求按本片需求适配，必要事实和素材授权继续核对。"
+  ],
+  "fallback": "按同一镜头目的降低材质或运动复杂度，保留主体、证据与阅读窗；能力缺口记 unresolved。",
+  "tokens": {
+    "source": "STYLE.upstream.md",
+    "navigation_only": true,
+    "preview_swatch": {
+      "background": "#151918",
+      "foreground": "#F3F0E7",
+      "accent": "#D5A86A",
+      "muted": "#B3B7AE",
+      "font_stack": [
+        "Georgia",
+        "PingFang SC",
+        "Noto Sans SC",
+        "serif"
+      ],
+      "radius": {
+        "value": 0,
+        "unit": "px"
+      },
+      "spacing": {
+        "base": 12,
+        "unit": "px",
+        "scale": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          8
+        ]
+      },
+      "line_weight": {
+        "value": 1.5,
+        "unit": "px"
+      }
+    }
+  },
+  "motion_character": {
+    "tempo": "依本片内容、实际声音与阅读窗编排",
+    "material": "见完整风格规则",
+    "emphasis": "保留选中风格的原生动作和材质关系"
+  },
+  "avoid": [
+    "仅替换示例字幕或照搬示例故事",
+    "把导航色板当作完整材质效果",
+    "沿用来源作品的通过状态"
+  ],
+  "required_capabilities": [
+    "time-control",
+    "media-composite"
+  ],
+  "verification": {
+    "design": {
+      "status": "authored",
+      "evidence": []
+    },
+    "preview": {
+      "status": "not_run",
+      "evidence": []
+    },
+    "exported": {
+      "status": "not_run",
+      "evidence": []
+    }
+  },
+  "source_refs": [
+    "https://github.com/lemomo-ai/lemo-opuscar/blob/413a6bd6d78ebd3bdd5abaec9538a26867f890df/styles/countdown/STYLE.md"
+  ],
+  "native_moves": [
+    "Many into one.",
+    "Clock inversion.",
+    "Control strip.",
+    "The grid fills on the count.",
+    "Sync badge.",
+    "Planned vs heard checklist.",
+    "Second countdown.",
+    "Event flag.",
+    "Punch-in on a call.",
+    "Document by rows."
+  ],
+  "section_index": [
+    {
+      "title": "1. Essence, and what it is not",
+      "line": 6
+    },
+    {
+      "title": "2. Materials & rendering",
+      "line": 16
+    },
+    {
+      "title": "3. Colour logic",
+      "line": 26
+    },
+    {
+      "title": "4. Type & subtitles",
+      "line": 39
+    },
+    {
+      "title": "5. Motion quality",
+      "line": 46
+    },
+    {
+      "title": "6. Edit grammar",
+      "line": 54
+    },
+    {
+      "title": "7. Sound palette",
+      "line": 63
+    },
+    {
+      "title": "8. Native moves (and how to build them)",
+      "line": 75
+    },
+    {
+      "title": "9. Pitfalls of the medium",
+      "line": 88
+    },
+    {
+      "title": "10. Materials, sources, facts, engine",
+      "line": 101
+    },
+    {
+      "title": "11. Variation space",
+      "line": 119
+    }
+  ],
+  "origin": {
+    "repository": "lemomo-ai/lemo-opuscar",
+    "revision": "413a6bd6d78ebd3bdd5abaec9538a26867f890df",
+    "slug": "countdown",
+    "license": "MIT",
+    "style_sha256": "867cca6e0c9bb0d6fb914cc4e9a2e295623ecd345fda9bd00bc362ff233f220f",
+    "demo_sha256": "5365cd86753af2f8ac5dbaf83b1dec75b4ee74d57ebf9701edd3fbc467d511c1",
+    "metadata_sha256": "d30ae465e30a1576cd08d2357e488209d5042cfde16d85dc6452562400c12e61"
+  },
+  "reference_files": [
+    "STYLE.upstream.md",
+    "DEMO.md",
+    "style.upstream.json",
+    "LICENSE"
+  ],
+  "implementation": {
+    "status": "reference-source",
+    "entrypoints": [
+      "demo/build.sh",
+      "demo/index.html"
+    ],
+    "shared_runtime": "vendor/lemo-opuscar",
+    "assets": "第三方素材按 demo/CREDITS 查找，具体项目另行准备与核验。"
+  },
+  "gallery": {
+    "poster": "preview.jpg",
+    "poster_sha256": "c301b2a73c4e222a83bf044d74310adf42d2b37f8ba1505a74091bf7bb7aa318",
+    "poster_source": "https://github.com/lemomo-ai/lemo-opuscar/blob/413a6bd6d78ebd3bdd5abaec9538a26867f890df/styleboard/img/countdown_0.jpg",
+    "video": "sample.mp4",
+    "video_sha256": "b2e5383e66a420dec5d5550ee16898bdcae9b67c0d04f108688ec3d3aa780edb",
+    "attribution": {
+      "name": "LemoLab · Lemo-Opuscar",
+      "url": "https://github.com/lemomo-ai/lemo-opuscar"
+    }
+  }
+}
